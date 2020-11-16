@@ -5,7 +5,6 @@
 
 ## Prerequisites
 
-- Install Nodejs, npm etc.
 - Install Angular / Upgrade to Angular 11
   `npm install -g @angular/cli`
 
@@ -16,8 +15,12 @@ cd careerfair2020
 npm install
 ```
 
+## Run Application
+
+Inside `careerfair2020` folder
+`ng serve`
+
 ## TODO
 
 - import required bootstrap components in `app.module.ts` while styling
 - configure firebaseConfig in `src/environments/environment.ts`
-- autheticate routes
