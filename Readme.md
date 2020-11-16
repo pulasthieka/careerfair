@@ -20,3 +20,4 @@ npm install
 
 - import required bootstrap components in `app.module.ts` while styling
 - configure firebaseConfig in `src/environments/environment.ts`
+- autheticate routes
