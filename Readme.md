@@ -1,7 +1,7 @@
 ## Folder Structure
 
-Use `careerfair2020` folder for the angular application
-Use `firebase` folder to backup firebase scripts, rules etc.
+- Use `careerfair2020` folder for the angular application
+- Use `firebase` folder to backup firebase scripts, rules etc.
 
 ## Prerequisites
 
