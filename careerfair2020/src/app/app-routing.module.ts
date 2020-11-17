@@ -14,14 +14,14 @@ const routes: Routes = [
   {
     path: 'panel',
     component: PanelComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    // canActivate: [AngularFireAuthGuard],
+    // data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'admin',
     component: CordinatorComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    // canActivate: [AngularFireAuthGuard],
+    // data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   { path: '**', redirectTo: '/login' },
 ];
