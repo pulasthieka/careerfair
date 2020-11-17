@@ -11,6 +11,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { DataEntryService } from './services/data-entry.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,4 +31,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataentry: DataEntryService) {}
+}
