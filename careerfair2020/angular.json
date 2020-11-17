@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "careerfair2020"
+  "defaultProject": "careerfair2020",
+  "cli": {
+    "analytics": "56aa8c55-2314-4440-ba2e-9f8d8b5cbfd6"
+  }
 }
