@@ -1,1 +1,10 @@
-<p>cordinator works!</p>
+<!-- panel status -->
+<section>
+    <div *ngFor="let panel of panels">
+        <button> {{panel.name}} available {{panel.available}}</button>
+        Support: {{panel.support}}
+        <button (click)="cancelSupport(panel.name)">Issue Solved</button>
+    </div>
+
+
+</section>
