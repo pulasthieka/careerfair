@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { DataEntryService } from './services/data-entry.service';
+import { TableComponent } from './table/table.component';
 
 
 
@@ -21,6 +22,7 @@ import { DataEntryService } from './services/data-entry.service';
     LoginComponent,
     CordinatorComponent,
     PanelComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

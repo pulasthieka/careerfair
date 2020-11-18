@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CordinatorComponent } from './cordinator/cordinator.component';
 import { LoginComponent } from './login/login.component';
 import { PanelComponent } from './panel/panel.component';
+import { TableComponent } from './table/table.component';
 
 import {
   AngularFireAuthGuard,
@@ -22,6 +23,10 @@ const routes: Routes = [
     component: CordinatorComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'table',
+    component: TableComponent,
   },
   { path: '**', redirectTo: '/login' },
 ];
