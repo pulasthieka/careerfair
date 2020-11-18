@@ -12,7 +12,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { DataEntryService } from './services/data-entry.service';
+<<<<<<< HEAD
 import { TableComponent } from './table/table.component';
+=======
+import { CandidateProfileComponent } from './panel/candidate-profile/candidate-profile.component';
+import { TestComponent } from './test/test.component';
+>>>>>>> 774f28ca598bfe43eda0041551e67bfbf5797653
 
 
 
@@ -22,7 +27,12 @@ import { TableComponent } from './table/table.component';
     LoginComponent,
     CordinatorComponent,
     PanelComponent,
+<<<<<<< HEAD
     TableComponent,
+=======
+    CandidateProfileComponent,
+    TestComponent,
+>>>>>>> 774f28ca598bfe43eda0041551e67bfbf5797653
   ],
   imports: [
     BrowserModule,
