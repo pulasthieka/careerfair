@@ -2,6 +2,7 @@ export default [
   {
     name: 'Dialog1',
     available: true,
+    support: 'Solved',
     applicants: [
       {
         status: 'To Interview',
@@ -15,6 +16,7 @@ export default [
   },
   {
     name: 'Dialog2',
+    support: 'Requested',
     available: true,
     applicants: [
       {
@@ -30,6 +32,7 @@ export default [
   {
     name: 'Dialog3',
     available: true,
+    support: 'Solved',
     applicants: [
       {
         status: 'Interviewed',
@@ -44,6 +47,7 @@ export default [
   {
     name: 'Dialog4',
     available: true,
+    support: 'Solved',
     applicants: [
       {
         status: 'Interviewed',
@@ -58,6 +62,7 @@ export default [
   {
     name: 'Dialog5',
     available: true,
+    support: 'Solved',
     applicants: [
       {
         status: 'Interviewed',
