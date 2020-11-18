@@ -1,18 +1,28 @@
 <!-- panel name -->
 <section>
-    <button *ngIf="available else elseBlock" (click)="next_candidate()"> Next Interview</button>
-    <ng-template #elseBlock><button (click)="next_candidate()"> Candidate in Interview</button></ng-template>
+  <button *ngIf="available; else elseBlock" (click)="next_candidate()">
+    Next Interview
+  </button>
+  <ng-template #elseBlock
+    ><button (click)="next_candidate()">
+      Candidate in Interview
+    </button></ng-template
+  >
 
-    <button *ngIf="support else askSupport" (click)="cancelSupport()"> Cancel Request</button>
-    <ng-template #askSupport><button (click)="requestSupport()"> Request Support</button></ng-template>
+  <button *ngIf="support; else askSupport" (click)="cancelSupport()">
+    Cancel Request
+  </button>
+  <ng-template #askSupport
+    ><button (click)="requestSupport()">Request Support</button></ng-template
+  >
 </section>
 
 <!-- candidate profile -->
 <section>
-    <app-candidate-profile></app-candidate-profile>
+  <app-candidate-profile></app-candidate-profile>
 </section>
 
 <!-- all applicants -->
 <section>
-
+  <app-panel-table></app-panel-table>
 </section>
