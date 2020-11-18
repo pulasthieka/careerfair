@@ -1,15 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PanelStatusService } from '../services/panel-status.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css']
+  styleUrls: ['./panel.component.css'],
 })
-export class PanelComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class PanelComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
+  panelName = '';
+  available = false;
+  support = false;
+  constructor(private panelStatus: PanelStatusService) {
+    this.panelName = 'Dialog1'; // TODO - replace with logic to get panel name from login credintials
   }
 
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
+        this.available = res.available;
+        if (res.support === 'Requested') {
+          this.support = true;
+        } else {
+          this.support = false;
+        }
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    // remove subscriptions on exit
+    for (const subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
+  }
+
+  next_candidate(): void {
+    // update panel availability in database
+    this.panelStatus.updatePanelStatus(this.panelName, !this.available);
+  }
+  requestSupport(): void {
+    // update panel availability in database
+    this.panelStatus.updateSupport(this.panelName, 'Requested');
+  }
+  cancelSupport(): void {
+    this.panelStatus.updateSupport(this.panelName, 'Solved');
+  }
 }
