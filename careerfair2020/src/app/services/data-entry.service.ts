@@ -8,6 +8,7 @@ import * as XLSX from 'xlsx';
 import { Coordinator } from '../models/coordinator.model';
 import { CompanyModel, StudentModel } from '../models/data-entry.model';
 import { Panel } from '../models/panel.model';
+import { Student } from '../models/student.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,23 +52,23 @@ export class DataEntryService {
     req.send();
   }
 
-  readStudents(filePath: string) {
-    let req = new XMLHttpRequest();
-    req.open('GET', filePath, true);
-    req.responseType = 'arraybuffer';
-    let data;
-    req.onload = (e) => {
-      const dataObj = new Uint8Array(req.response);
-      const workbook = XLSX.read(dataObj, { type: 'array' });
+  // readStudents(filePath: string) {
+  //   let req = new XMLHttpRequest();
+  //   req.open('GET', filePath, true);
+  //   req.responseType = 'arraybuffer';
+  //   let data;
+  //   req.onload = (e) => {
+  //     const dataObj = new Uint8Array(req.response);
+  //     const workbook = XLSX.read(dataObj, { type: 'array' });
 
-      const wsname: string = workbook.SheetNames[0];
-      const ws: XLSX.WorkSheet = workbook.Sheets[wsname];
+  //     const wsname: string = workbook.SheetNames[0];
+  //     const ws: XLSX.WorkSheet = workbook.Sheets[wsname];
 
-      data = XLSX.utils.sheet_to_json(ws);
-      this.uploadStudentsToDB(data);
-    };
-    req.send();
-  }
+  //     data = XLSX.utils.sheet_to_json(ws);
+  //     this.uploadStudentsToDB(data);
+  //   };
+  //   req.send();
+  // }
 
   uploadCompaniesToDB(data: any) {
     data.forEach((item) => {
@@ -85,21 +86,21 @@ export class DataEntryService {
     });
   }
 
-  uploadStudentsToDB(data: any) {
-    data.forEach((item) => {
-      let student: StudentModel = {
-        index: item.index,
-        name: item.name,
-        profile: item.profile,
-      };
-      this.studentRef.add(student).then(
-        (res) => {
-          console.log('student response: ', res);
-        },
-        (err) => console.log(err)
-      );
-    });
-  }
+  // uploadStudentsToDB(data: any) {
+  //   data.forEach((item) => {
+  //     let student: StudentModel = {
+  //       index: item.index,
+  //       name: item.name,
+  //       profile: item.profile,
+  //     };
+  //     this.studentRef.add(student).then(
+  //       (res) => {
+  //         console.log('student response: ', res);
+  //       },
+  //       (err) => console.log(err)
+  //     );
+  //   });
+  // }
 
   uploadPanelsToDB(data: any): void {
     data.forEach((item) => {
@@ -133,6 +134,30 @@ export class DataEntryService {
         .then(
           (res) => {
             console.log('Coordinator response: ', res);
+          },
+          (err) => console.log(err)
+        );
+    });
+  }
+
+  uploadApplicants(data: any): void {
+    data.forEach((item) => {
+      const student: Student = {
+        index: item.index,
+        email: item.email,
+        name: item.name,
+        mobile: item.contactNumber,
+        address: item.homeAddress,
+        interests: item.interestedFields.split(','),
+        profile: item.profile,
+        photo: item.index + '.jpg',
+      };
+      this.studentRef
+        .doc(item.index)
+        .set(student)
+        .then(
+          (res) => {
+            console.log('company response: ', res);
           },
           (err) => console.log(err)
         );
