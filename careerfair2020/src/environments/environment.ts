@@ -14,6 +14,10 @@ export const environment = {
     appId: '1:531533423505:web:add39162bda13627717030',
     measurementId: 'G-RRMK662FV7',
   },
+  PanelCollection: 'Panels',
+  CoordinatorCollection: 'Coordinators',
+  CompanyCollection: 'Companies',
+  ApplicantCollection: 'Students',
 };
 
 /*

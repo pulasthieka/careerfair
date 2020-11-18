@@ -3,8 +3,11 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 import * as XLSX from 'xlsx';
+import { Coordinator } from '../models/coordinator.model';
 import { CompanyModel, StudentModel } from '../models/data-entry.model';
+import { Panel } from '../models/panel.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +17,18 @@ export class DataEntryService {
   studentsXL = '/assets/students.xlsx';
   companyRef: AngularFirestoreCollection;
   studentRef: AngularFirestoreCollection;
+  panelRef: AngularFirestoreCollection;
+  coordinatorRef: AngularFirestoreCollection;
 
   constructor(private firestore: AngularFirestore) {
     console.log('data entry service works');
 
-    this.companyRef = firestore.collection('Companies');
-    this.studentRef = firestore.collection('Students');
+    this.companyRef = firestore.collection(environment.CompanyCollection);
+    this.studentRef = firestore.collection(environment.ApplicantCollection);
+    this.panelRef = firestore.collection(environment.PanelCollection);
+    this.coordinatorRef = firestore.collection(
+      environment.CoordinatorCollection
+    );
     // this.readCompanies(this.companyXL);
     // this.readStudents(this.studentsXL);
   }
@@ -89,6 +98,43 @@ export class DataEntryService {
         },
         (err) => console.log(err)
       );
+    });
+  }
+
+  uploadPanelsToDB(data: any): void {
+    data.forEach((item) => {
+      const panel: Panel = {
+        applicants: item.applicants,
+        name: item.name,
+        available: item.available,
+      };
+      this.panelRef
+        .doc(item.name)
+        .set(panel)
+        .then(
+          (res) => {
+            console.log('Panel response: ', res);
+          },
+          (err) => console.log(err)
+        );
+    });
+  }
+
+  uploadCoordinatorsToDB(data: any): void {
+    data.forEach((item) => {
+      const panel: Coordinator = {
+        panels: item.panels,
+        name: item.name,
+      };
+      this.coordinatorRef
+        .doc(item.name)
+        .set(panel)
+        .then(
+          (res) => {
+            console.log('Coordinator response: ', res);
+          },
+          (err) => console.log(err)
+        );
     });
   }
 }
