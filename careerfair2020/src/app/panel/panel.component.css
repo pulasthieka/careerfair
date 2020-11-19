@@ -9,7 +9,7 @@
 .companyname{
     padding: 0;
     font-size: 2rem;
-    color: rgb(78, 78, 78);
+    color: rgb(56, 45, 45);
     margin: 2rem;
     margin-bottom: 0;
    
@@ -40,17 +40,22 @@
     font-size:1rem;
     margin: 1rem;
 }
+.comName{
+    background-color: rgb(233, 232, 232);
+    padding: 0.5rem 3rem;
+    margin-bottom: 1rem;
+    border-radius: 0 2rem 2rem 0;
 
+}
 .comName h1{
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    margin-left:1rem;
-    margin-bottom: 1rem;
+
 }
 
 .endInt{
-    background-color: rgb(221, 1, 1);
+    background-color: rgb(163, 0, 0);
 }
 
 .endInt:hover{
