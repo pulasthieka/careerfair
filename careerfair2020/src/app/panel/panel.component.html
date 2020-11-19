@@ -1,10 +1,24 @@
 <!-- panel name -->
 <section>
-    <button *ngIf="available else elseBlock" (click)="next_candidate()"> Next Interview</button>
-    <ng-template #elseBlock><button (click)="next_candidate()"> Candidate in Interview</button></ng-template>
+    <div class="entcHeader">
+        <h3>ENTC Career fair 2020</h3>
+        <img src="../../assets/logImages/entclogo2.jpg" alt="login image" class="login-img" style="width: 5rem;">
+     </div>
+    <div class="panelTop">
+        <div class="comName">
+            <h1 class="companyname">Dialog Panel X</h1>
+        </div>
+        <div class="twoButTop">
+            <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()"> Next Interview</button>
+            <ng-template #elseBlock><button class='topBut' (click)="next_candidate()"> Candidate in Interview</button></ng-template>
 
-    <button *ngIf="support else askSupport" (click)="cancelSupport()"> Cancel Request</button>
-    <ng-template #askSupport><button (click)="requestSupport()"> Request Support</button></ng-template>
+            <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()"> Cancel Request</button>
+            <ng-template #askSupport><button class='topBut' (click)="requestSupport()"> Request Support</button></ng-template>
+
+            <button class='topBut endInt' > End Interview</button>
+        </div>
+    </div>
+   `
 </section>
 
 <!-- candidate profile -->
