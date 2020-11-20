@@ -1,9 +1,17 @@
+.panelPage{
+    background-image: url('../../assets/logImages/pannelbk.png');
+    background-size: cover;
+    
+    
+}
 .panelTop{
     display: flex;
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
     padding: 0;
+    margin:0;
+    
 }
 
 .companyname{
@@ -15,12 +23,17 @@
    
 }
 
+.btnTitle{
+    font-size: 0.8rem;
+    margin:0;
+}
+
 .topBut {
     border-radius: 5px ;
     border: none;
     margin-left:1rem;
     margin-right:1rem;
-    padding: 10px 15px;
+    padding: 12px 15px;
     background-color: #03037a;
     font-size: 0.75rem;
     color: #fff;
@@ -55,12 +68,14 @@
 }
 
 .endInt{
-    background-color: rgb(163, 0, 0);
+    background-color: rgb(2, 2, 2);
 }
 
 .endInt:hover{
-    background-color: rgb(255, 1, 1);
+    background-color: rgb(161, 0, 0);
 }
+
+
 
 @media(max-width:800px){
     .panelTop{
@@ -85,6 +100,11 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+    }
+
+    .btnTitle{
+        font-size: 0.7rem;
+        margin:0;
     }
     
 }

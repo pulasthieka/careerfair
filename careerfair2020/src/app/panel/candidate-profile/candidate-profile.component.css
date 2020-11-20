@@ -1,33 +1,32 @@
 .candidate-profile img{
-  width: 6rem;
-  height: 6rem;
-  margin: 1rem;
+  width: 8rem;
+  height: 8rem;
+  margin: 0.5rem;
   border-radius: 50%;
+
 }
 
 .candidate-profile{
-  padding:1rem;
+  padding:0.5rem;
   display: flex;
   flex-direction: row;
   width: 60%;
-  background-color: rgb(243, 242, 242);
   margin:1rem;
-  border-radius:5px
+  border-radius:5px;
+  
 }
 
 .candidate-profile p{
   text-align: justify;
   font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .candidate-profile h3{
   font-size: 1.25rem;
+  margin: 0;
 }
 
-.candidateInterests h3 {
-  margin: 0;
-  font-size: 1rem;
-}
 
 .candidateInterests{
   display: flex;
@@ -37,7 +36,7 @@
 .viewCVButton {
   border-radius: 5px ;
   border: none;
-  padding: 10px 40px;
+  padding: 6px 30px;
   background-color: #dfab00ec;
   font-size: 0.75rem;
   color: #fff;
