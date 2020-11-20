@@ -1,33 +1,34 @@
 <!-- panel name -->
-<section>
-  <div class="entcHeader">
-    <h3>ENTC Career fair 2020</h3>
-    <img src="../../assets/logImages/entclogo2.jpg" alt="login image" class="login-img" style="width: 5rem;">
-  </div>
-  <div class="panelTop">
-    <div class="comName">
-      <h1 class="companyname">Dialog Panel X</h1>
+<div class="panelPage">
+  <section>
+    <div class="entcHeader">
+      <h3>ENTC Career fair 2020</h3>
+      <img src="../../assets/logImages/entclogo2.jpg" alt="login image" class="login-img" style="width: 5rem;">
     </div>
-    <div class="twoButTop">
-      <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()"> Next Interview</button>
-      <ng-template #elseBlock><button class='topBut' (click)="next_candidate()"> Candidate in Interview</button>
-      </ng-template>
-
-      <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()"> Cancel Request</button>
-      <ng-template #askSupport><button class='topBut' (click)="requestSupport()"> Request Support</button></ng-template>
-
-      <button class='topBut endInt'> End Interview</button>
+    <div class="panelTop">
+      <div class="comName">
+        <h1 class="companyname">Dialog Panel X</h1>
+      </div>
+      <div class="twoButTop">
+        <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()"><h3 class='btnTitle'> next interview</h3></button>
+        <ng-template #elseBlock><button class='topBut' (click)="next_candidate()"> <h3 class="btnTitle">candidate in interview</h3></button>
+        </ng-template>
+  
+        <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()"><h3 class="btnTitle"> cancel request</h3></button>
+        <ng-template #askSupport><button class='topBut' (click)="requestSupport()"> <h3 class="btnTitle">request support</h3></button></ng-template>
+  
+        <button class='topBut endInt'><h3 class="btnTitle">end interview</h3></button>
+      </div>
     </div>
-  </div>
-  `
-</section>
-
-<!-- candidate profile -->
-<section>
-  <app-candidate-profile></app-candidate-profile>
-</section>
-
-<!-- all applicants -->
-<section>
-  <app-panel-table></app-panel-table>
-</section>
+  </section>
+  
+  <!-- candidate profile -->
+  <section>
+    <app-candidate-profile></app-candidate-profile>
+  </section>
+  
+  <!-- all applicants -->
+  <section>
+    <app-panel-table></app-panel-table>
+  </section>
+</div>
