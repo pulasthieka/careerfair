@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataEntryService } from '../services/data-entry.service';
-import data from '../../assets/applicants';
+import data from '../../assets/students';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
