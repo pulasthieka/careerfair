@@ -13,8 +13,8 @@
       <tr *ngFor="let applicant of applicants; index as i">
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ applicant.name }}</td>
-        <td><Button>View</Button></td>
-        <td>{{ applicant.panel }}</td>
+        <td><Button>{{ applicant.resume_url }}</Button></td>
+        <td>{{ applicant.panel_id }}</td>
         <td>{{ applicant.status }}</td>
       </tr>
     </tbody>

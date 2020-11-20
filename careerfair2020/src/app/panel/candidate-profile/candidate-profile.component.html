@@ -1,14 +1,13 @@
-<div class="candidate-profile">
-       <img src="./../../../assets/default-profile-picture/default-profile-picture.jpg" alt="" width="100%"/>
-       <div class="candidateDetails">
-            <h3>I.N.T Name Surname</h3>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-             <div class="candidateInterests">
-               <h3>Interest areas : </h3>
-               <p> Programing, Networking, FPGA, Product designing </p>
-             </div>
-             <button class="viewCVButton"> View CV</button>
-       </div>
+<div *ngIf='profile' class="candidate-profile">
+  <img src={{profileImage}} alt="" width="100%" />
+  <div class="candidateDetails">
+    <h3>{{profile.name}}</h3>
+    <p>{{profile.profile}}</p>
+    <div class="candidateInterests">
+      <h3>Interest areas : </h3>
+      <p class="ml-2" *ngFor='let i of profile.interests'>{{i}}</p>
+
+    </div>
+    <button class="viewCVButton"> View CV</button>
   </div>
+</div>
