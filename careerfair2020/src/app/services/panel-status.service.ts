@@ -15,7 +15,7 @@ export class PanelStatusService {
     // TODO - strict datatypes <Panel> for observables
     return this.firestore
       .collection(environment.PanelCollection)
-      .doc<Panel>(panel)
+      .doc(panel)
       .valueChanges();
   }
 

@@ -1,0 +1,22 @@
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Resume</th>
+        <th scope="col">Panel</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of applicants; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ applicant.name }}</td>
+        <td><Button>View</Button></td>
+        <td>{{ applicant.panel }}</td>
+        <td>{{ applicant.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

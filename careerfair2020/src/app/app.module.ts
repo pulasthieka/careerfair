@@ -14,6 +14,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { DataEntryService } from './services/data-entry.service';
 import { CandidateProfileComponent } from './panel/candidate-profile/candidate-profile.component';
 import { TestComponent } from './test/test.component';
+import { PanelTableComponent } from './panel/panel-table/panel-table.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -26,12 +28,14 @@ import { TestComponent } from './test/test.component';
     PanelComponent,
     CandidateProfileComponent,
     TestComponent,
+    PanelTableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
