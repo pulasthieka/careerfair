@@ -1,26 +1,39 @@
-## Folder Structure
+# Folder Structure
 
 - Use `careerfair2020` folder for the angular application
 - Use `firebase` folder to backup firebase scripts, rules etc.
 
-## Prerequisites
+# Data Formats
 
-- Install Angular / Upgrade to Angular 11
-  `npm install -g @angular/cli`
+### Company Data Structure
 
-## Initial Setup code
+name: string;
+email?: string;
+applicants: Applicant[];
+panels: string[];
 
-```
-cd careerfair2020
-npm install
-```
+### Applicant structure
 
-## Run Application
+applicant_id: string;
+status: 'Not Interested' | 'Interviewed' | 'To Interview' | 'Hired';
+resume_url: string;
+panel_id: string;
 
-Inside `careerfair2020` folder
-`ng serve`
+### Panel Data Structure
 
-## TODO
+available: boolean;
+support: 'Requested' | 'Solved';
+name: string;
+company?: string; (optional)
 
-- import required bootstrap components in `app.module.ts` while styling
-- configure firebaseConfig in `src/environments/environment.ts`
+### Student Data Structure
+
+index: string;
+email: string;
+name: string;
+mobile: string;
+address: string;
+interests: string[];
+profile: string;
+photo: string;
+status?: string;
