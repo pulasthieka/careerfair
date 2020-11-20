@@ -1,8 +1,4 @@
 class PanelClass {
-  applicants: {
-    applicant_id: string;
-    status: 'Not Interested' | 'Interviewed' | 'To Interview';
-  }[] = [];
   available = false;
   support: 'Requested' | 'Solved' = 'Solved';
   name = '';
@@ -11,12 +7,10 @@ class PanelClass {
   }
 }
 export default PanelClass;
+
 export interface Panel {
-  applicants: {
-    applicant_id: string;
-    status: 'Not Interested' | 'Interviewed' | 'To Interview';
-  }[];
   available: boolean;
   support: 'Requested' | 'Solved';
   name: string;
+  company?: string;
 }

@@ -7,4 +7,5 @@ export interface Student {
   interests: string[];
   profile: string;
   photo: string;
+  status?: string;
 }

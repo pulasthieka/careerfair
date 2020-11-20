@@ -1,26 +1,26 @@
 export default [
   {
-    name: 'Jacob Alhas',
+    applicant_id: 'Jacob Alhas',
     resume_url: 'http://abd.cdm',
-    panel: 'panel 2',
-    status: 'Available',
+    panel_id: 'panel 2',
+    status: 'Interviewed',
   },
   {
-    name: 'Suwal Bas',
+    applicant_id: 'Suwal Bas',
     resume_url: 'http://abd.cdm',
-    panel: 'panel 1',
-    status: 'In interview',
+    panel_id: 'panel 1',
+    status: 'To Interview',
   },
   {
-    name: 'Lenka Duma',
+    applicant_id: 'Lenka Duma',
     resume_url: 'http://abd.cdm',
-    panel: 'panel 4',
+    panel_id: 'panel 4',
+    status: 'To Interview',
+  },
+  {
+    applicant_id: 'Wol Bala',
+    resume_url: 'http://abd.cdm',
+    panel_id: 'panel 3',
     status: 'Hired',
-  },
-  {
-    name: 'Wol Bala',
-    resume_url: 'http://abd.cdm',
-    panel: 'panel 3',
-    status: 'Not interested',
   },
 ];

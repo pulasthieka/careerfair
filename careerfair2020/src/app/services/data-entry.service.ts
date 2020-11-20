@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import * as XLSX from 'xlsx';
 import { Coordinator } from '../models/coordinator.model';
 import { CompanyModel, StudentModel } from '../models/data-entry.model';
+import { Company } from '../models/company.model';
 import { Panel } from '../models/panel.model';
 import { Student } from '../models/student.model';
 
@@ -14,8 +15,8 @@ import { Student } from '../models/student.model';
   providedIn: 'root',
 })
 export class DataEntryService {
-  companyXL = '/assets/companies.xlsx';
-  studentsXL = '/assets/students.xlsx';
+  // companyXL = '/assets/companies.xlsx';
+  // studentsXL = '/assets/students.xlsx';
   companyRef: AngularFirestoreCollection;
   studentRef: AngularFirestoreCollection;
   panelRef: AngularFirestoreCollection;
@@ -34,23 +35,23 @@ export class DataEntryService {
     // this.readStudents(this.studentsXL);
   }
 
-  readCompanies(filePath: string) {
-    let req = new XMLHttpRequest();
-    req.open('GET', filePath, true);
-    req.responseType = 'arraybuffer';
-    let data;
-    req.onload = (e) => {
-      const dataObj = new Uint8Array(req.response);
-      const workbook = XLSX.read(dataObj, { type: 'array' });
+  // readCompanies(filePath: string) {
+  //   let req = new XMLHttpRequest();
+  //   req.open('GET', filePath, true);
+  //   req.responseType = 'arraybuffer';
+  //   let data;
+  //   req.onload = (e) => {
+  //     const dataObj = new Uint8Array(req.response);
+  //     const workbook = XLSX.read(dataObj, { type: 'array' });
 
-      const wsname: string = workbook.SheetNames[0];
-      const ws: XLSX.WorkSheet = workbook.Sheets[wsname];
+  //     const wsname: string = workbook.SheetNames[0];
+  //     const ws: XLSX.WorkSheet = workbook.Sheets[wsname];
 
-      data = XLSX.utils.sheet_to_json(ws);
-      this.uploadCompaniesToDB(data);
-    };
-    req.send();
-  }
+  //     data = XLSX.utils.sheet_to_json(ws);
+  //     this.uploadCompaniesToDB(data);
+  //   };
+  //   req.send();
+  // }
 
   // readStudents(filePath: string) {
   //   let req = new XMLHttpRequest();
@@ -70,19 +71,22 @@ export class DataEntryService {
   //   req.send();
   // }
 
-  uploadCompaniesToDB(data: any) {
+  uploadCompaniesToDB(data: any): void {
     data.forEach((item) => {
-      let company: CompanyModel = {
-        email: item.email,
-        companyName: item.companyName,
-        panelCount: item.panelCount,
+      const company: Company = {
+        name: item.name,
+        panels: item.panels,
+        applicants: item.applicants,
       };
-      this.companyRef.add(company).then(
-        (res) => {
-          console.log('company response: ', res);
-        },
-        (err) => console.log(err)
-      );
+      this.companyRef
+        .doc(item.name)
+        .set(company)
+        .then(
+          (res) => {
+            console.log('company response: ', res);
+          },
+          (err) => console.log(err)
+        );
     });
   }
 
@@ -105,10 +109,10 @@ export class DataEntryService {
   uploadPanelsToDB(data: any): void {
     data.forEach((item) => {
       const panel: Panel = {
-        applicants: item.applicants,
         name: item.name,
         available: item.available,
         support: item.support,
+        company: item.company,
       };
       this.panelRef
         .doc(item.name)
