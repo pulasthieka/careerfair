@@ -1,47 +1,13 @@
-<div class="candidate-profile">
-  <hr />
-  <div class="row">
-    <div class="col-sm-3">
-      <img
-        src="./../../../assets/default-profile-picture/default-profile-picture.jpg"
-        alt=""
-        width="100%"
-      />
+<div *ngIf='profile' class="candidate-profile">
+  <img src={{profileImage}} alt="" width="100%" />
+  <div class="candidateDetails">
+    <h3>{{profile.name}}</h3>
+    <p>{{profile.profile}}</p>
+    <div class="candidateInterests">
+      <h3>Interest areas : </h3>
+      <p class="ml-2" *ngFor='let i of profile.interests'>{{i}}</p>
+
     </div>
-    <div class="col-sm-9">
-      <h2>I.N. Itials Surname</h2>
-      <h6 id="statement">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
-      </h6>
-    </div>
+    <button class="viewCVButton"> View CV</button>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <h5>CONTACT INFORMATION</h5>
-      <h6>
-        Email: itialssurmane@gmail.com
-        <br />
-        Address: No.40, Ikuna, Sedia
-        <br />
-        Mobile: 0112345678
-      </h6>
-    </div>
-    <div class="col-sm-6">
-      <h5>INTERESTED FIELDS</h5>
-      <h6>
-        Software Development
-        <br />
-        Networking
-        <br />
-        Programming
-        <br />
-        Telecommunication
-      </h6>
-    </div>
-  </div>
-  <hr />
 </div>

@@ -1,42 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Student } from 'src/app/models/student.model';
+import { ApplicantsService } from 'src/app/services/applicants.service';
+import { environment } from 'src/environments/environment';
+import { Applicant } from '../../models/applicant.model';
+
+interface tableRow {
+  status: string;
+  resume_url: string;
+  panel_id: string;
+  name?: string;
+}
 
 @Component({
   selector: 'app-panel-table',
   templateUrl: './panel-table.component.html',
-  styleUrls: ['./panel-table.component.css']
+  styleUrls: ['./panel-table.component.css'],
 })
 export class PanelTableComponent implements OnInit {
+  applicants: tableRow[] = [];
 
-  applicants = [
-    {
-      name : "Jacob Alhas",
-      resume_url : "http://abd.cdm",
-      panel: "panel 2",
-      status: "Available"
-    },
-    {
-      name : "Suwal Bas",
-      resume_url : "http://abd.cdm",
-      panel: "panel 1",
-      status: "In interview"
-    },
-    {
-      name : "Lenka Duma",
-      resume_url : "http://abd.cdm",
-      panel: "panel 4",
-      status: "Hired"
-    },
-    {
-      name : "Wol Bala",
-      resume_url : "http://abd.cdm",
-      panel: "panel 3",
-      status: "Not interested"
-    },
-  ];
-
-  constructor() { }
+  constructor(
+    private applicantService: ApplicantsService,
+    private firestore: AngularFirestore
+  ) {}
 
   ngOnInit(): void {
+    this.applicantService.getApplicants().subscribe((res) => {
+      const applicantIDs: Applicant[] = res.applicants;
+      console.log(applicantIDs);
+      this.applicants = [];
+      applicantIDs.forEach((id) => {
+        this.firestore
+          .collection(environment.ApplicantCollection)
+          .doc<any>(id.applicant_id)
+          .valueChanges()
+          .subscribe((res2) => {
+            const k = id as tableRow;
+            k.name = res2.name;
+            this.applicants.push(k);
+          });
+      });
+    });
   }
-
 }
