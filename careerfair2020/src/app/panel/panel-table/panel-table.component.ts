@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Subscription } from 'rxjs';
 import { Student } from 'src/app/models/student.model';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { environment } from 'src/environments/environment';
@@ -17,7 +18,8 @@ interface tableRow {
   templateUrl: './panel-table.component.html',
   styleUrls: ['./panel-table.component.css'],
 })
-export class PanelTableComponent implements OnInit {
+export class PanelTableComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   applicants: tableRow[] = [];
 
   constructor(
@@ -26,21 +28,31 @@ export class PanelTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.applicantService.getApplicants().subscribe((res) => {
-      const applicantIDs: Applicant[] = res.applicants;
-      console.log(applicantIDs);
-      this.applicants = [];
-      applicantIDs.forEach((id) => {
-        this.firestore
-          .collection(environment.ApplicantCollection)
-          .doc<any>(id.applicant_id)
-          .valueChanges()
-          .subscribe((res2) => {
-            const k = id as tableRow;
-            k.name = res2.name;
-            this.applicants.push(k);
-          });
-      });
-    });
+    this.subscriptions.push(
+      this.applicantService.getApplicants().subscribe((res) => {
+        const applicantIDs: Applicant[] = res.applicants;
+        console.log(applicantIDs);
+        this.applicants = [];
+        applicantIDs.forEach((id) => {
+          this.subscriptions.push(
+            this.firestore
+              .collection(environment.ApplicantCollection)
+              .doc<any>(id.applicant_id)
+              .valueChanges()
+              .subscribe((res2) => {
+                const k = id as tableRow;
+                k.name = res2.name;
+                this.applicants.push(k);
+              })
+          );
+        });
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    // remove subscriptions on exit
+    for (const subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
   }
 }

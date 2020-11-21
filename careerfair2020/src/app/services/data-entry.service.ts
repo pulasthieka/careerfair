@@ -113,6 +113,7 @@ export class DataEntryService {
         available: item.available,
         support: item.support,
         company: item.company,
+        currentApplicant: item.currentApplicant,
       };
       this.panelRef
         .doc(item.name)

@@ -24,7 +24,7 @@
 
 <!-- candidate profile -->
 <section>
-  <app-candidate-profile></app-candidate-profile>
+  <app-candidate-profile *ngIf='currentApplicant.length!==0' [id]='currentApplicant'></app-candidate-profile>
 </section>
 
 <!-- all applicants -->

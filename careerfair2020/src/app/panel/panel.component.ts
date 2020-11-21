@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   panelName = '';
+  currentApplicant = '160616B';
   available = false;
   support = false;
   constructor(private panelStatus: PanelStatusService) {
@@ -20,6 +21,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
         this.available = res.available;
+        this.currentApplicant = res.currentApplicant;
         if (res.support === 'Requested') {
           this.support = true;
         } else {
