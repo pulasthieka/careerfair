@@ -8,4 +8,8 @@ export default [
     name: 'MobitelCoordinator',
     panels: ['Dialog3', 'Dialog4'],
   },
+  {
+    name: 'LSEGTCoordinator',
+    panels: ['LSEGT1', 'LSEGT2'],
+  },
 ];

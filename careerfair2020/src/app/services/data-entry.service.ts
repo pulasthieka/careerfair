@@ -73,17 +73,41 @@ export class DataEntryService {
 
   uploadCompaniesToDB(data: any): void {
     data.forEach((item) => {
-      const company: Company = {
+      const company = {
         name: item.name,
         panels: item.panels,
-        applicants: item.applicants,
       };
       this.companyRef
         .doc(item.name)
         .set(company)
         .then(
           (res) => {
-            console.log('company response: ', res);
+            var promises: Promise<void>[] = [];
+            item.applicants.forEach((applicant) => {
+              let app = {
+                panel_id: applicant.panel_id,
+                resume_url: applicant.resume_url,
+                status: applicant.status,
+                applicant_id: applicant.applicant_id,
+              };
+              console.log(app);
+              promises.push(
+                this.companyRef
+                  .doc(item.name)
+                  .collection('applicants')
+                  .doc(applicant.applicant_id)
+                  .set(app)
+              );
+            });
+            Promise.all(promises)
+              .then(function () {
+                console.log('All subcollections were added!');
+              })
+              .catch(function (error) {
+                console.log(
+                  'Error adding subcollections to Firestore: ' + error
+                );
+              });
           },
           (err) => console.log(err)
         );
@@ -113,6 +137,7 @@ export class DataEntryService {
         available: item.available,
         support: item.support,
         company: item.company,
+        currentApplicant: item.currentApplicant,
       };
       this.panelRef
         .doc(item.name)
@@ -155,6 +180,7 @@ export class DataEntryService {
         interests: item.interestedFields.split(','),
         profile: item.profile,
         photo: item.index + '.jpg',
+        available: true,
       };
       this.studentRef
         .doc(item.index)

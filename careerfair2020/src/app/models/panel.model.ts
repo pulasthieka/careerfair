@@ -13,4 +13,5 @@ export interface Panel {
   support: 'Requested' | 'Solved';
   name: string;
   company?: string;
+  currentApplicant?: string;
 }

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PanelStatusService } from '../services/panel-status.service';
 import { Subscription } from 'rxjs';
+import { ApplicantsService } from '../services/applicants.service';
 
 @Component({
   selector: 'app-panel',
@@ -10,9 +11,13 @@ import { Subscription } from 'rxjs';
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   panelName = '';
+  currentApplicant = '';
   available = false;
   support = false;
-  constructor(private panelStatus: PanelStatusService) {
+  constructor(
+    private panelStatus: PanelStatusService,
+    private applicantService: ApplicantsService
+  ) {
     this.panelName = 'Dialog1'; // TODO - replace with logic to get panel name from login credintials
   }
 
@@ -20,6 +25,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
         this.available = res.available;
+        this.currentApplicant = res.currentApplicant;
         if (res.support === 'Requested') {
           this.support = true;
         } else {
@@ -37,7 +43,23 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   next_candidate(): void {
     // update panel availability in database
-    this.panelStatus.updatePanelStatus(this.panelName, !this.available);
+    this.panelStatus.updatePanelStatus(this.panelName, true);
+  }
+  startInterview(): void {
+    // update panel availability in database
+    this.panelStatus.updatePanelStatus(this.panelName, false);
+    this.applicantService.changeApplicantAvailability(
+      this.currentApplicant,
+      false
+    );
+  }
+  endInterview(): void {
+    this.panelStatus.updateCurrentApplicant(this.panelName, '');
+    this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.applicantService.changeApplicantAvailability(
+      this.currentApplicant,
+      true
+    );
   }
   requestSupport(): void {
     // update panel availability in database

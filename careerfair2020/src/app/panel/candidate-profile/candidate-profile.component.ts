@@ -1,14 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Student } from 'src/app/models/student.model';
 import { GetProfileService } from 'src/app/services/get-profile.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
   styleUrls: ['./candidate-profile.component.css'],
 })
-export class CandidateProfileComponent implements OnInit {
+export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
+  subscriptions: Subscription[] = [];
   profile: any;
+  @Input() id;
   profileImage: any;
   constructor(
     private profileService: GetProfileService,
@@ -16,13 +26,40 @@ export class CandidateProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.profileService.getProfile('160616B').subscribe((res) => {
-      this.profile = res as Student;
-      const ref = this.storage.ref(`profilepics/${this.profile.photo}`);
-      ref.getDownloadURL().subscribe((res) => {
-        this.profileImage = res;
-      });
-      console.log(this.profileImage, this.profile);
-    });
+    this.getProfile();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log(changes.id);
+    if (changes.id.currentValue !== changes.id.previousValue) {
+      console.log('updated Profile');
+      this.getProfile();
+    }
+  }
+
+  ngOnDestroy(): void {
+    // remove subscriptions on exit
+    for (const subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
+  }
+
+  getProfile(): void {
+    if (this.id.length >= 5) {
+      this.subscriptions.push(
+        this.profileService.getProfile(this.id).subscribe((res) => {
+          this.profileImage =
+            '../assets/default-profile-picture/default-profile-picture.jpg';
+          this.profile = res as Student;
+          const ref = this.storage.ref(`profilepics/${this.profile.photo}`);
+          this.subscriptions.push(
+            ref.getDownloadURL().subscribe((res) => {
+              this.profileImage = res;
+            })
+          );
+          // console.log(this.profileImage, this.profile);
+        })
+      );
+    }
   }
 }
