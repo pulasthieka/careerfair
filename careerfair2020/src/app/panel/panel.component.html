@@ -16,15 +16,17 @@
       <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()"> Cancel Request</button>
       <ng-template #askSupport><button class='topBut' (click)="requestSupport()"> Request Support</button></ng-template>
 
-      <button class='topBut endInt'> End Interview</button>
+
     </div>
   </div>
   `
 </section>
 
 <!-- candidate profile -->
-<section>
-  <app-candidate-profile *ngIf='currentApplicant.length!==0' [id]='currentApplicant'></app-candidate-profile>
+<section *ngIf='currentApplicant.length!==0'>
+  <app-candidate-profile [id]='currentApplicant'></app-candidate-profile>
+  <button class='topBut endInt' (click)="startInterview()"> Start Interview</button>
+  <button class='topBut endInt' (click)="endInterview()"> End Interview</button>
 </section>
 
 <!-- all applicants -->

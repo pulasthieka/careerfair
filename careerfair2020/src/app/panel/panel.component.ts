@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   panelName = '';
-  currentApplicant = '160616B';
+  currentApplicant = '';
   available = false;
   support = false;
   constructor(private panelStatus: PanelStatusService) {
@@ -39,7 +39,15 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   next_candidate(): void {
     // update panel availability in database
-    this.panelStatus.updatePanelStatus(this.panelName, !this.available);
+    this.panelStatus.updatePanelStatus(this.panelName, true);
+  }
+  startInterview(): void {
+    // update panel availability in database
+    this.panelStatus.updatePanelStatus(this.panelName, false);
+  }
+  endInterview(): void {
+    this.panelStatus.updateCurrentApplicant(this.panelName, '');
+    this.panelStatus.updatePanelStatus(this.panelName, true);
   }
   requestSupport(): void {
     // update panel availability in database

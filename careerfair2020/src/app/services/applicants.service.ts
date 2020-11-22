@@ -9,14 +9,35 @@ import { Company } from '../models/company.model';
   providedIn: 'root',
 })
 export class ApplicantsService {
-  company = 'ADL';
-  applicants: Applicant[] = [];
   constructor(private firestore: AngularFirestore) {}
 
-  getApplicants(): Observable<Company> {
+  getApplicants(company): Observable<any> {
     return this.firestore
       .collection(environment.CompanyCollection)
-      .doc<any>(this.company)
+      .doc(company)
+      .collection('applicants')
       .valueChanges();
+  }
+
+  changeApplicantStatus(company, applicant: string, statusNew: string): void {
+    this.firestore
+      .collection(environment.CompanyCollection)
+      .doc(company)
+      .collection('applicants')
+      .doc(applicant)
+      .update({
+        status: statusNew,
+      });
+  }
+
+  changeApplicantPanel(company, applicant: string, statusNew: string): void {
+    this.firestore
+      .collection(environment.CompanyCollection)
+      .doc(company)
+      .collection('applicants')
+      .doc(applicant)
+      .update({
+        panel_id: statusNew,
+      });
   }
 }

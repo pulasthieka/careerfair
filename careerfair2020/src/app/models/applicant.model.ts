@@ -3,4 +3,5 @@ export interface Applicant {
   status: 'Not Interested' | 'Interviewed' | 'To Interview' | 'Hired';
   resume_url: string;
   panel_id: string;
+  name?: string;
 }

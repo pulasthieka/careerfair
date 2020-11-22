@@ -4,7 +4,39 @@
         <button> {{panel.name}} available {{panel.available}}</button>
         Support: {{panel.support}}
         <button (click)="cancelSupport(panel.name)">Issue Solved</button>
+        <div>{{panel.currentApplicant}}</div>
     </div>
 
 
 </section>
+<div class="table-responsive-md">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Assign to Panel</th>
+                <th scope="col">Send to Panel</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let applicant of applicants; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ applicant.name }}</td>
+
+                <td><select [(ngModel)]="applicant.panel_id">
+                        <option *ngFor="let p of panels" [ngValue]="p.name" [selected]="p.name === applicant.panel_id">
+                            {{p.name}}</option>
+                    </select></td>
+                <td>
+                    <Button (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
+                        {{ applicant.panel_id }}</Button>
+                </td>
+                <td><Button
+                        (click)="ChangeStatus(applicant.applicant_id, 'Hired')">{{ applicant.resume_url }}</Button>{{ applicant.status }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

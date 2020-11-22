@@ -37,4 +37,14 @@ export class PanelStatusService {
         support: state,
       });
   }
+
+  updateCurrentApplicant(panel: string, applicant: string): void {
+    // update panel availability in database
+    this.firestore
+      .collection<Panel>(environment.PanelCollection)
+      .doc<Panel>(panel)
+      .update({
+        currentApplicant: applicant,
+      });
+  }
 }

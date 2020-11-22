@@ -29,11 +29,10 @@ export class PanelTableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.applicantService.getApplicants().subscribe((res) => {
-        const applicantIDs: Applicant[] = res.applicants;
-        console.log(applicantIDs);
+      // TODO get the company name from Login service
+      this.applicantService.getApplicants('ADL').subscribe((res) => {
         this.applicants = [];
-        applicantIDs.forEach((id) => {
+        res.forEach((id) => {
           this.subscriptions.push(
             this.firestore
               .collection(environment.ApplicantCollection)
