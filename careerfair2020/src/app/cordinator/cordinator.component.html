@@ -18,6 +18,7 @@
                 <th scope="col">Assign to Panel</th>
                 <th scope="col">Send to Panel</th>
                 <th scope="col">Status</th>
+                <th scope="col">Availability</th>
             </tr>
         </thead>
         <tbody>
@@ -33,9 +34,11 @@
                     <Button (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
                         {{ applicant.panel_id }}</Button>
                 </td>
-                <td><Button
-                        (click)="ChangeStatus(applicant.applicant_id, 'Hired')">{{ applicant.resume_url }}</Button>{{ applicant.status }}
+                <td><input type="checkbox" (change)="ChangeStatus($event,applicant.applicant_id)"
+                        [(ngModel)]='applicant.statusB' /><span>Not
+                        Interested</span>
                 </td>
+                <td>Available</td>
             </tr>
         </tbody>
     </table>
