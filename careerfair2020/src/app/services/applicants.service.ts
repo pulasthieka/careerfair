@@ -40,4 +40,13 @@ export class ApplicantsService {
         panel_id: statusNew,
       });
   }
+
+  changeApplicantAvailability(applicant: string, statusNew: boolean): void {
+    this.firestore
+      .collection(environment.ApplicantCollection)
+      .doc(applicant)
+      .update({
+        available: statusNew,
+      });
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PanelStatusService } from '../services/panel-status.service';
 import { Subscription } from 'rxjs';
+import { ApplicantsService } from '../services/applicants.service';
 
 @Component({
   selector: 'app-panel',
@@ -13,7 +14,10 @@ export class PanelComponent implements OnInit, OnDestroy {
   currentApplicant = '';
   available = false;
   support = false;
-  constructor(private panelStatus: PanelStatusService) {
+  constructor(
+    private panelStatus: PanelStatusService,
+    private applicantService: ApplicantsService
+  ) {
     this.panelName = 'Dialog1'; // TODO - replace with logic to get panel name from login credintials
   }
 
@@ -44,10 +48,18 @@ export class PanelComponent implements OnInit, OnDestroy {
   startInterview(): void {
     // update panel availability in database
     this.panelStatus.updatePanelStatus(this.panelName, false);
+    this.applicantService.changeApplicantAvailability(
+      this.currentApplicant,
+      false
+    );
   }
   endInterview(): void {
     this.panelStatus.updateCurrentApplicant(this.panelName, '');
     this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.applicantService.changeApplicantAvailability(
+      this.currentApplicant,
+      true
+    );
   }
   requestSupport(): void {
     // update panel availability in database

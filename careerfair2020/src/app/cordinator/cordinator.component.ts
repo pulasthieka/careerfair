@@ -6,8 +6,11 @@ import { PanelStatusService } from '../services/panel-status.service';
 import { Subscription } from 'rxjs';
 import { ApplicantsService } from '../services/applicants.service';
 import { Applicant } from '../models/applicant.model';
+import { environment } from 'src/environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 interface tableRow extends Applicant {
   statusB?: boolean;
+  available?: boolean;
 }
 @Component({
   selector: 'app-cordinator',
@@ -23,7 +26,8 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   constructor(
     private panelService: PanelStatusService,
     private coordinator: CoordinatorService,
-    private applicantService: ApplicantsService
+    private applicantService: ApplicantsService,
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit(): void {
@@ -71,12 +75,28 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         this.applicants = [];
         res.forEach((id) => {
           // map response to row
-          const k = id as tableRow;
-          k.name = 'name' + id.applicant_id;
-          if (k.status === 'Not Interested') {
-            k.statusB = true;
-          }
-          this.applicants.push(k);
+          this.subscriptions.push(
+            this.firestore
+              .collection(environment.ApplicantCollection)
+              .doc<any>(id.applicant_id)
+              .valueChanges()
+              .subscribe((res2) => {
+                const k = id as tableRow;
+                if (k.status === 'Not Interested') {
+                  k.statusB = true;
+                }
+                k.name = res2.name;
+                k.available = res2.available;
+                const selected = this.applicants.findIndex(
+                  (el) => el.applicant_id === id.applicant_id
+                );
+                if (selected !== -1) {
+                  this.applicants[selected] = k;
+                } else {
+                  this.applicants.push(k);
+                }
+              })
+          );
         });
       })
     );
@@ -127,6 +147,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         panel
       );
       this.panelService.updateCurrentApplicant(panel, applicant);
+      this.applicantService.changeApplicantAvailability(applicant, false);
     } else {
       alert(
         `Panel ${panel} is not free \nPlease ask ${panel} to end the previous interview`

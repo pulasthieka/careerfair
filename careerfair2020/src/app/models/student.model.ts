@@ -7,5 +7,5 @@ export interface Student {
   interests: string[];
   profile: string;
   photo: string;
-  available?: string;
+  available?: boolean;
 }
