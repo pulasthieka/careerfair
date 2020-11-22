@@ -8,6 +8,7 @@ import { ApplicantsService } from '../services/applicants.service';
 import { Applicant } from '../models/applicant.model';
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth.service';
 interface tableRow extends Applicant {
   statusB?: boolean;
   available?: boolean;
@@ -27,13 +28,18 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     private panelService: PanelStatusService,
     private coordinator: CoordinatorService,
     private applicantService: ApplicantsService,
-    private firestore: AngularFirestore
-  ) {}
+    private firestore: AngularFirestore,
+    private authService: AuthService
+  ) {
+    console.log('from local storage ',this.authService.user);
+    console.log('from local storage ',this.authService.isLogeedIn);
+    console.log('from local storage ',this.authService.loggedInMode);
+  }
 
   ngOnInit(): void {
     // set coordinator name and subscribe to panel status updates
-    this.coordinatorName = 'DialogCoordinator'; // TODO - get this from login credentials
-    this.company = 'ADL';
+    this.coordinatorName = this.authService.user.name; 
+    this.company = this.authService.user.company;
     this.subscriptions.push(
       this.coordinator.getPanels(this.coordinatorName).subscribe((res) => {
         this.panels = [];
@@ -78,9 +84,9 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           this.subscriptions.push(
             this.firestore
               .collection(environment.ApplicantCollection)
-              .doc<any>(id.applicant_id)
+              .doc(id.applicant_id)
               .valueChanges()
-              .subscribe((res2) => {
+              .subscribe((res2:any) => {
                 const k = id as tableRow;
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
@@ -153,5 +159,9 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         `Panel ${panel} is not free \nPlease ask ${panel} to end the previous interview`
       );
     }
+  }
+
+  onClickLogout() {
+    this.authService.logOut()
   }
 }

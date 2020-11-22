@@ -42,7 +42,7 @@ export class PanelStatusService {
     // update panel availability in database
     this.firestore
       .collection<Panel>(environment.PanelCollection)
-      .doc<Panel>(panel)
+      .doc(panel)
       .update({
         currentApplicant: applicant,
       });

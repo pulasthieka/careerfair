@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PanelStatusService } from '../services/panel-status.service';
 import { Subscription } from 'rxjs';
 import { ApplicantsService } from '../services/applicants.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-panel',
@@ -16,9 +17,13 @@ export class PanelComponent implements OnInit, OnDestroy {
   support = false;
   constructor(
     private panelStatus: PanelStatusService,
-    private applicantService: ApplicantsService
+    private applicantService: ApplicantsService,
+    private authService: AuthService
   ) {
-    this.panelName = 'Dialog1'; // TODO - replace with logic to get panel name from login credintials
+    this.panelName = this.authService.user.name; 
+    console.log('from local storage ',this.authService.user);
+    console.log('from local storage ',this.authService.isLogeedIn);
+    console.log('from local storage ',this.authService.loggedInMode);
   }
 
   ngOnInit(): void {
@@ -39,6 +44,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     for (const subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
+    localStorage.clear();
   }
 
   next_candidate(): void {
@@ -67,5 +73,9 @@ export class PanelComponent implements OnInit, OnDestroy {
   }
   cancelSupport(): void {
     this.panelStatus.updateSupport(this.panelName, 'Solved');
+  }
+
+  onClickLogout() {
+    this.authService.logOut()
   }
 }

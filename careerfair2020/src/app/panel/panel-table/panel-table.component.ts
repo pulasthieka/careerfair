@@ -36,9 +36,9 @@ export class PanelTableComponent implements OnInit, OnDestroy {
           this.subscriptions.push(
             this.firestore
               .collection(environment.ApplicantCollection)
-              .doc<any>(id.applicant_id)
+              .doc(id.applicant_id)
               .valueChanges()
-              .subscribe((res2) => {
+              .subscribe((res2:any) => {
                 const k = id as tableRow;
                 k.name = res2.name;
                 this.applicants.push(k);

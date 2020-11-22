@@ -13,7 +13,7 @@ export class GetProfileService {
   getProfile(id): Observable<any> {
     return this.firestore
       .collection(environment.ApplicantCollection)
-      .doc<Student>(id)
+      .doc(id)
       .valueChanges();
   }
 }
