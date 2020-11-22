@@ -2,7 +2,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col"></th>
         <th scope="col">Name</th>
         <th scope="col">Resume</th>
         <th scope="col">Panel</th>
@@ -13,7 +13,7 @@
       <tr *ngFor="let applicant of applicants; index as i">
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ applicant.name }}</td>
-        <td><Button>{{ applicant.resume_url }}</Button></td>
+        <td><Button class="viewCV">{{ applicant.resume_url }}</Button></td>
         <td>{{ applicant.panel_id }}</td>
         <td>{{ applicant.status }}</td>
       </tr>

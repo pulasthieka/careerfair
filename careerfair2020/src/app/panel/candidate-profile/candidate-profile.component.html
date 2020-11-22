@@ -1,13 +1,12 @@
 <div *ngIf='profile' class="candidate-profile">
-  <img src={{profileImage}} alt="" width="100%" />
-  <div class="candidateDetails">
-    <h3>{{profile.name}}</h3>
-    <p>{{profile.profile}}</p>
-    <div class="candidateInterests">
-      <h3>Interest areas : </h3>
-      <p class="ml-2" *ngFor='let i of profile.interests'>{{i}}</p>
+   <div class="candidate-profile-img">
+      <img src={{profileImage}} alt="" width="100%" />
+   </div>
 
-    </div>
-    <button class="viewCVButton"> View CV</button>
-  </div>
+   <div class="candidateDetails">
+      <h3>{{profile.name}}</h3>
+      <p>{{profile.profile}}</p>
+
+      <button class="viewCVButton"> View CV</button>
+   </div>
 </div>
