@@ -11,7 +11,6 @@
     justify-content: space-between;
     padding: 0;
     margin:0;
-    
 }
 
 .companyname{
@@ -20,31 +19,9 @@
     color: rgb(56, 45, 45);
     margin: 2rem;
     margin-bottom: 0;
-   
+  
 }
 
-.btnTitle{
-    font-size: 0.8rem;
-    margin:0;
-}
-
-.topBut {
-    border-radius: 5px ;
-    border: none;
-    margin-left:1rem;
-    margin-right:1rem;
-    padding: 12px 15px;
-    background-color: #03037a;
-    font-size: 0.75rem;
-    color: #fff;
-    margin-bottom: 14px;
-    transition: 0.2s;
- }
-
-.topBut:hover {
-
-    background-color: #171792;
-    color: #ffffff; }
 .entcHeader{
     display: flex;
     align-items: center;
@@ -54,27 +31,19 @@
     margin: 1rem;
 }
 .comName{
-    background-color: rgb(233, 232, 232);
+    background-color: #20639b;
     padding: 0.5rem 3rem;
     margin-bottom: 1rem;
     border-radius: 0 2rem 2rem 0;
 
 }
 .comName h1{
+    color: white;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
 
 }
-
-.endInt{
-    background-color: rgb(2, 2, 2);
-}
-
-.endInt:hover{
-    background-color: rgb(161, 0, 0);
-}
-
 
 
 @media(max-width:800px){

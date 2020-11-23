@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css'],
+  styleUrls: ['./panel.component.css','../app.component.css'],
 })
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
