@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -10,9 +11,48 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private firestore: AngularFirestore, private router: Router) {}
+  public isLogeedIn: boolean | undefined;
+  public loggedInMode: 'panel' | 'coord' | undefined | null | string;
+  public errorMsg: string = '';
+  public user: any | undefined;
 
-  checkWhetherFromPanel(username, pw) {
+  constructor(
+    private firestore: AngularFirestore,
+    private router: Router,
+    private fireAuth: AngularFireAuth
+  ) {
+    this.loggedInMode = localStorage.getItem('loggedInMode');
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      this.isLogeedIn = true;
+    } else {
+      this.isLogeedIn = false;
+    }
+  }
+
+  signInWithUsername(username, pwd) {
+    this.fireAuth
+      .signInWithEmailAndPassword(username, pwd)
+      .then((res) => {
+        this.errorMsg = '';
+        this.checkWhetherFromPanel(username);
+      })
+      .catch((err) => {
+        if (err.code == 'auth/invalid-email') {
+          this.errorMsg = 'Invalid email address';
+        } else if (err.code == 'auth/wrong-password') {
+          this.errorMsg = 'Wrong Password';
+        } else if (err.code == 'auth/user-not-found') {
+          this.errorMsg = 'User does not exist';
+        } else {
+          this.errorMsg = 'Authentication error';
+        }
+        console.log(err.code);
+      });
+  }
+
+  checkWhetherFromPanel(username) {
     this.firestore
       .collection(environment.PanelCollection, (ref) =>
         ref.where('username', '==', username)
@@ -20,22 +60,18 @@ export class AuthService {
       .get()
       .subscribe((res) => {
         if (res.empty) {
-          console.log('not from panel');
-          this.checkWhetherACordinator(username, pw);
+          this.checkWhetherACordinator(username);
         } else {
           let panelData: any = res.docs[0].data();
-          console.log('from panel');
-          console.log('data', panelData);
-          if (panelData.password == pw) {
-            this.router.navigateByUrl('panel');
-          } else {
-            console.log('wrong pwd');
-          }
+          this.user = panelData;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('loggedInMode', 'panel');
+          this.router.navigateByUrl('panel');
         }
       });
   }
 
-  checkWhetherACordinator(username, pw) {
+  checkWhetherACordinator(username) {
     this.firestore
       .collection(environment.CoordinatorCollection, (ref) =>
         ref.where('username', '==', username)
@@ -43,17 +79,20 @@ export class AuthService {
       .get()
       .subscribe((res) => {
         if (res.empty) {
-          console.log('not a cordinator');
+          this.errorMsg = 'User does not exist';
         } else {
           let cordData: any = res.docs[0].data();
-          console.log('a cordinator');
-          console.log('data', cordData);
-          if (cordData.password == pw) {
-            this.router.navigateByUrl('admin');
-          } else {
-            console.log('wrong pwd');
-          }
+          this.user = cordData;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('loggedInMode', 'coord');
+          this.router.navigateByUrl('admin');
         }
       });
+  }
+
+  logOut() {
+    this.fireAuth.signOut();
+    localStorage.clear();
+    this.router.navigateByUrl('login');
   }
 }

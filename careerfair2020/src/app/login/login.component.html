@@ -15,6 +15,7 @@
               <label for="password">Password</label>
               <input ngModel type="password" name="password" id="password" class="form-control" placeholder="enter your passsword">
             </div>
+            <label for="username" style="color: 'red'">{{this.authService.errorMsg}}</label>
             <button (click)="onLoginSubmit(auth.value)" class="btn btn-block login-btn" type="submit">Login</button>    
           </form>
         
