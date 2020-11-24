@@ -21,6 +21,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onLoginSubmit(values): void {
-    this.authService.signInWithUsername(values.username, values.password);
+    this.authService.signInWithUsername(values.username.trim().toLowerCase(), values.password);
   }
 }
