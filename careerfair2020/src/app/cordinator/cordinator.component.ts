@@ -147,6 +147,20 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     // console.log(applicant, panel);
     const selected = this.panels.find((el) => el.name === panel);
     if (selected && selected.available) {
+      const selected = this.applicants.findIndex(
+        (el) => el.applicant_id === applicant
+      );
+      if (selected !== -1 && !this.applicants[selected].available) {
+        const confirmSend = confirm(
+          `This applicant is in another interview. Are you sure you want to send this information to the panel`
+        );
+        if (!confirmSend) {
+          return;
+        }
+      } else if (selected === -1) {
+        return;
+      }
+
       this.applicantService.changeApplicantPanel(
         this.company,
         applicant,
