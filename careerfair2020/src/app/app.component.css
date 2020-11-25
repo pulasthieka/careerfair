@@ -1,0 +1,54 @@
+.topBut {
+    border-radius: 5px ;
+    border: none;
+    margin-left:0.5rem;
+    margin-right:0.5rem;
+    padding: 0.5em 0.5em;
+    background-color: #0086f3;
+    font-size: 0.75em;
+    color: #fff;
+    transition: 0.2s;
+    margin:1rem;
+ }
+
+.topBut:hover {
+
+    background-color: #319ef7;
+    color: #ffffff; }
+
+.closeBut {
+    border-radius: 5px ;
+    border: none;
+    margin-left:0.5rem;
+    margin-right:0.5rem;
+    padding: 0.5em 0.5em;
+    background-color: #e70000;
+    font-size: 0.75em;
+    color: #fff;
+    transition: 0.2s;
+    margin:1rem;
+    }
+
+.closeBut:hover {
+
+    background-color: #f34f4f;
+    color: #ffffff; }
+
+
+.btnBorder {
+    border-radius: 5px;
+    border: 1px solid #319ef7;
+    padding: 6px 30px;
+    background-color: #ffffff;
+    font-size: 0.75rem;
+    color: #319ef7;
+    margin:0.5rem;
+    transition: 0.2s;
+}
+    
+.btnBorder:hover {
+background-color: #319ef7;
+color: #ffffff;
+border: none;
+}
+

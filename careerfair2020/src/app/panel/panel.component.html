@@ -11,33 +11,30 @@
       </div>
       <div class="twoButTop">
         <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()">
-          <h3 class='btnTitle'> next interview</h3>
+          next interview
         </button>
         <ng-template #elseBlock><button class='topBut' (click)="next_candidate()">
-            <h3 class="btnTitle">candidate in interview</h3>
+            candidate in interview
           </button>
         </ng-template>
 
         <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()">
-          <h3 class="btnTitle"> cancel request</h3>
+           cancel request
         </button>
         <ng-template #askSupport><button class='topBut' (click)="requestSupport()">
-            <h3 class="btnTitle">request support</h3>
+          request support
           </button></ng-template>
-
-        <button class='topBut endInt'>
-          <h3 class="btnTitle">end interview</h3>
-        </button>
+        <button class='closeBut ' (click)="onClickLogout()">Logout</button>
       </div>
     </div>
-    <button class='topBut endInt' (click)="onClickLogout()">Logout</button>
+    
   </section>
 
   <!-- candidate profile -->
-  <section *ngIf='currentApplicant.length!==0'>
+  <section class='panelProfile' *ngIf='currentApplicant.length!==0'>
     <app-candidate-profile [id]='currentApplicant'></app-candidate-profile>
-    <button class='topBut endInt' (click)="startInterview()"> Start Interview</button>
-    <button class='topBut endInt' (click)="endInterview()"> End Interview</button>
+    <button class='btnBorder' (click)="startInterview()"> Start Interview</button>
+    <button class='btnBorder' (click)="endInterview()"> End Interview</button>
   </section>
 
   <!-- all applicants -->
