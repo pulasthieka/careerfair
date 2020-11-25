@@ -25,11 +25,11 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-  {
-    // ONLY FOR TESTING
-    path: 'test',
-    component: TestComponent,
-  },
+  // {
+  //   // ONLY FOR TESTING
+  //   path: 'test',
+  //   component: TestComponent,
+  // },
   { path: '**', redirectTo: '/login' },
 ];
 

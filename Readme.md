@@ -18,6 +18,9 @@
 2. Install necessary packages `npm install`
 3. Update firebase variables for production [here](careerfair2020/src/environments/environment.prod.ts)
 4. Build the application for deployment `ng build -prod`
+5. Install [Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli). During the first time setup projects and accounts
+6. Navigate to Firebase Folder `cd ../firebase`
+7. Deploy to firebase `firebase deploy`
 
 # Data Formats
 

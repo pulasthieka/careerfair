@@ -24,7 +24,7 @@
         <tbody>
             <tr *ngFor="let applicant of applicants; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ applicant.name }}</td>
+                <td>{{applicant.applicant_id}} | {{ applicant.name }} </td>
 
                 <td><select [(ngModel)]="applicant.panel_id">
                         <option *ngFor="let p of panels" [ngValue]="p.name" [selected]="p.name === applicant.panel_id">

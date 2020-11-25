@@ -11,6 +11,7 @@ interface tableRow {
   resume_url: string;
   panel_id: string;
   name?: string;
+  applicant_id?: string;
 }
 
 @Component({
@@ -41,7 +42,14 @@ export class PanelTableComponent implements OnInit, OnDestroy {
               .subscribe((res2:any) => {
                 const k = id as tableRow;
                 k.name = res2.name;
-                this.applicants.push(k);
+                const selected = this.applicants.findIndex(
+                  (el) => el.applicant_id === id.applicant_id
+                );
+                if (selected !== -1) {
+                  this.applicants[selected] = k;
+                } else {
+                  this.applicants.push(k);
+                }
               })
           );
         });
