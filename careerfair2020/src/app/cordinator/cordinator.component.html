@@ -5,7 +5,7 @@
         <div  *ngFor="let panel of panels">
             <div class="card" style="margin: 0.5rem;">
                 <div class="card-body">
-                <h5 class="card-title"> {{panel.name}} available:{{panel.available}} </h5>
+                <div class='cardHeading'><h4 class="card-title"> {{panel.name}}</h4><h5> Available:{{panel.available}} </h5></div>
                 <p class="card-text">Support: {{panel.support}}</p>
                 <button class='yellowBut' (click)="cancelSupport(panel.name)">Issue Solved</button>
                 <p class="card-text">{{panel.currentApplicant}}</p>
