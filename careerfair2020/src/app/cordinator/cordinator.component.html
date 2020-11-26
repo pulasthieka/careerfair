@@ -1,19 +1,25 @@
 <!-- panel status -->
 <section>
-    <div *ngFor="let panel of panels">
-        <button> {{panel.name}} available {{panel.available}}</button>
-        Support: {{panel.support}}
-        <button (click)="cancelSupport(panel.name)">Issue Solved</button>
-        <div>{{panel.currentApplicant}}</div>
+    <button class="closeBut" (click)="onClickLogout()">Logout</button>
+    <div class="detailContainer">
+        <div  *ngFor="let panel of panels">
+            <div class="card" style="margin: 0.5rem;">
+                <div class="card-body">
+                <h5 class="card-title"> {{panel.name}} available:{{panel.available}} </h5>
+                <p class="card-text">Support: {{panel.support}}</p>
+                <button class='yellowBut' (click)="cancelSupport(panel.name)">Issue Solved</button>
+                <p class="card-text">{{panel.currentApplicant}}</p>
+              </div>
+            </div>
+        </div>
     </div>
 
-    <button (click)="onClickLogout()">Logout</button>
 </section>
 <div class="table-responsive-md">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th class="idCol" scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Assign to Panel</th>
                 <th scope="col">Send to Panel</th>
@@ -23,19 +29,19 @@
         </thead>
         <tbody>
             <tr *ngFor="let applicant of applicants; index as i">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{applicant.applicant_id}} | {{ applicant.name }} </td>
+                <th class="idCol" scope="row">{{ i + 1 }}</th>
+                <td >{{applicant.applicant_id}} | {{ applicant.name }} </td>
 
                 <td><select [(ngModel)]="applicant.panel_id">
                         <option *ngFor="let p of panels" [ngValue]="p.name" [selected]="p.name === applicant.panel_id">
                             {{p.name}}</option>
                     </select></td>
                 <td>
-                    <Button (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
+                    <Button class="sendBut" (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
                         {{ applicant.panel_id }}</Button>
                 </td>
-                <td><input type="checkbox" (change)="ChangeStatus($event,applicant.applicant_id)"
-                        [(ngModel)]='applicant.statusB' /><span>Not
+                <td><input  type="checkbox" (change)="ChangeStatus($event,applicant.applicant_id)"
+                        [(ngModel)]='applicant.statusB' /><span>  Not
                         Interested</span>
                 </td>
                 <td>{{applicant.available}}</td>

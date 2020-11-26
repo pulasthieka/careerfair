@@ -52,3 +52,18 @@ color: #ffffff;
 border: none;
 }
 
+
+.yellowBut {
+    border-radius: 5px ;
+    border: none;
+    padding: 0.5em 0.5em;
+    background-color: #ffc402;
+    font-size: 0.75em;
+    color: #fff;
+    transition: 0.2s;
+ }
+
+.yellowBut:hover {
+
+    background-color: #fdc91d;
+    color: #ffffff; }

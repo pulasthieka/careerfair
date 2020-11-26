@@ -46,6 +46,57 @@
 }
 
 
+.twoButTop{
+    display: flex;
+    flex-direction: row;
+}
+
+.candidateIn{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    }
+
+.candidateInText{
+    margin-left: 0.5rem;
+}
+/*===================blink item css========================================*/
+
+
+.blink-1 {
+    background-color: rgb(255, 51, 0);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+	-webkit-animation: blink-1 2s infinite both;
+	        animation: blink-1 2s infinite both;
+}
+
+ @-webkit-keyframes blink-1 {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+  @keyframes blink-1 {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+
+/*===================blink item css========================================*/
+
 @media(max-width:800px){
     .panelTop{
         flex-direction: column;
