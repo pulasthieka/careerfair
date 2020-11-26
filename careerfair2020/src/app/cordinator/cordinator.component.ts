@@ -16,7 +16,7 @@ interface tableRow extends Applicant {
 @Component({
   selector: 'app-cordinator',
   templateUrl: './cordinator.component.html',
-  styleUrls: ['./cordinator.component.css'],
+  styleUrls: ['./cordinator.component.css','../app.component.css'],
 })
 export class CordinatorComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
