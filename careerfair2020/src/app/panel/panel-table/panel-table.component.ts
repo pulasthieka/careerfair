@@ -12,6 +12,7 @@ interface tableRow {
   panel_id: string;
   name?: string;
   applicant_id?: string;
+  comment?: string;
 }
 
 @Component({
@@ -39,7 +40,7 @@ export class PanelTableComponent implements OnInit, OnDestroy {
               .collection(environment.ApplicantCollection)
               .doc(id.applicant_id)
               .valueChanges()
-              .subscribe((res2:any) => {
+              .subscribe((res2: any) => {
                 const k = id as tableRow;
                 k.name = res2.name;
                 const selected = this.applicants.findIndex(

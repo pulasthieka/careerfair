@@ -4,4 +4,5 @@ export interface Applicant {
   resume_url: string;
   panel_id: string;
   name?: string;
+  comment?: string;
 }

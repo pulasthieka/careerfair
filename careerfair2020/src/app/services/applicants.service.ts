@@ -49,4 +49,20 @@ export class ApplicantsService {
         available: statusNew,
       });
   }
+  updateComments(company: string, applicant: string, comments: string): void {
+    this.firestore
+      .collection(environment.CompanyCollection)
+      .doc(company)
+      .collection('applicants')
+      .doc(applicant)
+      .update({
+        comment: comments,
+      });
+  }
+  getProfile(id): Observable<any> {
+    return this.firestore
+      .collection(environment.ApplicantCollection)
+      .doc(id)
+      .valueChanges();
+  }
 }
