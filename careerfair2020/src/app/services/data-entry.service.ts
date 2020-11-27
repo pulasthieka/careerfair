@@ -135,6 +135,8 @@ export class DataEntryService {
       const panel: Panel = {
         name: item.name,
         available: item.available,
+        next: false,
+        start: false,
         support: item.support,
         company: item.company,
         currentApplicant: item.currentApplicant,
@@ -180,6 +182,7 @@ export class DataEntryService {
         interests: item.interestedFields.split(','),
         profile: item.profile,
         photo: item.index + '.jpg',
+        default_resume: item.index + '.pdf',
         available: true,
       };
       this.studentRef

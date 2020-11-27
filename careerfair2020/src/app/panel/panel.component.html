@@ -12,21 +12,22 @@
       <div class="twoButTop">
         <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()">next interview</button>
         <ng-template #elseBlock>
-          
+
           <div class="candidateIn">
             <div class="blink-1"> </div>
             <div class="candidateInText">Candidate in interview</div>
-            
 
-         </div>
-      </ng-template>
+
+          </div>
+        </ng-template>
 
         <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
-        <ng-template #askSupport><button class='topBut' (click)="requestSupport()">request support</button></ng-template>
+        <ng-template #askSupport><button class='topBut' (click)="requestSupport()">request support</button>
+        </ng-template>
         <button class='closeBut ' (click)="onClickLogout()">Logout</button>
       </div>
     </div>
-    
+
   </section>
 
   <!-- candidate profile -->
@@ -34,6 +35,9 @@
     <app-candidate-profile [id]='currentApplicant'></app-candidate-profile>
     <button class='btnBorder' (click)="startInterview()"> Start Interview</button>
     <button class='btnBorder' (click)="endInterview()"> End Interview</button>
+    <textarea name="w3review" [(ngModel)]="comments" rows="4" cols="50" placeholder="Insert candidate comments">
+
+      </textarea>
   </section>
 
   <!-- all applicants -->

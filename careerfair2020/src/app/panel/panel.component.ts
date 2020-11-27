@@ -7,12 +7,14 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css','../app.component.css'],
+  styleUrls: ['./panel.component.css', '../app.component.css'],
 })
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   panelName = '';
+  company = '';
   currentApplicant = '';
+  comments = '';
   available = false;
   support = false;
   constructor(
@@ -20,13 +22,14 @@ export class PanelComponent implements OnInit, OnDestroy {
     private applicantService: ApplicantsService,
     private authService: AuthService
   ) {
-    this.panelName = this.authService.user.name; 
-    console.log('from local storage ',this.authService.user);
-    console.log('from local storage ',this.authService.isLogeedIn);
-    console.log('from local storage ',this.authService.loggedInMode);
+    this.panelName = this.authService.user.name;
+    console.log('from local storage ', this.authService.user);
+    console.log('from local storage ', this.authService.isLogeedIn);
+    console.log('from local storage ', this.authService.loggedInMode);
   }
 
   ngOnInit(): void {
+    this.company = this.authService.user.company;
     this.subscriptions.push(
       this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
         this.available = res.available;
@@ -49,10 +52,11 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   next_candidate(): void {
     // update panel availability in database
-    this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.panelStatus.requestNext(this.panelName, true);
   }
   startInterview(): void {
     // update panel availability in database
+    this.panelStatus.updateStart(this.panelName, true);
     this.panelStatus.updatePanelStatus(this.panelName, false);
     this.applicantService.changeApplicantAvailability(
       this.currentApplicant,
@@ -62,9 +66,15 @@ export class PanelComponent implements OnInit, OnDestroy {
   endInterview(): void {
     this.panelStatus.updateCurrentApplicant(this.panelName, '');
     this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.panelStatus.updateStart(this.panelName, false);
     this.applicantService.changeApplicantAvailability(
       this.currentApplicant,
       true
+    );
+    this.applicantService.updateComments(
+      this.company,
+      this.currentApplicant,
+      this.comments
     );
   }
   requestSupport(): void {
@@ -76,6 +86,6 @@ export class PanelComponent implements OnInit, OnDestroy {
   }
 
   onClickLogout() {
-    this.authService.logOut()
+    this.authService.logOut();
   }
 }

@@ -8,4 +8,5 @@ export interface Student {
   profile: string;
   photo: string;
   available?: boolean;
+  default_resume: string;
 }
