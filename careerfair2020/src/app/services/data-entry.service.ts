@@ -180,6 +180,7 @@ export class DataEntryService {
         interests: item.interestedFields.split(','),
         profile: item.profile,
         photo: item.index + '.jpg',
+        default_resume: item.index + '.pdf',
         available: true,
       };
       this.studentRef

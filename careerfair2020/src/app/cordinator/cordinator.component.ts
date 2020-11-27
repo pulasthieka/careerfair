@@ -16,7 +16,7 @@ interface tableRow extends Applicant {
 @Component({
   selector: 'app-cordinator',
   templateUrl: './cordinator.component.html',
-  styleUrls: ['./cordinator.component.css','../app.component.css'],
+  styleUrls: ['./cordinator.component.css', '../app.component.css'],
 })
 export class CordinatorComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
@@ -24,6 +24,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   applicants: tableRow[] = [];
   coordinatorName = '';
   company = '';
+  newIndex = '';
   constructor(
     private panelService: PanelStatusService,
     private coordinator: CoordinatorService,
@@ -31,14 +32,14 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     private firestore: AngularFirestore,
     private authService: AuthService
   ) {
-    console.log('from local storage ',this.authService.user);
-    console.log('from local storage ',this.authService.isLogeedIn);
-    console.log('from local storage ',this.authService.loggedInMode);
+    console.log('from local storage ', this.authService.user);
+    console.log('from local storage ', this.authService.isLogeedIn);
+    console.log('from local storage ', this.authService.loggedInMode);
   }
 
   ngOnInit(): void {
     // set coordinator name and subscribe to panel status updates
-    this.coordinatorName = this.authService.user.name; 
+    this.coordinatorName = this.authService.user.name;
     this.company = this.authService.user.company;
     this.subscriptions.push(
       this.coordinator.getPanels(this.coordinatorName).subscribe((res) => {
@@ -64,6 +65,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         this.panelService.getPanelStatus(panel.name).subscribe((res) => {
           panel.available = res.available;
           panel.support = res.support;
+          panel.start = res.start;
           if (res.support === 'Requested') {
             alert(`${panel.name} needs help`);
           }
@@ -86,7 +88,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
               .collection(environment.ApplicantCollection)
               .doc(id.applicant_id)
               .valueChanges()
-              .subscribe((res2:any) => {
+              .subscribe((res2: any) => {
                 const k = id as tableRow;
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
@@ -175,7 +177,40 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickLogout() {
-    this.authService.logOut()
+  onClickLogout(): void {
+    this.authService.logOut();
+  }
+
+  addCandidate(): void {
+    const index = this.newIndex.trim().toUpperCase();
+    if (index.match(/1[0-9]{5}[A-Z]/g)) {
+      this.applicantService.getProfile(index).subscribe(
+        (res) => {
+          if (res) {
+            const applicant = {
+              applicant_id: index,
+              comment: '',
+              panel_id: '',
+              resume_url: res.default_resume || '',
+              status: 'Interested',
+            };
+
+            this.firestore
+              .collection(environment.CompanyCollection)
+              .doc(this.company)
+              .collection('applicants')
+              .doc(index)
+              .set(applicant);
+          } else {
+            alert('Index does not exist');
+          }
+        },
+        (err) => {
+          alert('Something went wrong');
+        }
+      );
+    } else {
+      alert('Incorrect Index Format');
+    }
   }
 }

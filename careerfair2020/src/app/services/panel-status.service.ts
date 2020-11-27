@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Panel } from '../models/panel.model';
+import { Applicant } from '../models/applicant.model';
+import { Student } from '../models/student.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +47,15 @@ export class PanelStatusService {
       .doc(panel)
       .update({
         currentApplicant: applicant,
+      });
+  }
+  updateStart(panel: string, state: boolean): void {
+    // update panel availability in database
+    this.firestore
+      .collection<Panel>(environment.PanelCollection)
+      .doc(panel)
+      .update({
+        start: state,
       });
   }
 }
