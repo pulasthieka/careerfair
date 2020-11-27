@@ -135,6 +135,8 @@ export class DataEntryService {
       const panel: Panel = {
         name: item.name,
         available: item.available,
+        next: false,
+        start: false,
         support: item.support,
         company: item.company,
         currentApplicant: item.currentApplicant,

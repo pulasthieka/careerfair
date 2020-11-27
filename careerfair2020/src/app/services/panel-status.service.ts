@@ -47,6 +47,7 @@ export class PanelStatusService {
       .doc(panel)
       .update({
         currentApplicant: applicant,
+        available: false,
       });
   }
   updateStart(panel: string, state: boolean): void {
@@ -56,6 +57,15 @@ export class PanelStatusService {
       .doc(panel)
       .update({
         start: state,
+      });
+  }
+  requestNext(panel: string, state: boolean): void {
+    // update panel availability in database
+    this.firestore
+      .collection<Panel>(environment.PanelCollection)
+      .doc(panel)
+      .update({
+        next: state,
       });
   }
 }

@@ -52,7 +52,7 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   next_candidate(): void {
     // update panel availability in database
-    this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.panelStatus.requestNext(this.panelName, true);
   }
   startInterview(): void {
     // update panel availability in database

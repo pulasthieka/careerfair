@@ -69,6 +69,9 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           if (res.support === 'Requested') {
             alert(`${panel.name} needs help`);
           }
+          if (res.next) {
+            alert(`Send a new applicant to ${panel.name}`);
+          }
           panel.currentApplicant = res.currentApplicant;
         })
       );
