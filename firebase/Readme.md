@@ -1,1 +1,3 @@
-# Backup firebase scripts here
+# Files
+
+`index.js` - Firebase cloud functions
