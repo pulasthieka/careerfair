@@ -32,9 +32,9 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     private firestore: AngularFirestore,
     private authService: AuthService
   ) {
-    console.log('from local storage ', this.authService.user);
-    console.log('from local storage ', this.authService.isLogeedIn);
-    console.log('from local storage ', this.authService.loggedInMode);
+    // console.log('from local storage ', this.authService.user);
+    // console.log('from local storage ', this.authService.isLogeedIn);
+    // console.log('from local storage ', this.authService.loggedInMode);
   }
 
   ngOnInit(): void {
@@ -165,7 +165,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       } else if (selected === -1) {
         return;
       }
-
+      this.panelService.requestNext(panel, false);
       this.applicantService.changeApplicantPanel(
         this.company,
         applicant,

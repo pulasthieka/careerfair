@@ -48,9 +48,7 @@ export class PanelTableComponent implements OnInit, OnDestroy {
               .subscribe((res2: any) => {
                 const k = id as tableRow;
                 k.name = res2.name;
-                const ref = this.storage.ref(
-                  `${this.company}/${id.resume_url}`
-                );
+                const ref = this.storage.ref(id.resume_url);
                 this.subscriptions.push(
                   ref.getDownloadURL().subscribe((res3) => {
                     k.resume_url = res3;

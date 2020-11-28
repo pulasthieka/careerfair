@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { environment } from 'src/environments/environment';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Component({
   selector: 'app-add-new',
@@ -14,14 +15,14 @@ export class AddNewComponent implements OnInit {
   @Input() company;
   constructor(
     private applicantService: ApplicantsService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private fns: AngularFireFunctions
   ) {}
 
   ngOnInit(): void {}
 
   addCandidate(): void {
     const index = this.newIndex.trim().toUpperCase();
-    console.log(this.applicants);
     const selected = this.applicants.findIndex(
       (el) => el.applicant_id === index
     );
