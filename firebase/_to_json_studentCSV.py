@@ -1,7 +1,7 @@
 import csv
 import json
-studentFilePath = 'E:/Projects/University/Career Fair 2020//WebApplication/firebase/ProfileData.csv'
-jsonFilePath = "E:/Projects/University/Career Fair 2020/WebApplication/firebase/students.json"
+studentFilePath = 'data/ProfileData.csv'
+jsonFilePath = "data/students.json"
 
 
 outputJSON = []
