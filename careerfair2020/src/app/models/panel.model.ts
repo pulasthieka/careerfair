@@ -16,6 +16,8 @@ export interface Panel {
   next: boolean;
   support: 'Requested' | 'Solved';
   name: string;
-  company?: string;
-  currentApplicant?: string;
+  company?: string; // identifier of company
+  currentApplicant?: string; // index number of applicant
+  username?: string;
+  meetingLink?: string;
 }

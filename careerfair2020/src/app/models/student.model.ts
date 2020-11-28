@@ -6,7 +6,7 @@ export interface Student {
   address: string;
   interests: string[];
   profile: string;
-  photo: string;
+  photo: string; // relative to root
   available?: boolean;
-  default_resume: string;
+  default_resume: string; // relative to root
 }

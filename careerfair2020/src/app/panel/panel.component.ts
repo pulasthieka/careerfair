@@ -32,7 +32,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     this.company = this.authService.user.company;
     this.subscriptions.push(
       this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
-        this.available = res.start;
+        this.available = !res.start;
         this.currentApplicant = res.currentApplicant;
         if (res.support === 'Requested') {
           this.support = true;

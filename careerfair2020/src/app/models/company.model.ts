@@ -3,6 +3,6 @@ import { Applicant } from './applicant.model';
 export interface Company {
   name: string;
   email?: string;
-  applicants: Applicant[];
-  panels: string[];
+  applicants: Applicant[]; // subcollection of applicants
+  panels: string[]; // panel identifiers
 }
