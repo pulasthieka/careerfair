@@ -56,3 +56,7 @@
 - profile: string;
 - photo: string;
 - available?: string;
+
+# Limitations
+
+CVs have same name for the same applicant

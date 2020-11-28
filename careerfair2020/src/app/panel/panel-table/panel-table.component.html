@@ -14,7 +14,7 @@
       <tr *ngFor="let applicant of applicants; index as i">
         <th class="idCol" scope="row">{{ i + 1 }}</th>
         <td>{{ applicant.name }}</td>
-        <td><Button class="viewCV">view cv</Button></td>
+        <td><a href={{applicant.resume_url}} target="_blank">view cv</a></td>
         <td>{{ applicant.panel_id }}</td>
         <td>{{ applicant.status }}</td>
         <td>{{ applicant.comment }}</td>

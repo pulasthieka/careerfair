@@ -24,7 +24,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   applicants: tableRow[] = [];
   coordinatorName = '';
   company = '';
-  newIndex = '';
+
   constructor(
     private panelService: PanelStatusService,
     private coordinator: CoordinatorService,
@@ -182,38 +182,5 @@ export class CordinatorComponent implements OnInit, OnDestroy {
 
   onClickLogout(): void {
     this.authService.logOut();
-  }
-
-  addCandidate(): void {
-    const index = this.newIndex.trim().toUpperCase();
-    if (index.match(/1[0-9]{5}[A-Z]/g)) {
-      this.applicantService.getProfile(index).subscribe(
-        (res) => {
-          if (res) {
-            const applicant = {
-              applicant_id: index,
-              comment: '',
-              panel_id: '',
-              resume_url: res.default_resume || '',
-              status: 'Interested',
-            };
-
-            this.firestore
-              .collection(environment.CompanyCollection)
-              .doc(this.company)
-              .collection('applicants')
-              .doc(index)
-              .set(applicant);
-          } else {
-            alert('Index does not exist');
-          }
-        },
-        (err) => {
-          alert('Something went wrong');
-        }
-      );
-    } else {
-      alert('Incorrect Index Format');
-    }
   }
 }

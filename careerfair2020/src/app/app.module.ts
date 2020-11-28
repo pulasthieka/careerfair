@@ -16,6 +16,7 @@ import { CandidateProfileComponent } from './panel/candidate-profile/candidate-p
 import { TestComponent } from './test/test.component';
 import { PanelTableComponent } from './panel/panel-table/panel-table.component';
 import { FormsModule } from '@angular/forms';
+import { AddNewComponent } from './cordinator/add-new/add-new.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     CandidateProfileComponent,
     TestComponent,
     PanelTableComponent,
+    AddNewComponent,
   ],
   imports: [
     BrowserModule,
