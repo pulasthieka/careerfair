@@ -54,13 +54,11 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
           this.profileImage =
             '../assets/default-profile-picture/default-profile-picture.jpg';
           this.profile = res as Student;
-          const refcv = this.storage.ref(
-            `${company}/${this.profile.default_resume}`
-          );
+          const refcv = this.storage.ref(this.profile.default_resume);
           refcv.getDownloadURL().subscribe((res3) => {
             this.profile.default_resume = res3;
           });
-          const ref = this.storage.ref(`profilepics/${this.profile.photo}`);
+          const ref = this.storage.ref(this.profile.photo);
           this.subscriptions.push(
             ref.getDownloadURL().subscribe((res2) => {
               this.profileImage = res2;

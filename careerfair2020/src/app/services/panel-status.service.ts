@@ -48,9 +48,9 @@ export class PanelStatusService {
       .update({
         currentApplicant: applicant,
         // available: false,
-        next: false,
       });
   }
+
   updateStart(panel: string, state: boolean): void {
     // update panel availability in database
     this.firestore
