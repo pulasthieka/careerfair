@@ -20,8 +20,7 @@
     </div>
 
 </section>
-<input type="text" (keydown.enter)="addCandidate()" [(ngModel)]="newIndex" /><button (click)="addCandidate()">Add to
-    List</button>
+<app-add-new [applicants]="applicants" [company]='company'></app-add-new>
 <h2>Available People</h2>
 <div class="table-responsive-md">
     <table class="table table-hover">
