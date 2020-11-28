@@ -23,9 +23,9 @@ export class PanelComponent implements OnInit, OnDestroy {
     private authService: AuthService
   ) {
     this.panelName = this.authService.user.name;
-    console.log('from local storage ', this.authService.user);
-    console.log('from local storage ', this.authService.isLogeedIn);
-    console.log('from local storage ', this.authService.loggedInMode);
+    // console.log('from local storage ', this.authService.user);
+    // console.log('from local storage ', this.authService.isLogeedIn);
+    // console.log('from local storage ', this.authService.loggedInMode);
   }
 
   ngOnInit(): void {
@@ -58,6 +58,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     // update panel availability in database
     this.panelStatus.updateStart(this.panelName, true);
     this.panelStatus.updatePanelStatus(this.panelName, false);
+    this.panelStatus.requestNext(this.panelName, false);
     this.applicantService.changeApplicantAvailability(
       this.currentApplicant,
       false
@@ -67,6 +68,7 @@ export class PanelComponent implements OnInit, OnDestroy {
     this.panelStatus.updateCurrentApplicant(this.panelName, '');
     this.panelStatus.updatePanelStatus(this.panelName, true);
     this.panelStatus.updateStart(this.panelName, false);
+    this.panelStatus.requestNext(this.panelName, true);
     this.applicantService.changeApplicantAvailability(
       this.currentApplicant,
       true
