@@ -167,6 +167,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         return;
       }
       this.panelService.requestNext(panel, false);
+      this.panelService.updatePanelStatus(panel, false);
       this.applicantService.changeApplicantPanel(
         this.company,
         applicant,

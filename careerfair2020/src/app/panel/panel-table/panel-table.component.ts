@@ -12,6 +12,7 @@ interface tableRow {
   status: string;
   resume_url: string;
   panel_id: string;
+  profileImage: string;
   name?: string;
   applicant_id?: string;
   comment?: string;
@@ -38,7 +39,6 @@ export class PanelTableComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       // TODO get the company name from Login service
       this.applicantService.getApplicants(this.company).subscribe((res) => {
-        this.applicants = [];
         res.forEach((id: Applicant) => {
           this.subscriptions.push(
             this.firestore
@@ -48,18 +48,25 @@ export class PanelTableComponent implements OnInit, OnDestroy {
               .subscribe((res2: any) => {
                 const k = id as tableRow;
                 k.name = res2.name;
-                const ref = this.storage.ref(id.resume_url);
-                this.subscriptions.push(
-                  ref.getDownloadURL().subscribe((res3) => {
-                    k.resume_url = res3;
-                  })
-                );
+
                 const selected = this.applicants.findIndex(
                   (el) => el.applicant_id === id.applicant_id
                 );
                 if (selected !== -1) {
                   this.applicants[selected] = k;
                 } else {
+                  const ref = this.storage.ref(id.resume_url);
+                  this.subscriptions.push(
+                    ref.getDownloadURL().subscribe((res3) => {
+                      k.resume_url = res3;
+                    })
+                  );
+                  const refimg = this.storage.ref(res2.photo);
+                  this.subscriptions.push(
+                    refimg.getDownloadURL().subscribe((res3) => {
+                      k.profileImage = res3;
+                    })
+                  );
                   this.applicants.push(k);
                 }
               })

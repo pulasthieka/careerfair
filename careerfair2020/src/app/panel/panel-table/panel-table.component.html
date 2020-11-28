@@ -13,6 +13,7 @@
     <tbody>
       <tr *ngFor="let applicant of applicants; index as i">
         <th class="idCol" scope="row">{{ i + 1 }}</th>
+        <td><img class="table-img" src="{{applicant.profileImage }}" /></td>
         <td>{{ applicant.name }}</td>
         <td><a href={{applicant.resume_url}} target="_blank">view cv</a></td>
         <td>{{ applicant.panel_id }}</td>

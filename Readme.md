@@ -18,18 +18,18 @@ File Structure
 
 1. Clone repo `git clone https://github.com/pulasthieka/careerfair.git`
 2. Navigate to the Angular application folder `cd careerfair2020`
-3. Install necessary packages `npm install --dev`
+3. Install necessary packages `npm install`
 4. Run application in developer mode `ng serve`
 
 ### For Production
 
 1. Navigate to the Angular application folder `cd careerfair2020`
 2. Install necessary packages `npm install`
-3. Update firebase variables for production [here](careerfair2020/src/environments/environment.prod.ts)
-4. Build the application for deployment `ng build -prod`
+3. Update firebase variables for production in [environment.prod.ts](careerfair2020/src/environments/environment.prod.ts)
+4. Build the application for deployment `ng build --prod`
 5. Install [Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli). During the first time setup projects and accounts
 6. Navigate to Firebase Folder `cd ../firebase`
-7. Deploy to firebase `firebase deploy`
+7. Deploy to firebase `firebase deploy`. For testing use preview channels eg: `firebase hosting:channel:deploy testSite`
 
 ## Limitations
 
