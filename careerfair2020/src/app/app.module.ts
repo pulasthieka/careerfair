@@ -11,9 +11,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { DataEntryService } from './services/data-entry.service';
 import { CandidateProfileComponent } from './panel/candidate-profile/candidate-profile.component';
-import { TestComponent } from './test/test.component';
 import { PanelTableComponent } from './panel/panel-table/panel-table.component';
 import { FormsModule } from '@angular/forms';
 import { AddNewComponent } from './cordinator/add-new/add-new.component';
@@ -28,7 +26,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
     CordinatorComponent,
     PanelComponent,
     CandidateProfileComponent,
-    TestComponent,
     PanelTableComponent,
     AddNewComponent,
     SpinnerOverlayComponent,
@@ -41,14 +38,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
-    OverlayModule
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [
-    SpinnerOverlayComponent
-  ]
+  entryComponents: [SpinnerOverlayComponent],
 })
 export class AppModule {
-  constructor(private dataentry: DataEntryService) {}
+  constructor() {}
 }

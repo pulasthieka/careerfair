@@ -49,7 +49,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           this.panels.push(new PanelClass(panel));
         });
         this.getAllPanels();
-        console.log(this.panels);
+        // console.log(this.panels);
       })
     );
     this.getApplicants();
@@ -83,7 +83,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.applicantService.getApplicants(this.company).subscribe((res) => {
         const applicantIDs: tableRow[] = res.applicants;
-        console.log(res);
+        // console.log(res);
         this.applicants = [];
         res.forEach((id) => {
           // map response to row
