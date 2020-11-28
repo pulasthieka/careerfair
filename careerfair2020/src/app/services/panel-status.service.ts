@@ -47,7 +47,8 @@ export class PanelStatusService {
       .doc(panel)
       .update({
         currentApplicant: applicant,
-        available: false,
+        // available: false,
+        next: false,
       });
   }
   updateStart(panel: string, state: boolean): void {

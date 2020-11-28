@@ -186,7 +186,10 @@ export class CordinatorComponent implements OnInit, OnDestroy {
 
   addCandidate(): void {
     const index = this.newIndex.trim().toUpperCase();
-    if (index.match(/1[0-9]{5}[A-Z]/g)) {
+    const selected = this.applicants.findIndex(
+      (el) => el.applicant_id === index
+    );
+    if (index.match(/1[0-9]{5}[A-Z]/g) && selected === -1) {
       this.applicantService.getProfile(index).subscribe(
         (res) => {
           if (res) {
