@@ -17,6 +17,9 @@ import { TestComponent } from './test/test.component';
 import { PanelTableComponent } from './panel/panel-table/panel-table.component';
 import { FormsModule } from '@angular/forms';
 import { AddNewComponent } from './cordinator/add-new/add-new.component';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
     TestComponent,
     PanelTableComponent,
     AddNewComponent,
+    SpinnerOverlayComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +41,13 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [
+    SpinnerOverlayComponent
+  ]
 })
 export class AppModule {
   constructor(private dataentry: DataEntryService) {}
