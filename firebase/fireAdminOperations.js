@@ -1,4 +1,5 @@
 var admin = require("firebase-admin");
+const fs = require("fs");
 module.exports = {
   listUsers: async function listUsers() {
     return await admin
@@ -75,7 +76,7 @@ module.exports = {
       });
   },
   deleteAllUsers: function deleteAllUsers() {
-    listUsers().then((users) => {
+    this.listUsers().then((users) => {
       // console.log(users);
       let todelete = [];
       users.forEach((user) => {

@@ -9,14 +9,17 @@ admin.initializeApp({
 });
 const fire = admin.firestore();
 // running functions
+// crud.deleteAllUsers();
+crud.listUsers();
 // addData("students.json", "Students");
+addData("panels.json", "Panels");
 // addUsers("panels.json", "Panels");
 // addUsers("coordinator.json", "Coordinators");
 // addCompanies("companies.json", "Companies");
 // all functions
 
 function addData(file, collectionName) {
-  let fileData = fs.readFileSync(`../firebase/${file}`);
+  let fileData = fs.readFileSync(`data/${file}`);
   let colRef = fire.collection(collectionName);
   todB = {};
   const fileJSONData = JSON.parse(fileData);
@@ -34,7 +37,7 @@ function addData(file, collectionName) {
   });
 }
 function addUsers(file, collectionName) {
-  let fileData = fs.readFileSync(`../firebase/${file}`);
+  let fileData = fs.readFileSync(`data/${file}`);
   let colRef = fire.collection(collectionName);
   todB = {};
   const fileJSONData = JSON.parse(fileData);
@@ -53,7 +56,7 @@ function addUsers(file, collectionName) {
   });
 }
 function addCompanies(file, collectionName) {
-  let fileData = fs.readFileSync(`../firebase/${file}`);
+  let fileData = fs.readFileSync(`data/${file}`);
   let colRef = fire.collection(collectionName);
   todB = {};
   const fileJSONData = JSON.parse(fileData);
@@ -90,7 +93,7 @@ function addCompanies(file, collectionName) {
 }
 
 function deleteData(file, collectionName) {
-  let fileData = fs.readFileSync(`../firebase/${file}`);
+  let fileData = fs.readFileSync(`data/${file}`);
   const fileJSONData = JSON.parse(fileData);
   fileJSONData.data.forEach(function (el) {
     fire
