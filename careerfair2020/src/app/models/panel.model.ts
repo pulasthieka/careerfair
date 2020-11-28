@@ -12,12 +12,12 @@ export default PanelClass;
 
 export interface Panel {
   available: boolean;
-  start?: boolean;
-  next: boolean;
-  support: 'Requested' | 'Solved';
-  name: string;
   company?: string; // identifier of company
   currentApplicant?: string; // index number of applicant
-  username?: string;
   meetingLink?: string;
+  name: string;
+  next: boolean;
+  start?: boolean;
+  support: 'Requested' | 'Solved';
+  username?: string;
 }
