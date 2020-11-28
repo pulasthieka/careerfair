@@ -1,8 +1,8 @@
 import { Applicant } from './applicant.model';
 // export type ApplicantToCompanuy = Applicant;
 export interface Company {
-  name: string;
+  applicants: Applicant[]; // subcollection of applicants
   email?: string;
-  applicants: Applicant[];
-  panels: string[];
+  name: string;
+  panels: string[]; // panel identifiers
 }

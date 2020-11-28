@@ -1,12 +1,12 @@
 export interface Student {
-  index: string;
-  email: string;
-  name: string;
-  mobile: string;
   address: string;
-  interests: string[];
-  profile: string;
-  photo: string;
   available?: boolean;
-  default_resume: string;
+  default_resume: string; // relative to root
+  email: string;
+  index: string;
+  interests: string[];
+  mobile: string;
+  name: string;
+  photo: string; // relative to root
+  profile: string;
 }

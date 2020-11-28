@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 interface tableRow extends Applicant {
   statusB?: boolean;
   available?: boolean;
+  name: string;
 }
 @Component({
   selector: 'app-cordinator',
