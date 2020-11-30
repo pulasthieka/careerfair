@@ -1,12 +1,16 @@
-<div *ngIf='profile' class="candidate-profile">
+<div *ngIf='profile' class = "candidate-panel">
    <div class="candidate-profile-img">
       <img clas='profileImage' src={{profileImage}} alt="" width="100%" />
    </div>
 
-   <div class="candidateDetails">
-      <h3>{{profile.name}}</h3>
-      <p>{{profile.profile}}</p>
+   <div class="candidate-profile">
 
-      <a href={{profile.default_resume}} target="_blank" class="viewCVButton"> View CV</a>
+      <div class="candidateDetails">
+         <h3>{{profile.name}}</h3>
+         <p>{{profile.profile}}</p>
+
+         <a href={{profile.default_resume}} target="_blank" class="btnBorder"> View CV</a>
+         <button class='btnBorder'> Start Interview</button>
+      </div>
    </div>
 </div>

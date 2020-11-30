@@ -1,5 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let applicant of applicants; index as i" class ="col-xl-4">
+      <div class = "table-panel">
+        <img src="../assets/default-profile-picture/default-profile-picture.jpg" alt="" />
+        <div class="candidate-details">
+          <h3>{{applicant.name}}</h3>
+          <div class = "row">
+            <div class="col-auto d-flex justify-content-center">
+              Interviewed by: <br> {{applicant.panel_id}}
+            </div>
+            <div class="col d-flex justify-content-center">
+              Status: <br> {{applicant.status}}
+            </div>
+            <div class="col d-flex justify-content-center text-center">
+              <a href={{applicant.resume_url}} target="_blank" class="viewCV">view cv</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
 <div class="table-responsive-md">
-  <table class="table table-hover">
+  <ul class="table table-hover">
     <thead>
       <tr>
         <th class="idCol" scope="col"></th>
@@ -11,14 +37,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let applicant of applicants; index as i">
+      <tr *ngFor="let applicant of applicants; index as i" class="tablePanel">
         <th class="idCol" scope="row">{{ i + 1 }}</th>
         <td>{{ applicant.name }}</td>
-        <td><a href={{applicant.resume_url}} target="_blank">view cv</a></td>
+        <td><a href={{applicant.resume_url}} target="_blank" class="viewCV">view cv</a></td>
         <td>{{ applicant.panel_id }}</td>
         <td>{{ applicant.status }}</td>
         <td>{{ applicant.comment }}</td>
       </tr>
     </tbody>
-  </table>
+  </ul>
 </div>
+-->
