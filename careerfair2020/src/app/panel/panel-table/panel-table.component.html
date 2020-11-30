@@ -1,4 +1,38 @@
 <div class="container-fluid">
+  <div class="row justify-content-around">
+    <div *ngFor="let applicant of applicants; index as i" class ="col-4">
+      <div class = "table-panel">
+        <!-- <div class="row"> -->
+          <div class = "col-2">
+            <img src="{{applicant.profileImage }}" alt="{{applicant.name}}"/>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h3>{{applicant.name}}</h3>
+              </div>
+            </div>
+            <div class="row flex-nowrap">
+              <div class = "col mr-auto">
+                Panel: <br> {{applicant.panel_id}}
+              </div>
+              <div class="col">
+                Status: <br> {{applicant.status}}
+              </div>
+              <div class="col ml-auto">
+                <a href={{applicant.resume_url}} target="_blank" class="btn btn-outline-primary">View CV</a>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+<!-- 
+<div class="container-fluid">
   <div class="row justify-content-md-around">
     <div *ngFor="let applicant of applicants; index as i" class ="col-xl-4">
       <div class = "table-panel">
@@ -21,7 +55,7 @@
     </div>
   </div>
 </div>
-
+ -->
 
 <!--
 <div class="table-responsive-md">
