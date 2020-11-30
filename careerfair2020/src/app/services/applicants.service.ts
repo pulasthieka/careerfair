@@ -49,6 +49,14 @@ export class ApplicantsService {
         available: statusNew,
       });
   }
+  getComments(company: string, applicant: string): Observable<any> {
+    return this.firestore
+      .collection(environment.CompanyCollection)
+      .doc(company)
+      .collection('applicants')
+      .doc(applicant)
+      .valueChanges();
+  }
   updateComments(company: string, applicant: string, comments: string): void {
     this.firestore
       .collection(environment.CompanyCollection)

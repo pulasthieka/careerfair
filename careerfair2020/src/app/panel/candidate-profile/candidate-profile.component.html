@@ -1,4 +1,4 @@
-<div *ngIf='profile' class = "candidate-panel">
+<div *ngIf='profile' class="candidate-panel">
    <div class="candidate-profile-img ">
       <img class='img-fluid rounded-circle' src={{profileImage}} alt="" />
    </div>
@@ -10,20 +10,25 @@
             <div class="col-lg">
                <p>{{profile.profile}}</p>
                <a href={{profile.default_resume}} target="_blank" class="btn btn-outline-primary"> View CV</a>
-               <button class="btn btn-outline-primary "> Start Interview</button>
+               <button class="btn btn-outline-primary " *ngIf="!started" (click)="startInterview()"> Start
+                  Interview</button>
+               <button class="btn btn-outline-primary " *ngIf="started" (click)="endInterview()"> End Interview</button>
+
+               <!-- <button class="btn btn-outline-primary "> Start Interview</button> -->
             </div>
-            <div class = "col-md">
+            <div class="col-md">
                <form>
-                  <div class = "form-group">
+                  <div class="form-group">
                      <label for="PostInterviewInstructions">Post-Interview Instructions</label>
                      <textarea class="form-control" id="PostInterviewInstructions"
-                        placeholder="Submit any post-interview instructions to candidates or coordinators here."></textarea>
+                        placeholder="Submit any post-interview instructions to candidates or coordinators here."
+                        [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
                   </div>
                </form>
-               <button class="btn btn-outline-primary"> Submit</button>
+               <button class="btn btn-outline-primary" (click)="updateComments()"> Submit</button>
             </div>
          </div>
       </div>
    </div>
-      
+
 </div>
