@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 interface tableRow extends Applicant {
   statusB?: boolean;
   available?: boolean;
+  name: string;
 }
 @Component({
   selector: 'app-cordinator',
@@ -48,7 +49,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           this.panels.push(new PanelClass(panel));
         });
         this.getAllPanels();
-        console.log(this.panels);
+        // console.log(this.panels);
       })
     );
     this.getApplicants();
@@ -82,7 +83,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.applicantService.getApplicants(this.company).subscribe((res) => {
         const applicantIDs: tableRow[] = res.applicants;
-        console.log(res);
+        // console.log(res);
         this.applicants = [];
         res.forEach((id) => {
           // map response to row
@@ -166,6 +167,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         return;
       }
       this.panelService.requestNext(panel, false);
+      this.panelService.updatePanelStatus(panel, false);
       this.applicantService.changeApplicantPanel(
         this.company,
         applicant,

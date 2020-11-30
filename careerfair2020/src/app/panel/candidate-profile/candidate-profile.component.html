@@ -1,16 +1,29 @@
 <div *ngIf='profile' class = "candidate-panel">
-   <div class="candidate-profile-img">
-      <img clas='profileImage' src={{profileImage}} alt="" width="100%" />
+   <div class="candidate-profile-img ">
+      <img class='img-fluid rounded-circle' src={{profileImage}} alt="" />
    </div>
 
    <div class="candidate-profile">
-
       <div class="candidateDetails">
          <h3>{{profile.name}}</h3>
-         <p>{{profile.profile}}</p>
-
-         <a href={{profile.default_resume}} target="_blank" class="btnBorder"> View CV</a>
-         <button class='btnBorder'> Start Interview</button>
+         <div class="row">
+            <div class="col-lg">
+               <p>{{profile.profile}}</p>
+               <a href={{profile.default_resume}} target="_blank" class="btn btn-outline-primary"> View CV</a>
+               <button class="btn btn-outline-primary "> Start Interview</button>
+            </div>
+            <div class = "col-md">
+               <form>
+                  <div class = "form-group">
+                     <label for="PostInterviewInstructions">Post-Interview Instructions</label>
+                     <textarea class="form-control" id="PostInterviewInstructions"
+                        placeholder="Submit any post-interview instructions to candidates or coordinators here."></textarea>
+                  </div>
+               </form>
+               <button class="btn btn-outline-primary"> Submit</button>
+            </div>
+         </div>
       </div>
    </div>
+      
 </div>

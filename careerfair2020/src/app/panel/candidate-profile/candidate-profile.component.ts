@@ -34,7 +34,7 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     // console.log(changes.id);
     if (changes.id.currentValue !== changes.id.previousValue) {
-      console.log('updated Profile');
+      // console.log('updated Current Applicant');
       this.getProfile();
     }
   }
