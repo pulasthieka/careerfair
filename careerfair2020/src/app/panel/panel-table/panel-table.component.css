@@ -26,7 +26,7 @@
   height: auto;
 } */
 
-.btn-outline-primary {
+.btn-outline-primary, .btn-outline-secondary{
   border: 1px solid #f6d55c;
   background-color: #f6d55c;
   color: #ffffff;
@@ -36,17 +36,27 @@
   transition: 0.4s;
 }
 
+.btn-outline-secondary{
+  border: 1px solid #ed553b;
+  background-color: #ed553b;
+}
+
 .btn-outline-primary:hover {
   background-color: #ffffff;
   color: #f6d55c;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):focus{
+.btn-outline-secondary:hover {
+  background-color: #ffffff;
+  color: #ed553b;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):focus, .btn-outline-secondary:not(:disabled):not(.disabled):focus{
   outline: none;
   box-shadow: none;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):active{
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled):active{
   border: 1px solid #f6d55c;
   background-color: #f6d55c;
   color: #ffffff;
@@ -55,27 +65,36 @@
   transition: 0.1s;
 }
 
+.btn-outline-secondary:active{
+  border: 1px solid #ed553b;
+  background-color: #ed553b;
+}
+
 .table-img {
   max-width: 2em;
   max-height: 2em;
 }
 
-.table-panel{
-    background-color: rgb(255, 255, 255);
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    margin: 0.5rem;
-    font-size: 0.8rem;
-    border-radius: 10px;
-    border-left: solid 10px #f6d55c ;
-    -webkit-box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32); 
+.table-panel-interested, .table-panel-withdrawn{
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  margin: 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border-left: solid 10px #f6d55c ;
+  -webkit-box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32); 
   box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32); 
 }
 
-.table-panel h3 {
+.table-panel-withdrawn{
+  border-left: solid 10px #ed553b ;
+}
+
+.table-panel-interested h3, .table-panel-withdrawn h3 {
   font-size: 1em;
   margin: 0;
 }

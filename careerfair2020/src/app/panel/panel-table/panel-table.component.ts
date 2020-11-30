@@ -21,7 +21,7 @@ interface tableRow {
 @Component({
   selector: 'app-panel-table',
   templateUrl: './panel-table.component.html',
-  styleUrls: ['./panel-table.component.css'],
+  styleUrls: ['./panel-table.component.css', '../panel.component.css'],
 })
 export class PanelTableComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
