@@ -10,7 +10,8 @@ import { Student } from 'src/app/models/student.model';
 import { GetProfileService } from 'src/app/services/get-profile.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { PanelStatusService } from 'src/app/services/panel-status.service';
+import { ApplicantsService } from 'src/app/services/applicants.service';
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
@@ -19,12 +20,17 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   subscriptions: Subscription[] = [];
   profile: any;
+  started = false;
+  @Input() comments;
+  @Input() panelName;
+  @Input() company;
   @Input() id;
   profileImage: any;
   constructor(
     private profileService: GetProfileService,
     private storage: AngularFireStorage,
-    private auth: AuthService
+    private panelStatus: PanelStatusService,
+    private applicantService: ApplicantsService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +54,18 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
 
   getProfile(): void {
     if (this.id.length >= 5) {
-      const company = this.auth.user.company;
+      this.subscriptions.push(
+        this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
+          this.started = res.start;
+        })
+      );
+      this.subscriptions.push(
+        this.applicantService
+          .getComments(this.company, this.id)
+          .subscribe((res) => {
+            this.comments = res.comment;
+          })
+      );
       this.subscriptions.push(
         this.profileService.getProfile(this.id).subscribe((res) => {
           this.profileImage =
@@ -68,5 +85,22 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
         })
       );
     }
+  }
+  startInterview(): void {
+    // update panel availability in database
+    this.panelStatus.updateStart(this.panelName, true);
+    this.panelStatus.updatePanelStatus(this.panelName, false);
+    this.panelStatus.requestNext(this.panelName, false);
+    this.applicantService.changeApplicantAvailability(this.id, false);
+  }
+  endInterview(): void {
+    this.panelStatus.updateCurrentApplicant(this.panelName, '');
+    this.panelStatus.updatePanelStatus(this.panelName, true);
+    this.panelStatus.updateStart(this.panelName, false);
+    this.applicantService.changeApplicantAvailability(this.id, true);
+    this.updateComments();
+  }
+  updateComments(): void {
+    this.applicantService.updateComments(this.company, this.id, this.comments);
   }
 }

@@ -32,7 +32,7 @@
 
   <!-- candidate profile -->
   <section class='panelProfile' *ngIf='currentApplicant.length!==0'>
-    <app-candidate-profile [id]='currentApplicant'></app-candidate-profile>
+    <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company"></app-candidate-profile>
     <!-- <button class='btnBorder' (click)="startInterview()"> Start Interview</button>
     <button class='btnBorder' (click)="endInterview()"> End Interview</button>
     <textarea name="w3review" [(ngModel)]="comments" rows="4" cols="50" placeholder="Insert candidate comments">
