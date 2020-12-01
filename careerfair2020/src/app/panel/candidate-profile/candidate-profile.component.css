@@ -39,7 +39,6 @@
   align-items: center;
   flex: 0.75 0.75 0;
   height: auto;
-  /* max-height: 300px; */
   min-width: 400px;
   margin: 1rem;
   border-radius: 5px;
@@ -66,80 +65,3 @@
   font-size: 1.25em;
   margin: 0;
 }
-
-.candidateInterests {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-}
-
-.btn-outline-primary {
-  border: 1px solid #20639b;
-  background-color: #20639b;
-  color: #ffffff;
-  border: none;
-
-  font-size: 0.75rem;
-
-  margin-right: 0.5rem;
-  transition: 0.4s;
-}
-
-.btn-outline-primary:hover {
-  border: 1px solid #20639b;
-  background-color: #ffffff;
-  color: #20639b;
-}
-
-.btn-outline-primary:not(:disabled):not(.disabled):focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.btn-outline-primary:not(:disabled):not(.disabled):active {
-  background-color: #20639b;
-  color: #ffffff;
-  outline: none;
-  box-shadow: none;
-  transition: 0.1s;
-}
-
-/*
-@media (max-width: 1100px) {
-  .candidate-profile {
-    width: 100%;
-  }
-}*/
-/*
-@media (max-width: 600px) {
-  .candidate-profile {
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-  }
-  .candidate-profile img {
-    border-radius: 0;
-  }
-
-  .candidate-profile p {
-    font-size: 0.7em;
-  }
-
-  .viewCVButton {
-    border-radius: 4px ;
-    border: none;
-    padding: 4px 12px;
-    font-size: 0.75rem;
-    margin-bottom: 14px;
-    transition: 0.4s;
-  }
-
-  .viewCVButton{
-    padding: 0.2rem 0.2rem;
-  }
-  .candidate-profile-img{
-    width: 6rem;
-    height: 6rem;
-  }
-}
-*/

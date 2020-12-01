@@ -59,12 +59,13 @@
 
 .candidateInText{
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 /*===================blink item css========================================*/
 
 
 .blink-1 {
-    background-color: rgb(255, 51, 0);
+    background-color: #ed553b;
     width: 1rem;
     height: 1rem;
     border-radius: 50%;

@@ -9,12 +9,11 @@
          <div class="row">
             <div class="col-lg">
                <p>{{profile.profile}}</p>
-               <a href={{profile.default_resume}} target="_blank" class="btn btn-outline-primary"> View CV</a>
-               <button class="btn btn-outline-primary " *ngIf="!started" (click)="startInterview()"> Start
+               <a href={{profile.default_resume}} target="_blank" class="btn btn-primary"> View CV</a>
+               <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()"> Start
                   Interview</button>
-               <button class="btn btn-outline-primary " *ngIf="started" (click)="endInterview()"> End Interview</button>
+               <button class="btn btn-primary " *ngIf="started" (click)="endInterview()"> End Interview</button>
 
-               <!-- <button class="btn btn-outline-primary "> Start Interview</button> -->
             </div>
             <div class="col-md">
                <form>
@@ -25,7 +24,7 @@
                         [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
                   </div>
                </form>
-               <button class="btn btn-outline-primary" (click)="updateComments()"> Submit</button>
+               <button class="btn btn-primary" (click)="updateComments()"> Submit</button>
             </div>
          </div>
       </div>
