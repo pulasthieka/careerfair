@@ -10,7 +10,7 @@
         <h1 class="companyname">Welcome {{name}}</h1>
       </div>
       <div class="twoButTop">
-        <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()">next interview</button>
+        <button class='btn btn-primary' *ngIf="available else elseBlock" (click)="next_candidate()">next interview</button>
         <ng-template #elseBlock>
 
           <div class="candidateIn">
@@ -21,10 +21,10 @@
           </div>
         </ng-template>
 
-        <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
-        <ng-template #askSupport><button class='topBut' (click)="requestSupport()">request support</button>
+        <button class='btn btn-secondary' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
+        <ng-template #askSupport><button class='btn btn-primary' (click)="requestSupport()">request support</button>
         </ng-template>
-        <button class='closeBut ' (click)="onClickLogout()">Logout</button>
+        <button class='btn btn-secondary ' (click)="onClickLogout()">Logout</button>
       </div>
     </div>
 

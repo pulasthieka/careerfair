@@ -129,6 +129,50 @@
     
 }
 
+.btn-primary, .btn-secondary{
+  border: 1px solid #20639b;
+  background-color: #20639b;
+  color: #ffffff;
+  height: 3em;
+  font-size: 0.75em;
+  margin-right: 0.5rem;
+  transition: 0.4s;
+}
+
+.btn-secondary{
+  border: 1px solid #ed553b;
+  background-color: #ed553b;
+}
+
+.btn-primary:hover {
+  background-color: #ffffff;
+  color: #20639b;
+}
+
+.btn-secondary:hover {
+  background-color: #ffffff;
+  color: #ed553b;
+}
+
+.btn-primary:not(:disabled):not(.disabled):focus, .btn-secondary:not(:disabled):not(.disabled):focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled):active{
+  border: 1px solid #20639b;
+  background-color: #20639b;
+  color: #ffffff;
+  outline: none;
+  box-shadow: none;
+  transition: 0.1s;
+}
+
+.btn-secondary:active{
+  border: 1px solid #ed553b;
+  background-color: #ed553b;
+}
+
 /*Animations*/
 
 .slide-in-right {
