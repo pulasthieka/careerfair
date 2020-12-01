@@ -21,7 +21,7 @@ interface tableRow {
 @Component({
   selector: 'app-panel-table',
   templateUrl: './panel-table.component.html',
-  styleUrls: ['./panel-table.component.css'],
+  styleUrls: ['./panel-table.component.css', '../panel.component.css'],
 })
 export class PanelTableComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
@@ -53,7 +53,9 @@ export class PanelTableComponent implements OnInit, OnDestroy {
                   (el) => el.applicant_id === id.applicant_id
                 );
                 if (selected !== -1) {
-                  this.applicants[selected] = k;
+                  this.applicants[selected].status = k.status;
+                  this.applicants[selected].panel_id = k.panel_id;
+                  this.applicants[selected].comment = k.comment;
                 } else {
                   const ref = this.storage.ref(id.resume_url);
                   this.subscriptions.push(

@@ -10,37 +10,28 @@
         <h1 class="companyname">Welcome {{name}}</h1>
       </div>
       <div class="twoButTop">
-        <button class='topBut' *ngIf="available else elseBlock" (click)="next_candidate()">next interview</button>
+        <button class='btn btn-primary' *ngIf="available else elseBlock" (click)="next_candidate()">next
+          interview</button>
         <ng-template #elseBlock>
-
           <div class="candidateIn">
             <div class="blink-1"> </div>
-            <div class="candidateInText">Candidate in interview</div>
-
-
+            <div class="candidateInText">Candidate in interview  </div>
           </div>
         </ng-template>
 
-        <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
-        <ng-template #askSupport><button class='topBut' (click)="requestSupport()">request support</button>
+        <button class='btn btn-secondary' *ngIf="support else askSupport" (click)="cancelSupport()">cancel
+          request</button>
+        <ng-template #askSupport><button class='btn btn-primary' (click)="requestSupport()">request support</button>
         </ng-template>
-        <button class='closeBut ' (click)="onClickLogout()">Logout</button>
+        <button class='btn btn-secondary ' (click)="onClickLogout()">Logout</button>
       </div>
     </div>
-
   </section>
 
   <!-- candidate profile -->
   <section class='panelProfile' *ngIf='currentApplicant.length!==0'>
-    <app-candidate-profile [id]='currentApplicant'></app-candidate-profile>
-    <button class='btnBorder' (click)="startInterview()"> Start Interview</button>
-    <button class='btnBorder' (click)="endInterview()"> End Interview</button>
-    <textarea name="w3review" [(ngModel)]="comments" rows="4" cols="50" placeholder="Insert candidate comments">
-
-      </textarea>
+    <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company"></app-candidate-profile>
   </section>
-
-  <!-- all applicants -->
   <section>
     <app-panel-table></app-panel-table>
   </section>
