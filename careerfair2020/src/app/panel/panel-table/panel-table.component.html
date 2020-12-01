@@ -1,9 +1,10 @@
 <div class="container-fluid">
   <div class="row justify-content-around">
-    <div *ngFor="let applicant of applicants; index as i" class ="col-4 slide-in-left slide-slow">
-      <div *ngIf="applicant.status=='Interested'; else withdrawn" class = "table-panel-interested">
-        <div class = "col-2">
-          <img src="{{applicant.profileImage }}" alt="{{applicant.name}}"/>
+    <div *ngFor="let applicant of applicants; index as i" class="col-4 slide-in-left slide-slow">
+      <div
+        [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
+        <div class="col-2image">
+          <img class="profile_img" src="{{applicant.profileImage }}" alt="{{applicant.name}}" />
         </div>
         <div class="col">
           <div class="row">
@@ -12,49 +13,49 @@
             </div>
           </div>
           <div class="row flex-nowrap justify-content-between">
-            <div class = "col my-auto">
-              Panel: {{applicant.panel_id}}
+            <div class="col my-auto">
+              <span *ngIf="applicant.status !== 'Not Interested'">Panel: {{applicant.panel_id}} </span>
+              <span *ngIf="applicant.status === 'Not Interested'">Application withdrawn </span>
             </div>
-            <!-- <div class="col">
-              Status: <br> {{applicant.status}}
-            </div> -->
             <div class="col-auto my-auto">
-              <a href={{applicant.resume_url}} target="_blank" class="btn btn-outline-primary">View CV</a>
+              <a href={{applicant.resume_url}} target="_blank" class="btn "
+                [ngClass]="{'btn-outline-primary': applicant.status !== 'Not Interested', 'btn-outline-secondary':applicant.status === 'Not Interested' }">View
+                CV</a>
             </div>
           </div>
         </div>
         <!-- </div> -->
         <!-- </div> -->
       </div>
-      <ng-template #withdrawn >
-        <div class = "table-panel-withdrawn">
-        <div class = "col-2">
-          <img src="{{applicant.profileImage }}" alt="{{applicant.name}}"/>
-        </div>
-        <div class="col">
-          <div class="row">
-            <div class="col">
-              <h3>{{applicant.name}}</h3>
-            </div>
+      <!-- <ng-template #withdrawn>
+        <div class="table-panel-withdrawn">
+          <div class="col-2image">
+            <img class="profile_img" src="{{applicant.profileImage }}" alt="{{applicant.name}}" />
           </div>
-          <div class="row flex-nowrap">
-            <div class = "col my-auto">
-              Application withdrawn
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h3>{{applicant.name}}</h3>
+              </div>
             </div>
-            <!-- <div class="col">
+            <div class="row flex-nowrap">
+              <div class="col my-auto">
+                Application withdrawn
+              </div>
+              <div class="col">
               Status: <br> {{applicant.status}}
-            </div> -->
-            <div class="col-auto my-auto">
-              <a href={{applicant.resume_url}} target="_blank" class="btn btn-outline-secondary">View CV</a>
+            </div> 
+              <div class="col-auto my-auto">
+                <a href={{applicant.resume_url}} target="_blank" class="btn btn-outline-secondary">View CV</a>
+              </div>
             </div>
           </div>
         </div>
-        </div>
-      </ng-template>
+      </ng-template> -->
     </div>
   </div>
 </div>
-      
+
 
 <!-- 
 <div class="container-fluid">
