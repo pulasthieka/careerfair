@@ -1,69 +1,61 @@
 .topBut {
-    border-radius: 5px ;
-    border: none;
-    margin-left:0.5rem;
-    margin-right:0.5rem;
-    padding: 0.5em 0.5em;
-    background-color: #0086f3;
-    font-size: 0.75em;
-    color: #fff;
-    transition: 0.2s;
-    margin:1rem;
- }
+  border-radius: 5px;
+  border: none;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  background-color: #20639b;
+  font-size: 0.75em;
+  color: #fff;
+  transition: 0.2s;
+}
 
 .topBut:hover {
-
-    background-color: #319ef7;
-    color: #ffffff; }
+  background-color: #ffffff;
+  color: #20639b;
+  border: 1px solid #20639b;
+}
 
 .closeBut {
-    border-radius: 5px ;
-    border: none;
-    margin-left:0.5rem;
-    margin-right:0.5rem;
-    padding: 0.5em 0.5em;
-    background-color: #e70000;
-    font-size: 0.75em;
-    color: #fff;
-    transition: 0.2s;
-    margin:1rem;
-    }
+  border-radius: 5px;
+  border: none;
+  background-color: #e74c3c;
+  font-size: 0.75em;
+  color: #fff;
+  transition: 0.2s;
+}
 
 .closeBut:hover {
-
-    background-color: #f34f4f;
-    color: #ffffff; }
-
+  background-color: #f34f4f;
+  color: #ffffff;
+}
 
 .btnBorder {
-    border-radius: 5px;
-    border: 1px solid #319ef7;
-    padding: 6px 30px;
-    background-color: #ffffff;
-    font-size: 0.75rem;
-    color: #319ef7;
-    margin:0.5rem;
-    transition: 0.2s;
-}
-    
-.btnBorder:hover {
-background-color: #319ef7;
-color: #ffffff;
-border: none;
+  border-radius: 5px;
+  border: 1px solid #20639b;
+  padding: 6px 30px;
+  background-color: #ffffff;
+  font-size: 0.75rem;
+  color: #20639b;
+  transition: 0.2s;
 }
 
+.btnBorder:hover {
+  background-color: #20639b;
+  color: #ffffff;
+  border: none;
+}
 
 .yellowBut {
-    border-radius: 5px ;
-    border: none;
-    padding: 0.5em 0.5em;
-    background-color: #ffc402;
-    font-size: 0.75em;
-    color: #fff;
-    transition: 0.2s;
- }
+  border-radius: 5px;
+  border: none;
+  padding: 0.5em 0.5em;
+  background-color: #ffc402;
+  font-size: 0.75em;
+  color: #fff;
+  transition: 0.2s;
+}
 
 .yellowBut:hover {
-
-    background-color: #fdc91d;
-    color: #ffffff; }
+  background-color: #fdc91d;
+  color: #ffffff;
+}

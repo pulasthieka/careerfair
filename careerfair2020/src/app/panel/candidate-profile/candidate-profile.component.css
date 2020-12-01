@@ -1,7 +1,7 @@
 .candidate-profile-img {
-  max-height:300px;
+  max-height: 300px;
   min-height: 200px;
-  min-width:200px;
+  min-width: 200px;
   width: 20vw;
   height: 20vw;
   overflow: hidden;
@@ -12,15 +12,15 @@
   background-color: #3caea3;
 }
 
-.candidate-profile-img img{
-  height:auto;
+.candidate-profile-img img {
+  height: auto;
   width: fit-content;
   max-width: 115%;
   max-height: 125%;
   object-fit: cover;
 }
 
-.candidate-panel{
+.candidate-panel {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -30,7 +30,6 @@
   padding: 2rem;
   height: auto;
   margin: 0;
-
 }
 
 .candidate-profile {
@@ -44,12 +43,12 @@
   min-width: 400px;
   margin: 1rem;
   border-radius: 5px;
-  border-left: solid 10px #20639b ;
-  -webkit-box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32); 
-box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32);
+  border-left: solid 10px #20639b;
+  -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
+  box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
 }
 
-.form-control{
+.form-control {
   font-size: 0.75em;
 }
 
@@ -58,7 +57,7 @@ box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32);
   font-size: 1em;
   margin-bottom: 0.5rem;
 }
-.candidateDetails{
+.candidateDetails {
   width: 100%;
   height: auto;
 }
@@ -79,24 +78,25 @@ box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.32);
   background-color: #20639b;
   color: #ffffff;
   border: none;
-  
+
   font-size: 0.75rem;
-  
-  margin-right:0.5rem;
+
+  margin-right: 0.5rem;
   transition: 0.4s;
 }
-  
+
 .btn-outline-primary:hover {
+  border: 1px solid #20639b;
   background-color: #ffffff;
   color: #20639b;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):focus{
+.btn-outline-primary:not(:disabled):not(.disabled):focus {
   outline: none;
   box-shadow: none;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):active{
+.btn-outline-primary:not(:disabled):not(.disabled):active {
   background-color: #20639b;
   color: #ffffff;
   outline: none;

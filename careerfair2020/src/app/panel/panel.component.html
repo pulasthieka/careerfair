@@ -21,10 +21,10 @@
           </div>
         </ng-template>
 
-        <button class='topBut' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
-        <ng-template #askSupport><button class='topBut' (click)="requestSupport()">request support</button>
+        <button class='topBut btn' *ngIf="support else askSupport" (click)="cancelSupport()">cancel request</button>
+        <ng-template #askSupport><button class='topBut btn' (click)="requestSupport()">request support</button>
         </ng-template>
-        <button class='closeBut ' (click)="onClickLogout()">Logout</button>
+        <button class='closeBut btn' (click)="onClickLogout()">Logout</button>
       </div>
     </div>
 
