@@ -9,10 +9,10 @@
          <!-- <div class="row"> -->
             <!-- <div class="col-lg"> -->
                <p>{{profile.profile}}</p>
-               <a href={{profile.default_resume}} target="_blank" class="btn btn-primary"> View CV</a>
-               <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()"> Start
+               <a href={{profile.default_resume}} role="button"><button target="_blank" class="btn btn-primary">View CV</button></a>
+               <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()">Start
                   Interview</button>
-               <button class="btn btn-primary " *ngIf="started" disabled> Start
+               <button class="btn btn-primary " *ngIf="started" disabled>Start
                   Interview</button>
             <!-- </div> -->
             <!-- <div class="col-md"> -->

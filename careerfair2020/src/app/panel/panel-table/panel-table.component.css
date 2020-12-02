@@ -28,7 +28,7 @@
   height: auto;
 }
 
-.btn-primary:hover {
+.btn-primary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #f1c40f;
 }
