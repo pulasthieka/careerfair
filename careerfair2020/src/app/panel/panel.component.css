@@ -48,11 +48,12 @@
 
 .companyname{
     padding: 0;
-    margin: 0.5rem 1rem 0.5rem 1rem;
-    font-size: 2rem;
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: calc(1rem + 1vw);
     color: white;
     align-items: center;
     align-content: center;
+    
 }
 
 .entcHeader{
