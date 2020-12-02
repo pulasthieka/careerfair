@@ -15,7 +15,7 @@ import { ApplicantsService } from 'src/app/services/applicants.service';
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
-  styleUrls: ['./candidate-profile.component.css', '../panel.component.css'],
+  styleUrls: ['../panel.component.css', './candidate-profile.component.css'],
 })
 export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   subscriptions: Subscription[] = [];

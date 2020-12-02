@@ -7,6 +7,7 @@ import { ApplicantsService } from 'src/app/services/applicants.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Applicant } from '../../models/applicant.model';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 interface tableRow {
   status: string;
@@ -21,7 +22,30 @@ interface tableRow {
 @Component({
   selector: 'app-panel-table',
   templateUrl: './panel-table.component.html',
-  styleUrls: ['./panel-table.component.css', '../panel.component.css'],
+  styleUrls: ['../panel.component.css', './panel-table.component.css'],
+  animations: [
+    trigger(
+      'slideInOutLeft', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ transform: 'translateX(-1000px)', opacity: 0 }),
+            animate('2s ease-out', 
+                    style({ transform: 'translateX(0px)', opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ transform: 'translateX(0px)', opacity: 1 }),
+            animate('2s ease-in', 
+                    style({ transform: 'translateX(-1000px)', opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class PanelTableComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];

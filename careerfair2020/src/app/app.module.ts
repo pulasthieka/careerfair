@@ -18,6 +18,7 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AngularFireStorageModule,
     FormsModule,
     OverlayModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

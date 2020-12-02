@@ -2,8 +2,8 @@
   max-height: 300px;
   min-height: 200px;
   min-width: 200px;
-  width: 20vw;
-  height: 20vw;
+  height: 15vw;
+  width: 15vw;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -45,6 +45,10 @@
   border-left: solid 10px #20639b;
   -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
+}
+
+.form-group{
+  margin-top: 1rem;
 }
 
 .form-control {

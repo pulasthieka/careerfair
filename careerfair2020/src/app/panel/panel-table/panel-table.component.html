@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-around">
-    <div *ngFor="let applicant of applicants; index as i" class="col-4 slide-in-left slide-slow">
+    <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-4">
       <div
         [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
         <div class="col-2image">

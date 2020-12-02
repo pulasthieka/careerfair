@@ -13,6 +13,11 @@
     margin:0;
 }
 
+.remove-padding{
+  padding: 0;
+  margin: 0;
+}
+
 .companyname{
     padding: 0;
     font-size: 2rem;
@@ -140,17 +145,22 @@
   transition: 0.4s;
 }
 
+.btn-primary:disabled, .btn-secondary:disabled{
+  background-color: gray;
+  border-color: gray;
+}
+
 .btn-secondary{
   border: 1px solid #ed553b;
   background-color: #ed553b;
 }
 
-.btn-primary:hover {
+.btn-primary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #20639b;
 }
 
-.btn-secondary:hover {
+.btn-secondary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #ed553b;
 }
@@ -169,7 +179,7 @@
   transition: 0.1s;
 }
 
-.btn-secondary:active{
+.btn-secondary:not(:disabled):not(.disabled):active{
   border: 1px solid #ed553b;
   background-color: #ed553b;
 }
@@ -177,18 +187,23 @@
 /*Animations*/
 
 .slide-in-right {
-	-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-in-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-out-right {
+	-webkit-animation: slide-out-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-out-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .slide-in-left {
-	-webkit-animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-in-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation: slide-in-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .slide-slow {
-	-webkit-animation-duration: 2s;
-    animation-duration: 2s;
+	-webkit-animation-duration: 3s;
+    animation-duration: 3s;
 }
 
 @-webkit-keyframes slide-in-right {
@@ -216,10 +231,36 @@
   }
 }
 
-@-webkit-keyframes slide-in-left {
+@-webkit-keyframes slide-out-right {
   0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
     -webkit-transform: translateX(1000px);
             transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+0% {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  opacity: 1;
+}
+100% {
+  -webkit-transform: translateX(1000px);
+          transform: translateX(1000px);
+  opacity: 0;
+}
+}
+
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
     opacity: 0;
   }
   100% {
