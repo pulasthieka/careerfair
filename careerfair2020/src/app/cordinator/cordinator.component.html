@@ -1,97 +1,128 @@
 <!-- panel status -->
 <section>
-    <button class="closeBut" (click)="onClickLogout()">Logout</button>
-    <div class="detailContainer">
-        <div *ngFor="let panel of panels">
-            <div class="card" style="margin: 0.5rem;">
-                <div class="card-body">
-                    <div class='cardHeading'>
-                        <h4 class="card-title"> {{panel.name}}</h4>
-                    </div>
-                    <h5> Available:{{panel.available}} </h5>
-                    <h5> Start:{{panel.start}} </h5>
-                    <h5 class="card-text">Support: {{panel.support}}</h5>
-                    <button class='yellowBut' (click)="cancelSupport(panel.name)">Issue Solved</button>
-                    <h4>Current Applicant</h4>
-                    <p class="card-text">{{panel.currentApplicant}}</p>
-                </div>
-            </div>
+  <button class="closeBut" (click)="onClickLogout()">Logout</button>
+  <div class="detailContainer">
+    <div *ngFor="let panel of panels">
+      <div class="card" style="margin: 0.5rem">
+        <div class="card-body">
+          <div class="cardHeading">
+            <h4 class="card-title">{{ panel.name }}</h4>
+          </div>
+          <h5>Available:{{ panel.available }}</h5>
+          <h5>Start:{{ panel.start }}</h5>
+          <h5 class="card-text">Support: {{ panel.support }}</h5>
+          <button class="yellowBut" (click)="cancelSupport(panel.name)">
+            Issue Solved
+          </button>
+          <h4>Current Applicant</h4>
+          <p class="card-text">{{ panel.currentApplicant }}</p>
         </div>
+      </div>
     </div>
-
+  </div>
 </section>
-<app-add-new [applicants]="applicants" [company]='company'></app-add-new>
+<app-add-new [applicants]="applicants" [company]="company"></app-add-new>
 <h2>Available People</h2>
 <div class="table-responsive-md">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Assign to Panel</th>
-                <th scope="col">Send to Panel</th>
-                <th scope="col">Status</th>
-                <th scope="col">Availability</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let applicant of applicants">
-                <ng-template [ngIf]="applicant.available">
-                    <td>{{applicant.applicant_id}} | {{ applicant.name }} </td>
-                    <td>{{applicant.comment}} </td>
-                    <td><select [(ngModel)]="applicant.panel_id">
-                            <option *ngFor="let p of panels" [ngValue]="p.name"
-                                [selected]="p.name === applicant.panel_id">
-                                {{p.name}}</option>
-                        </select></td>
-                    <td>
-                        <Button class="sendBut" (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send
-                            to
-                            {{ applicant.panel_id }}</Button>
-                    </td>
-                    <td><input type="checkbox" (change)="ChangeStatus($event,applicant.applicant_id)"
-                            [(ngModel)]='applicant.statusB' /><span> Not
-                            Interested</span>
-                    </td>
-                    <td>{{applicant.available}}</td>
-                </ng-template>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Assign to Panel</th>
+        <th scope="col">Send to Panel</th>
+        <th scope="col">Status</th>
+        <th scope="col">Availability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of applicants">
+        <ng-template [ngIf]="applicant.available">
+          <td>{{ applicant.applicant_id }} | {{ applicant.name }}</td>
+          <td>{{ applicant.comment }}</td>
+          <td>
+            <select [(ngModel)]="applicant.panel_id">
+              <option
+                *ngFor="let p of panels"
+                [ngValue]="p.name"
+                [selected]="p.name === applicant.panel_id"
+              >
+                {{ p.name }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <Button
+              class="sendBut"
+              (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)"
+              >Send to {{ applicant.panel_id }}</Button
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              (change)="ChangeStatus($event, applicant.applicant_id)"
+              [(ngModel)]="applicant.statusB"
+            /><span> Not Interested</span>
+          </td>
+          <td>{{ applicant.available }}</td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <h2>All People</h2>
 <div class="table-responsive-md">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th class="idCol" scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Assign to Panel</th>
-                <th scope="col">Send to Panel</th>
-                <th scope="col">Status</th>
-                <th scope="col">Availability</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let applicant of applicants; index as i">
-                <th class="idCol" scope="row">{{ i + 1 }}</th>
-                <td>{{applicant.applicant_id}} | {{ applicant.name }} </td>
-                <td>{{applicant.comment}} </td>
-                <td><select [(ngModel)]="applicant.panel_id">
-                        <option *ngFor="let p of panels" [ngValue]="p.name" [selected]="p.name === applicant.panel_id">
-                            {{p.name}}</option>
-                    </select></td>
-                <td>
-                    <Button class="sendBut" (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
-                        {{ applicant.panel_id }}</Button>
-                </td>
-                <td><input type="checkbox" (change)="ChangeStatus($event,applicant.applicant_id)"
-                        [(ngModel)]='applicant.statusB' /><span> Not
-                        Interested</span>
-                </td>
-                <td>{{applicant.available}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="idCol" scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Assign to Panel</th>
+        <th scope="col">Send to Panel</th>
+        <th scope="col">Status</th>
+        <th scope="col">Availability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of applicants; index as i">
+        <th class="idCol" scope="row">{{ i + 1 }}</th>
+        <td>{{ applicant.applicant_id }} | {{ applicant.name }}</td>
+        <td>{{ applicant.comment }}</td>
+        <td>
+          <select [(ngModel)]="applicant.panel_id">
+            <option
+              *ngFor="let p of panels"
+              [ngValue]="p.name"
+              [selected]="p.name === applicant.panel_id"
+            >
+              {{ p.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <Button
+            class="sendBut"
+            (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)"
+            [disabled]="!applicant.available"
+            [ngClass]="{ sendButDisable: !applicant.available }"
+          >
+            <div *ngIf="applicant.available">
+              Send to {{ applicant.panel_id }}
+            </div>
+            <div *ngIf="!applicant.available">Not Available</div>
+          </Button>
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            (change)="ChangeStatus($event, applicant.applicant_id)"
+            [(ngModel)]="applicant.statusB"
+          /><span> Not Interested</span>
+        </td>
+        <td>{{ applicant.available }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
