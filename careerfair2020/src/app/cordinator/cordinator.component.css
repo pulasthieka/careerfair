@@ -3,90 +3,93 @@
 /*styels for table */
 
 .sendBut {
-    border-radius: 5px ;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  background-color: #3f3f3fec;
+  font-size: 0.75em;
+  color: #fff;
+  margin-bottom: 14px;
+  transition: 0.4s;
+}
+
+.sendButDisable {
+  background-color: #ffffff;
+  color: red;
+}
+
+.sendBut:hover {
+  background-color: #ffffff;
+  color: #dfab00ec;
+}
+
+/* panel details */
+
+.panelDetails {
+  display: flex;
+  flex-direction: row;
+}
+.detailContainer {
+  padding: 0.1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  background-color: rgb(236, 236, 236);
+}
+.issueBut {
+  color: white;
+}
+
+.card {
+  width: 30vw;
+}
+
+.card h5 {
+  color: rgb(1, 78, 167);
+}
+
+.cardHeading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 800px) {
+  .card {
+    width: 40vw;
+  }
+  .card h5 {
+    font-size: 1em;
+  }
+  .card p {
+    font-size: 0.8em;
+  }
+
+  .cardHeading {
+    display: flex;
+    flex-direction: column;
+  }
+  .sendBut {
+    border-radius: 4px;
     border: none;
-    padding: 0.5rem 0.5rem;
-    background-color: #3f3f3fec;
-    font-size: 0.75em;
-    color: #fff;
+    padding: 4px 12px;
+    font-size: 0.75rem;
     margin-bottom: 14px;
     transition: 0.4s;
+    font-size: 0.5rem;
   }
-  
-  .sendBut:hover {
-  
-    background-color: #ffffff;
-    color: #dfab00ec;
-    }
+  th {
+    font-size: 0.6em;
+  }
 
-    
-    /* panel details */
-
-    .panelDetails{
-      display: flex;
-      flex-direction: row;
-    }
-    .detailContainer{
-      padding:0.1em;
-      display:flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      
-      background-color: rgb(236, 236, 236);
-    }
-    .issueBut{
-      color:white;
-    }
-
-    .card{
-      width: 30vw;
-    }
-
-    .card h5{
-      color: rgb(1, 78, 167);
-    }
-
-    .cardHeading{
-      display:flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-@media(max-width:800px){
-    .card{
-      width:40vw;
-    }
-    .card h5{
-      font-size: 1em;
-    }
-    .card p{
-      font-size: 0.8em;
-    }
-
-    .cardHeading{
-      display:flex;
-      flex-direction: column;
-       }
-    .sendBut {
-        border-radius: 4px ;
-        border: none;
-        padding: 4px 12px;
-        font-size: 0.75rem;
-        margin-bottom: 14px;
-        transition: 0.4s;
-        font-size: 0.5rem;
-      }
-      th{
-        font-size: 0.6em;
-      }
-        
-      td{
-        font-size: 0.6em;
-      }
-      .idCol{
-        display: none;
-      }
-      .sendBut{
-        padding: 0.2rem 0.2rem;
-      }
+  td {
+    font-size: 0.6em;
+  }
+  .idCol {
+    display: none;
+  }
+  .sendBut {
+    padding: 0.2rem 0.2rem;
+  }
 }

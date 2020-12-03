@@ -19,6 +19,8 @@ import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.compo
 import { SpinnerComponent } from './spinner/spinner.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PromptDialogComponent } from './modals/prompt-dialog/prompt-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddNewComponent,
     SpinnerOverlayComponent,
     SpinnerComponent,
+    PromptDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,10 +44,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     OverlayModule,
     BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SpinnerOverlayComponent],
+  entryComponents: [SpinnerOverlayComponent,PromptDialogComponent],
 })
 export class AppModule {
   constructor() {}
