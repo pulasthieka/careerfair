@@ -12,6 +12,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
 import { PanelStatusService } from 'src/app/services/panel-status.service';
 import { ApplicantsService } from 'src/app/services/applicants.service';
+import { ModalService } from 'src/app/modals/modal.service';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
@@ -30,7 +32,8 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
     private profileService: GetProfileService,
     private storage: AngularFireStorage,
     private panelStatus: PanelStatusService,
-    private applicantService: ApplicantsService
+    private applicantService: ApplicantsService,
+    private modalService: ModalService,
   ) {}
 
   ngOnInit(): void {
@@ -94,11 +97,22 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
     this.applicantService.changeApplicantAvailability(this.id, false);
   }
   endInterview(): void {
-    this.panelStatus.updateCurrentApplicant(this.panelName, '');
-    this.panelStatus.updatePanelStatus(this.panelName, true);
-    this.panelStatus.updateStart(this.panelName, false);
-    this.applicantService.changeApplicantAvailability(this.id, true);
-    this.updateComments();
+    this.modalService
+    .propmtModal("Are you sure to end the interview","CONFIRM")
+    .pipe(
+      take(1) // take() manages unsubscription for us
+    )
+    .subscribe((confirm) => {
+      console.log(confirm);
+      if(confirm){
+          this.panelStatus.updateCurrentApplicant(this.panelName, '');
+          this.panelStatus.updatePanelStatus(this.panelName, true);
+          this.panelStatus.updateStart(this.panelName, false);
+          this.applicantService.changeApplicantAvailability(this.id, true);
+          this.updateComments();
+      }
+    });
+
   }
   updateComments(): void {
     this.applicantService.updateComments(this.company, this.id, this.comments);
