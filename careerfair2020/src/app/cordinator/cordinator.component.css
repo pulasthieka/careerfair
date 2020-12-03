@@ -1,4 +1,4 @@
-/*/
+
 
 /*styels for table */
 
@@ -55,6 +55,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+
 @media (max-width: 800px) {
   .card {
     width: 40vw;

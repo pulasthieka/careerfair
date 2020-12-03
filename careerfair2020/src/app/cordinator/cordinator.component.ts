@@ -13,6 +13,7 @@ interface tableRow extends Applicant {
   statusB?: boolean;
   available?: boolean;
   name: string;
+  interviewed_by_panel_id?: string;
 }
 @Component({
   selector: 'app-cordinator',
@@ -94,6 +95,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
               .valueChanges()
               .subscribe((res2: any) => {
                 const k = id as tableRow;
+                k.interviewed_by_panel_id = id.panel_id;
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
                 }
@@ -157,6 +159,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       const selected = this.applicants.findIndex(
         (el) => el.applicant_id === applicant
       );
+      console.log(this.applicants[selected])
       if (selected !== -1 && !this.applicants[selected].available) {
         const confirmSend = confirm(
           `This applicant is in another interview. Are you sure you want to send this information to the panel`
@@ -176,9 +179,10 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       );
       this.panelService.updateCurrentApplicant(panel, applicant);
       this.applicantService.changeApplicantAvailability(applicant, false);
+      console.log(this.applicants[selected])
     } else if(!selected){
       alert(
-        `Please assing a panel before send`
+        `Please assign a Panel`
       );
     } 
     else {
