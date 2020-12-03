@@ -152,6 +152,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   ChangePanel(applicant, panel): void {
     // console.log(applicant, panel);
     const selected = this.panels.find((el) => el.name === panel);
+    console.log(selected)
     if (selected && selected.available) {
       const selected = this.applicants.findIndex(
         (el) => el.applicant_id === applicant
@@ -175,7 +176,12 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       );
       this.panelService.updateCurrentApplicant(panel, applicant);
       this.applicantService.changeApplicantAvailability(applicant, false);
-    } else {
+    } else if(!selected){
+      alert(
+        `Please assing a panel before send`
+      );
+    } 
+    else {
       alert(
         `Panel ${panel} is not free \nPlease ask ${panel} to end the previous interview`
       );
