@@ -10,14 +10,10 @@
       <h1 class="companyname">Welcome, {{name}}</h1>
       
       <div class="twoButTop">
-        <button class='btn btn-primary fill-right' *ngIf="available else elseBlock" (click)="next_candidate()">Next
-          interview</button>
-        <ng-template #elseBlock>
-          <div class="candidateIn">
+          <div *ngIf="!available" class="candidateIn">
             <div class="blink-1"> </div>
             <div class="candidateInText">Candidate in interview </div>
           </div>
-        </ng-template>
 
         <button class='btn btn-secondary fill-right' *ngIf="support else askSupport" (click)="cancelSupport()">cancel
           request</button>
@@ -31,11 +27,14 @@
   <div class="panelPage">
     <!-- candidate profile -->
     <div class="row flex-row-reverse">
-      <div class="col-lg-8">
+      <div class="col-lg-8 panelColumn">
+        <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight] (click)="next_candidate()">Next
+          interview</button>
         <section class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
           <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
           </app-candidate-profile>
         </section>
+        
       </div>
       <div class="col-lg-4 ">
         <section class="app-panel-table">
