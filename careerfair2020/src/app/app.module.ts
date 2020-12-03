@@ -18,6 +18,8 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PromptDialogComponent } from './modals/prompt-dialog/prompt-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AddNewComponent,
     SpinnerOverlayComponent,
     SpinnerComponent,
+    PromptDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,10 +42,11 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AngularFireStorageModule,
     FormsModule,
     OverlayModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SpinnerOverlayComponent],
+  entryComponents: [SpinnerOverlayComponent,PromptDialogComponent],
 })
 export class AppModule {
   constructor() {}
