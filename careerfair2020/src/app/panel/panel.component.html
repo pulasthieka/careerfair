@@ -17,7 +17,7 @@
 
         <button class='btn btn-secondary fill-right' *ngIf="support else askSupport" (click)="cancelSupport()">cancel
           request</button>
-        <ng-template #askSupport><button class='btn btn-primary fill-right dark-blue' (click)="requestSupport()">Request
+        <ng-template #askSupport><button class='btn btn-primary fill-right askSupport' (click)="requestSupport()">Request
             support</button>
         </ng-template>
         <button class='btn btn-secondary fill-right ' (click)="onClickLogout()">Log out</button>
@@ -27,13 +27,13 @@
   <div class="panelPage">
     <!-- candidate profile -->
     <div class="row flex-row-reverse">
-      <div class="col-lg-8 panelColumn">
-        <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight] (click)="next_candidate()">Next
-          interview</button>
+      <div class="col-lg-8 panelColumn" >
         <section class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
           <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
           </app-candidate-profile>
         </section>
+        <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight] (click)="next_candidate()">Next
+          interview</button>
         
       </div>
       <div class="col-lg-4 ">

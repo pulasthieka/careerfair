@@ -17,7 +17,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
           ':enter', 
           [
             style({ transform: 'translateX(1000px)', opacity: 0 }),
-            animate('2s ease-out', 
+            animate('1s 1s ease-out', 
                     style({ transform: 'translateX(0px)', opacity: 1 }))
           ]
         ),
@@ -25,7 +25,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
           ':leave', 
           [
             style({ transform: 'translateX(0px)', opacity: 1 }),
-            animate('2s ease-in', 
+            animate('1s ease-in', 
                     style({ transform: 'translateX(1000px)', opacity: 0 }))
           ]
         )
