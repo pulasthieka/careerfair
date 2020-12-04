@@ -53,8 +53,35 @@
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
 }
 
+
+/*Classes for the different box style based on conditions*/
+
+.availableNext{
+  border-left: solid 10px #20639b;
+}
+.availableNotNext{
+  border-left: solid 10px #173f5f;
+}
+.NotAvailableStart{
+  border-left: solid 10px #f6d55c;
+}
+.NotAvailableNotStart{
+  border-left: solid 10px #3caea3;
+}
+.Issue{
+  border-left: solid 10px #ed553b;
+}
+
 .panelCard h5 {
   color: rgb(1, 78, 167);
+}
+
+.panelCard h3 {
+  color: #ed553b;
+}
+
+.panelCard p{
+  margin-bottom: 8px;
 }
 
 .cardHeading {
@@ -62,6 +89,42 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.LogOutButton {
+  border: 1px solid #ed553b;
+  border-radius: 5px;
+  background-color: #ed553b;
+  color: #ffffff;
+  height: 3em;
+  font-size: 0.75em;
+  margin: 0.5rem;
+  transition: 0.4s;
+}
+
+.LogOutButton:disabled {
+  background-color: gray;
+  border-color: gray;
+}
+
+
+.LogOutButton:not(:disabled):not(.disabled):hover {
+  background-color: #ffffff;
+  color: #20639b;
+}
+
+.LogOutButton:not(:disabled):not(.disabled):focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.LogOutButton:not(:disabled):not(.disabled):active {
+  border: 1px solid #ed553b;
+  background-color: #ed553b;
+  color: #ffffff;
+  outline: none;
+  box-shadow: none;
+  transition: 0.1s;
 }
 
 
