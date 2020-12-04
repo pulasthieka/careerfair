@@ -10,6 +10,7 @@
           </div>
           <h5>Available:{{ panel.available }}</h5>
           <h5>Start:{{ panel.start }}</h5>
+          <h5>Next:{{ panel.next }}</h5>
           <h5 class="card-text">Support: {{ panel.support }}</h5>
           <button class="yellowBut" (click)="cancelSupport(panel.name)">
             Issue Solved
@@ -28,7 +29,7 @@
   <h2>Waiting to be interviewed</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
-      <thead >
+      <thead>
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Assign to Panel</th>
@@ -51,7 +52,7 @@
               <Button class="sendBut" (click)="ChangePanel(applicant.applicant_id, applicant.panel_id)">Send to
                 {{ applicant.panel_id }}</Button>
             </td>
-            <td >
+            <td>
               <input type="checkbox" (change)="ChangeStatus($event, applicant.applicant_id)"
                 [(ngModel)]="applicant.statusB" />
             </td>
@@ -65,7 +66,7 @@
   <h2>Have been sent for an interview</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
-      <thead >
+      <thead>
         <tr>
           <th class="idCol" scope="col">#</th>
           <th scope="col">Name</th>
@@ -99,7 +100,7 @@
                 <div *ngIf="!applicant.available">Not Available</div>
               </Button>
             </td>
-            <td >
+            <td>
               <input type="checkbox" (change)="ChangeStatus($event, applicant.applicant_id)"
                 [(ngModel)]="applicant.statusB" />
             </td>
@@ -112,7 +113,7 @@
   <h2>Application Withdrawn</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
-      <thead >
+      <thead>
         <tr>
           <th class="idCol" scope="col">#</th>
           <th scope="col">Name</th>
@@ -128,7 +129,7 @@
             <td class="text-left">{{ applicant.applicant_id }} | {{ applicant.name }}</td>
             <td>{{ applicant.comment }}</td>
             <td>{{applicant.interviewed_by_panel_id}}</td>
-            <td >
+            <td>
               <input type="checkbox" (change)="ChangeStatus($event, applicant.applicant_id)"
                 [(ngModel)]="applicant.statusB" />
             </td>
