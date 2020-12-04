@@ -6,6 +6,7 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SpinnerOverlayService } from './spinner-overlay.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class AuthService {
   constructor(
     private firestore: AngularFirestore,
     private router: Router,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth,
+    public spinnerOverlayService:SpinnerOverlayService
   ) {
     this.loggedInMode = localStorage.getItem('loggedInMode');
     const storedUser = localStorage.getItem('user');
@@ -32,6 +34,7 @@ export class AuthService {
   }
 
   signInWithUsername(username, pwd) {
+    this.spinnerOverlayService.show();
     this.fireAuth
       .signInWithEmailAndPassword(username, pwd)
       .then((res) => {
@@ -48,6 +51,7 @@ export class AuthService {
         } else {
           this.errorMsg = 'Authentication error';
         }
+        this.spinnerOverlayService.hide();
         console.log(err.code);
       });
   }
@@ -67,6 +71,7 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(this.user));
           localStorage.setItem('loggedInMode', 'panel');
           this.router.navigateByUrl('panel');
+          this.spinnerOverlayService.hide();
         }
       });
   }
@@ -80,12 +85,14 @@ export class AuthService {
       .subscribe((res) => {
         if (res.empty) {
           this.errorMsg = 'User does not exist';
+          this.spinnerOverlayService.hide();
         } else {
           let cordData: any = res.docs[0].data();
           this.user = cordData;
           localStorage.setItem('user', JSON.stringify(this.user));
           localStorage.setItem('loggedInMode', 'coord');
           this.router.navigateByUrl('admin');
+          this.spinnerOverlayService.hide();
         }
       });
   }

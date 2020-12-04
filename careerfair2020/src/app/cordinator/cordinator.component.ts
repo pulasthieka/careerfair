@@ -49,7 +49,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           this.panels.push(new PanelClass(panel));
         });
         this.getAllPanels();
-        console.log(this.panels);
+        // console.log(this.panels);
       })
     );
     this.getApplicants();
@@ -83,7 +83,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.applicantService.getApplicants(this.company).subscribe((res) => {
         const applicantIDs: tableRow[] = res.applicants;
-        console.log(res);
+        // console.log(res);
         this.applicants = [];
         res.forEach((id) => {
           // map response to row
@@ -152,6 +152,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   ChangePanel(applicant, panel): void {
     // console.log(applicant, panel);
     const selected = this.panels.find((el) => el.name === panel);
+    console.log(selected)
     if (selected && selected.available) {
       const selected = this.applicants.findIndex(
         (el) => el.applicant_id === applicant
@@ -167,6 +168,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         return;
       }
       this.panelService.requestNext(panel, false);
+      this.panelService.updatePanelStatus(panel, false);
       this.applicantService.changeApplicantPanel(
         this.company,
         applicant,
@@ -174,7 +176,12 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       );
       this.panelService.updateCurrentApplicant(panel, applicant);
       this.applicantService.changeApplicantAvailability(applicant, false);
-    } else {
+    } else if(!selected){
+      alert(
+        `Please assing a panel before send`
+      );
+    } 
+    else {
       alert(
         `Panel ${panel} is not free \nPlease ask ${panel} to end the previous interview`
       );

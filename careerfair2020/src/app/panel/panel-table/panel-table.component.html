@@ -1,24 +1,30 @@
-<div class="table-responsive-md">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th class="idCol" scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Resume</th>
-        <th scope="col">Panel</th>
-        <th scope="col">Status</th>
-        <th scope="col">Comment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let applicant of applicants; index as i">
-        <th class="idCol" scope="row">{{ i + 1 }}</th>
-        <td>{{ applicant.name }}</td>
-        <td><a href={{applicant.resume_url}} target="_blank">view cv</a></td>
-        <td>{{ applicant.panel_id }}</td>
-        <td>{{ applicant.status }}</td>
-        <td>{{ applicant.comment }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <div class="row justify-content-around">
+    <div *ngFor="let applicant of applicants; index as i" class="col-4 slide-in-left slide-slow">
+      <div
+        [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
+        <div class="col-2image">
+          <img class="profile_img" src="{{applicant.profileImage }}" alt="{{applicant.name}}" />
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <h3>{{applicant.name}}</h3>
+            </div>
+          </div>
+          <div class="row flex-nowrap justify-content-between">
+            <div class="col my-auto">
+              <span *ngIf="applicant.status !== 'Not Interested'">Panel: {{applicant.panel_id}} </span>
+              <span *ngIf="applicant.status === 'Not Interested'">Application withdrawn </span>
+            </div>
+            <div class="col-auto my-auto">
+              <a href={{applicant.resume_url}} target="_blank" class="btn "
+                [ngClass]="{'btn-primary': applicant.status !== 'Not Interested', 'btn-secondary':applicant.status === 'Not Interested' }">View
+                CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

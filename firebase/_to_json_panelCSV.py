@@ -13,9 +13,10 @@ with open(studentFilePath) as csvFile:
         panel['uid'] = row['panel_name']
         panel['available'] = True
         panel['company'] = row['company_code']
+        panel['companyName'] = row['company']
         panel['currentApplicant'] = ""
         panel['meetingLink'] = row['meetingLink']
-        panel['name'] = row['company']
+        panel['name'] = row['panel_name']
         panel['next'] = False
         panel['start'] = False
         panel['support'] = 'Solved'
