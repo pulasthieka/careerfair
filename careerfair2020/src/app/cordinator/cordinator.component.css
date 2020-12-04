@@ -110,7 +110,7 @@
 
 .LogOutButton:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
-  color: #20639b;
+  color: #ed553b;
 }
 
 .LogOutButton:not(:disabled):not(.disabled):focus {
