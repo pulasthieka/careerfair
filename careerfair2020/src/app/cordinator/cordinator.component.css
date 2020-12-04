@@ -1,4 +1,7 @@
-
+.tableName{
+  padding: 0.75rem;
+  margin: 8px 0;
+}
 
 /*styels for table */
 
@@ -41,11 +44,16 @@
   color: white;
 }
 
-.card {
+.panelCard {
   width: 30vw;
+  border-radius: 5px;
+  margin: 0.5rem;
+  border-left: solid 10px #20639b;
+  -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
+  box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
 }
 
-.card h5 {
+.panelCard h5 {
   color: rgb(1, 78, 167);
 }
 

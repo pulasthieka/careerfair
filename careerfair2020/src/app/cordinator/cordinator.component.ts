@@ -68,6 +68,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           panel.available = res.available;
           panel.support = res.support;
           panel.start = res.start;
+          panel.next = res.next;
           if (res.support === 'Requested') {
             alert(`${panel.name} needs help`);
           }
