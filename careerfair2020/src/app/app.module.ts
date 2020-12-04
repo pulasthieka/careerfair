@@ -11,12 +11,15 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { DataEntryService } from './services/data-entry.service';
 import { CandidateProfileComponent } from './panel/candidate-profile/candidate-profile.component';
-import { TestComponent } from './test/test.component';
 import { PanelTableComponent } from './panel/panel-table/panel-table.component';
 import { FormsModule } from '@angular/forms';
 import { AddNewComponent } from './cordinator/add-new/add-new.component';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PromptDialogComponent } from './modals/prompt-dialog/prompt-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,11 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
     CordinatorComponent,
     PanelComponent,
     CandidateProfileComponent,
-    TestComponent,
     PanelTableComponent,
     AddNewComponent,
+    SpinnerOverlayComponent,
+    SpinnerComponent,
+    PromptDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,10 +41,13 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
+    OverlayModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [SpinnerOverlayComponent,PromptDialogComponent],
 })
 export class AppModule {
-  constructor(private dataentry: DataEntryService) {}
+  constructor() {}
 }
