@@ -1,22 +1,51 @@
 <!-- panel status -->
 <section class="container-fluid">
-  <button class="closeBut" (click)="onClickLogout()">Logout</button>
+  <button class="btn-primary LogOutButton" (click)="onClickLogout()">Logout</button>
   <div class="detailContainer">
     <div *ngFor="let panel of panels">
-      <div class="card" style="margin: 0.5rem">
+      <div class="card panelCard" [ngClass]="{'availableNext':panel.available && panel.next,
+                    'availableNotNext':panel.available && !panel.next,
+                    'NotAvailableStart':!panel.available && panel.start,
+                    'NotAvailableNotStart':!panel.available && !panel.start,
+                    'Issue': panel.support == 'Requested'}">
         <div class="card-body">
           <div class="cardHeading">
             <h4 class="card-title">{{ panel.name }}</h4>
           </div>
-          <h5>Available:{{ panel.available }}</h5>
-          <h5>Start:{{ panel.start }}</h5>
-          <h5>Next:{{ panel.next }}</h5>
-          <h5 class="card-text">Support: {{ panel.support }}</h5>
-          <button class="yellowBut" (click)="cancelSupport(panel.name)">
+          <!-- <p>This Panel is currently:</div> -->
+          <div *ngIf="panel.support == 'Requested' else normalFunction">
+            <h3>Requires Assistance!</h3>
+          </div>
+          <ng-template #normalFunction>
+            <div *ngIf="panel.available else notAvailable">
+              <div *ngIf="panel.next else notNext">
+                <!-- <h5>Waiting for you to send a candidate. <br>Please send in the next candidate.</h5> -->
+                <h5>Send in the next candidate.</h5>
+              </div>
+              <ng-template #notNext>
+                <!-- <div><h5>Still discussing the previous candidate. <br>Please be ready to allocate a candidate</h5></div> -->
+                <div>
+                  <h5>Do nothing</h5>
+                </div>
+                <p>Panel is reviewing the previous candidate</p>
+              </ng-template>
+            </div>
+            <ng-template #notAvailable>
+              <div *ngIf="panel.start else notStart">
+                <!-- <h5>Ready to begin it's interview. <br>Please send the link to the candidate.</h5> -->
+                <h5>Start the interview</h5>
+              </div>
+              <ng-template #notStart>
+                <!-- <h5>Preparing for the next interview. <br>Please tell the candidate to be ready.</h5> -->
+                <h5>Do nothing</h5>
+                <p>Panel is preparing for next interview</p>
+              </ng-template>
+            </ng-template>
+          </ng-template>
+          <h4>Current Applicant: {{ panel.currentApplicant }}</h4>
+          <button class="yellowBut" *ngIf="panel.support == 'Requested'" (click)="cancelSupport(panel.name)">
             Issue Solved
           </button>
-          <h4>Current Applicant</h4>
-          <p class="card-text">{{ panel.currentApplicant }}</p>
         </div>
       </div>
     </div>
@@ -26,7 +55,7 @@
 
 <!-- Table for those who have not already been to at least one interview -->
 <section class="container-fluid">
-  <h2>Waiting to be interviewed</h2>
+  <h2 class="tableName">Waiting to be interviewed</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
       <thead>
@@ -63,7 +92,7 @@
   </div>
 
   <!-- Table for those who have already been to at least one interview -->
-  <h2>Have been sent for an interview</h2>
+  <h2 class="tableName">Have been sent for an interview</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
       <thead>
@@ -110,7 +139,7 @@
     </table>
   </div>
   <!-- Table for those who have withdrawn their application -->
-  <h2>Application Withdrawn</h2>
+  <h2 class="tableName">Application Withdrawn</h2>
   <div class="table-responsive-md">
     <table class="table table-hover text-center">
       <thead>
