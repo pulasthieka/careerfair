@@ -109,6 +109,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
                   this.applicants[selected] = k;
                 } else {
                   this.applicants.push(k);
+                  this.applicants.sort((a, b) => a.order - b.order);
                 }
               })
           );

@@ -11,6 +11,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 })
 export class AddNewComponent implements OnInit {
   newIndex = '';
+  error = '';
   @Input() applicants;
   @Input() company;
   constructor(
@@ -35,6 +36,7 @@ export class AddNewComponent implements OnInit {
                 applicant_id: index,
                 comment: '',
                 panel_id: '',
+                order: this.applicants.length + 1,
                 resume_url: res.default_resume || '',
                 status: 'Interested',
               };
@@ -46,7 +48,7 @@ export class AddNewComponent implements OnInit {
                 .doc(index)
                 .set(applicant);
             } else {
-              alert('Index does not exist');
+              this.error = 'Index does not exist';
             }
           },
           (err) => {
@@ -54,10 +56,11 @@ export class AddNewComponent implements OnInit {
           }
         );
       } else {
-        alert('Already in List');
+        this.error = 'Already in List';
       }
     } else {
-      alert('Incorrect Index Format');
+      this.error = 'Incorrect Index Format';
     }
+    this.newIndex = '';
   }
 }
