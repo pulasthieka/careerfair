@@ -1,6 +1,6 @@
 var admin = require("firebase-admin");
 const { Firestore } = require("@google-cloud/firestore");
-var serviceAccount = require("./careerfair-entc-firebase-adminsdk-yx36z-e254f56f9c.json");
+var serviceAccount = require("./careerfair-entc-firebase-adminsdk-yx36z-b2e54410c2.json");
 const fs = require("fs");
 var crud = require("./fireAdminOperations");
 admin.initializeApp({
@@ -10,9 +10,9 @@ admin.initializeApp({
 const fire = admin.firestore();
 // running functions
 // crud.deleteAllUsers();
-crud.listUsers();
+// crud.listUsers();
 // addData("students.json", "Students");
-addData("panels.json", "Panels");
+// addData("panels.json", "Panels");
 // addUsers("panels.json", "Panels");
 // addUsers("coordinator.json", "Coordinators");
 // addCompanies("companies.json", "Companies");
