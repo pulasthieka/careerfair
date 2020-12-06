@@ -20,4 +20,5 @@ export interface Panel {
   start?: boolean;
   support: 'Requested' | 'Solved';
   username?: string;
+  done?: boolean;
 }

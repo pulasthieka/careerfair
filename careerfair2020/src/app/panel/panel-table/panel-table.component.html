@@ -1,27 +1,26 @@
-<div class="container-fluid">
-  <div class="row justify-content-around">
-    <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-4">
-      <div
-        [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
-        <div class="col-2image">
-          <img class="profile_img" src="{{applicant.profileImage }}" alt="{{applicant.name}}" />
-        </div>
-        <div class="col">
-          <div class="row">
-            <div class="col">
-              <h3>{{applicant.name}}</h3>
-            </div>
+<div class="row justify-content-around">
+  <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-4">
+    <div
+      [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-interviewed': applicant.panel_id !== '', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
+      <div class="col-2image">
+        <img class="profile_img" src="{{applicant.profileImage }}" alt="{{applicant.name}}" />
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+
+            <h3>{{applicant.name}}</h3>
           </div>
-          <div class="row flex-nowrap justify-content-between">
-            <div class="col my-auto">
-              <span *ngIf="applicant.status !== 'Not Interested'">Panel: {{applicant.panel_id}} </span>
-              <span *ngIf="applicant.status === 'Not Interested'">Application withdrawn </span>
-            </div>
-            <div class="col-auto my-auto">
-              <a href={{applicant.resume_url}} target="_blank" class="btn btn-primary"
-                *ngIf="applicant.status !== 'Not Interested'">View
-                CV</a>
-            </div>
+        </div>
+        <div class="row flex-nowrap justify-content-between">
+          <div class="col my-auto">
+            <span *ngIf="applicant.status !== 'Not Interested'">Interviewed by: {{applicant.panel_id}} </span>
+            <span *ngIf="applicant.status === 'Not Interested'">Application withdrawn </span>
+          </div>
+          <div class="col-auto my-auto">
+            <a href={{applicant.resume_url}} target="_blank" class="btn btn-primary"
+              *ngIf="applicant.status !== 'Not Interested'">View
+              CV</a>
           </div>
         </div>
       </div>

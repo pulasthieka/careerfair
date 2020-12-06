@@ -63,7 +63,18 @@
 .table-panel-withdrawn {
   border-left: solid 10px #e74c3c;
 }
-
+.table-panel-interviewed {
+  border-left: solid 10px #3caea3;
+}
+.table-panel-interviewed .btn-primary {
+  border: 1px solid #3caea3;
+  background-color: #3caea3;
+  height: auto;
+}
+.table-panel-interviewed .btn-primary:not(:disabled):not(.disabled):hover {
+  background-color: #ffffff;
+  color: #3caea3;
+}
 .table-panel-interested h3,
 .table-panel-withdrawn h3 {
   font-size: 1em;

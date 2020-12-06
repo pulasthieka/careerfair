@@ -7,29 +7,29 @@
       <div class="candidateDetails">
          <h3>{{profile.name}}</h3>
          <!-- <div class="row"> -->
-            <!-- <div class="col-lg"> -->
-               <p>{{profile.profile}}</p>
-               <a href={{profile.default_resume}} role="button"><button target="_blank" class="btn btn-primary">View CV</button></a>
-               <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()">Start
-                  Interview</button>
-               <button class="btn btn-primary " *ngIf="started" disabled>Start
-                  Interview</button>
-            <!-- </div> -->
-            <!-- <div class="col-md"> -->
-               <form>
-                  <div class="form-group">
-                     <label for="PostInterviewInstructions">Post-Interview Instructions</label>
-                     <textarea class="form-control" id="PostInterviewInstructions" rows= 3 
-                        placeholder="Enter any post-interview instructions to candidates or coordinators here."
-                        [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
-                  </div>
-               </form>
-               <!-- <button class="btn btn-primary" (click)="updateComments()"> Submit</button> -->
-            <!-- </div> -->
+         <!-- <div class="col-lg"> -->
+         <p>{{profile.profile}}</p>
+         <a href={{profile.default_resume}} target="_blank" role="button" class="btn btn-primary">View CV</a>
+         <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()">Start
+            Interview</button>
+         <button class="btn btn-primary " *ngIf="started" disabled>Start
+            Interview</button>
          <!-- </div> -->
-         
-         <button class="btn btn-primary " *ngIf="!started" disabled> End Interview</button>
-         <button class="btn btn-primary " *ngIf="started" (click)="endInterview()"> End Interview</button>
+         <!-- <div class="col-md"> -->
+         <form>
+            <div class="form-group">
+               <label for="PostInterviewInstructions">Post-Interview Instructions</label>
+               <textarea class="form-control" id="PostInterviewInstructions" rows=3
+                  placeholder="Enter any post-interview instructions to candidates or coordinators here."
+                  [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+         </form>
+         <!-- <button class="btn btn-primary" (click)="updateComments()"> Submit</button> -->
+         <!-- </div> -->
+         <!-- </div> -->
+
+         <button class="btn btn-primary " *ngIf="!started" disabled>Submit & End Interview</button>
+         <button class="btn btn-primary " *ngIf="started" (click)="endInterview()"> Submit & End Interview</button>
       </div>
    </div>
 

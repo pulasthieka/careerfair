@@ -1,46 +1,51 @@
 <!-- panel name -->
-<div class="container-fluid fit-full-page">
-  <section>
-    <!-- <div class="entcHeader">
+<section>
+  <!-- <div class="entcHeader">
       <h3>ENTC Career fair 2020</h3>
       <img src="../../assets/logImages/entclogo2.jpg" alt="login image" class="login-img" style="width: 5rem;">
     </div> -->
-    <div class="navbar panelTop">
-      
-      <h1 class="companyname">Welcome, {{name}}</h1>
-      
-      <div class="twoButTop">
-          <div *ngIf="!available" class="candidateIn">
-            <div class="blink-1"> </div>
-            <div class="candidateInText">Candidate in interview </div>
-          </div>
+  <div class="navbar panelTop">
+    <div class="text-left">
+      <p>ENTC Virtual Career Fair 2020</p>
+      <h1 class="companyname">Welcome, {{name}} !</h1>
+    </div>
+    <div class="twoButTop">
+      <div *ngIf="!available" class="candidateIn">
+        <div class="blink-1"> </div>
+        <div class="candidateInText">Candidate in Interview </div>
+      </div>
 
-        <button class='btn btn-secondary fill-right' *ngIf="support else askSupport" (click)="cancelSupport()">cancel
-          request</button>
-        <ng-template #askSupport><button class='btn btn-primary fill-right askSupport' (click)="requestSupport()">Request
-            support</button>
-        </ng-template>
-        <button class='btn btn-secondary fill-right ' (click)="onClickLogout()">Log out</button>
+      <button class='btn btn-secondary fill-right' *ngIf="support else askSupport" (click)="cancelSupport()">Cancel
+        Request</button>
+      <ng-template #askSupport><button class='btn btn-primary fill-right askSupport' (click)="requestSupport()">Request
+          Support</button>
+      </ng-template>
+      <button class='btn btn-secondary fill-right ' (click)="onClickLogout()">Logout</button>
+    </div>
+  </div>
+</section>
+<div class="panelPage fit-full-page">
+  <!-- candidate profile -->
+  <div class="row flex-row-reverse">
+    <div class="col-lg-8 panelColumn vertical-align">
+      <section class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
+        <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
+        </app-candidate-profile>
+      </section>
+      <p> Panel:{{panelName}} </p>
+      <p> Meeting Link:<a href={{meetingLink}} target="_blank"> Join</a> </p>
+      <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight]
+        (click)="next_candidate()">Request Next
+        Interview</button>
+      <div class="logo-bar">
+        <!-- Logos -->
+        <h1> Logo Bar</h1>
       </div>
     </div>
-  </section>
-  <div class="panelPage">
-    <!-- candidate profile -->
-    <div class="row flex-row-reverse">
-      <div class="col-lg-8 panelColumn" >
-        <section class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
-          <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
-          </app-candidate-profile>
-        </section>
-        <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight] (click)="next_candidate()">Next
-          interview</button>
-        
-      </div>
-      <div class="col-lg-4 ">
-        <section class="app-panel-table">
-          <app-panel-table></app-panel-table>
-        </section>
-      </div>
+    <div class="col-lg-4 ">
+      <section class="app-panel-table">
+        <app-panel-table></app-panel-table>
+      </section>
     </div>
   </div>
 </div>

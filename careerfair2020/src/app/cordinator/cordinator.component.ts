@@ -26,6 +26,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   applicants: tableRow[] = [];
   coordinatorName = '';
   company = '';
+  meetingLink = '';
 
   constructor(
     private panelService: PanelStatusService,
@@ -48,6 +49,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         this.panels = [];
         res.panels.forEach((panel) => {
           this.panels.push(new PanelClass(panel));
+          this.meetingLink = panel.meetingLink;
         });
         this.getAllPanels();
         // console.log(this.panels);
@@ -69,6 +71,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           panel.support = res.support;
           panel.start = res.start;
           panel.next = res.next;
+          panel.done = false;
           if (res.support === 'Requested') {
             alert(`${panel.name} needs help`);
           }

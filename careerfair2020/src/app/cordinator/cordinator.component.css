@@ -1,4 +1,4 @@
-.tableName{
+.tableName {
   padding: 0.75rem;
   margin: 8px 0;
 }
@@ -52,24 +52,36 @@
   -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
 }
-
-
+.align-middle {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 /*Classes for the different box style based on conditions*/
 
-.availableNext{
-  border-left: solid 10px #20639b;
+.availableNext {
+  background: #f79604;
+  color: #000000 !important;
 }
-.availableNotNext{
-  border-left: solid 10px #173f5f;
+.availableNotNext {
+  background: #173f5f;
+  color: #000000 !important;
 }
-.NotAvailableStart{
-  border-left: solid 10px #f6d55c;
+.NotAvailableStart {
+  background: #f6d55c;
+  color: #000000 !important;
 }
-.NotAvailableNotStart{
-  border-left: solid 10px #3caea3;
+.done {
+  background: #3caea3;
+  color: #000000 !important;
 }
-.Issue{
-  border-left: solid 10px #ed553b;
+.NotAvailableNotStart {
+  background: #3caea3;
+  color: #000000 !important;
+}
+.Issue {
+  background: #ed553b;
+  color: #000000 !important;
 }
 
 .panelCard h5 {
@@ -80,7 +92,7 @@
   color: #ed553b;
 }
 
-.panelCard p{
+.panelCard p {
   margin-bottom: 8px;
 }
 
@@ -107,7 +119,6 @@
   border-color: gray;
 }
 
-
 .LogOutButton:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #ed553b;
@@ -126,7 +137,6 @@
   box-shadow: none;
   transition: 0.1s;
 }
-
 
 @media (max-width: 800px) {
   .card {
