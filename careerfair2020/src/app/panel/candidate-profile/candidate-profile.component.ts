@@ -98,7 +98,7 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   }
   endInterview(): void {
     this.modalService
-    .propmtModal("Are you sure to end the interview","CONFIRM")
+    .propmtModal("Are you sure you would like to end this interview?","CONFIRMATION")
     .pipe(
       take(1) // take() manages unsubscription for us
     )

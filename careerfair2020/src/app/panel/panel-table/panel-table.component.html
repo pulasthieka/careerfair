@@ -1,5 +1,5 @@
 <div class="row justify-content-around">
-  <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-4">
+  <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-12 candidatePanel">
     <div
       [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-interviewed': applicant.panel_id !== '', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
       <div class="col-2image">

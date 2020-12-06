@@ -6,9 +6,17 @@
     </div> -->
   <div class="navbar panelTop">
     <div class="text-left">
-      <p>ENTC Virtual Career Fair 2020</p>
       <h1 class="companyname">Welcome, {{name}} !</h1>
+      <p class = "panelName"> Panel: {{panelName}} | 
+        <a href={{meetingLink}} target="_blank" class="btn btn-link">Meeting Link
+      </a></p>
     </div>
+    <!-- <div>
+      Meeting Link:
+      <a href={{meetingLink}} target="_blank">
+        <img class = "img-fluid LogoBarImages" src="../../assets/logos/zoom_logo.png" alt="Click to join meeting">
+      </a>
+    </div> -->
     <div class="twoButTop">
       <div *ngIf="!available" class="candidateIn">
         <div class="blink-1"> </div>
@@ -32,20 +40,32 @@
         <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
         </app-candidate-profile>
       </section>
-      <p> Panel:{{panelName}} </p>
-      <p> Meeting Link:<a href={{meetingLink}} target="_blank"> Join</a> </p>
+      <!-- Add meeting link later -->
+      <!-- <p> Meeting Link:<a href={{meetingLink}} target="_blank"> Join</a> </p> -->
       <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight]
         (click)="next_candidate()">Request Next
         Interview</button>
-      <div class="logo-bar">
-        <!-- Logos -->
-        <h1> Logo Bar</h1>
-      </div>
+      
     </div>
     <div class="col-lg-4 ">
       <section class="app-panel-table">
         <app-panel-table></app-panel-table>
       </section>
     </div>
+    <div class="col-lg-8 logo-bar">
+      <div class = "LogoBarImages">
+        <img src="../../assets/logos/gold.png" alt="Gold Sponsor ADL" class="img-fluid">
+      </div>
+      <div class = "LogoBarImages">
+        <img src="../../assets/logos/silver.png" alt="Silver Sponsors" class="img-fluid">
+      </div>
+      <div class = "LogoBarImages">
+        <img src="../../assets/logos/entc_logo.png" alt="ENTC Logo" class="img-fluid">
+      </div>
+      <div class = "LogoBarImages">
+        <img src="../../assets/logos/e_club_logo.png" alt="E-Club Logo" class="img-fluid">
+      </div>
+    </div>
   </div>
+  
 </div>

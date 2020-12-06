@@ -21,7 +21,7 @@
   height: auto;
   align-items: stretch;
   justify-content: space-between;
-  padding: 0 0 0 3em;
+  padding: 0 0 0 1em;
   /* position: fixed; */
   /* top: 0; */
   background-color: #20639b;
@@ -48,24 +48,57 @@
 
 .app-panel-table {
   padding: 0;
+  padding-right: 15px;
   margin: 0;
   overflow-y: scroll;
   /* overflow-x: hidden; */
   height: calc(100vh - 4.5rem);
   justify-content: center;
+  display: flex;
 }
+
 .logo-bar {
-  position: absolute;
   bottom: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  /* max-width: 800px; */
 }
+
+.LogoBarImages{
+  height: 4rem;
+  width: auto;
+  margin: 0 0.5rem;
+}
+
+.logo-bar img{
+  height:inherit;
+  width: inherit;
+}
+
 .companyname {
   padding: 0;
   margin: 1rem;
+  margin-bottom: 0.5rem;
   font-size: calc(1rem + 1vw);
   color: white;
   align-items: center;
   align-content: center;
 }
+
+.panelName {
+  padding: 0;
+  margin: 1rem;
+  margin-top: 0;
+  font-size: calc(0.5rem + 1vw);
+  color: white;
+  align-items: center;
+  align-content: center;
+}
+
 
 .twoButTop {
   display: flex;
@@ -154,7 +187,8 @@
 } */
 
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-link {
   border: 1px solid #20639b;
   background-color: #20639b;
   color: #ffffff;
@@ -165,7 +199,8 @@
 }
 
 .btn-primary:disabled,
-.btn-secondary:disabled {
+.btn-secondary:disabled,
+.btn-link:disabled {
   background-color: gray;
   border-color: gray;
 }
@@ -173,6 +208,15 @@
 .btn-secondary {
   border: 1px solid #ed553b;
   background-color: #ed553b;
+}
+
+.btn-link {
+  border: 1px solid #173f5f;
+  background-color: #173f5f;
+  font: inherit;
+  height: 2em;
+  text-align: center;
+  vertical-align: inherit;
 }
 
 .btn-primary:not(:disabled):not(.disabled):hover {
@@ -185,6 +229,11 @@
   color: #ed553b;
 }
 
+.btn-link:not(:disabled):not(.disabled):hover {
+  background-color: #ffffff;
+  color: #173f5f;
+}
+
 .btn-primary:not(:disabled):not(.disabled):focus,
 .btn-secondary:not(:disabled):not(.disabled):focus {
   outline: none;
@@ -192,7 +241,8 @@
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
-.btn-secondary:not(:disabled):not(.disabled):active {
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-link:not(:disabled):not(.disabled):active {
   border: 1px solid #20639b;
   background-color: #20639b;
   color: #ffffff;
