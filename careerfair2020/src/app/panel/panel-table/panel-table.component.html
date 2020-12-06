@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-around">
-    <div *ngFor="let applicant of applicants; index as i" class="col-4 slide-in-left slide-slow">
+    <div *ngFor="let applicant of applicants; index as i" [@slideInOutLeft] class="col-4">
       <div
         [ngClass]="{'table-panel-interested': applicant.status !== 'Not Interested', 'table-panel-withdrawn':applicant.status === 'Not Interested' }">
         <div class="col-2image">
@@ -18,8 +18,8 @@
               <span *ngIf="applicant.status === 'Not Interested'">Application withdrawn </span>
             </div>
             <div class="col-auto my-auto">
-              <a href={{applicant.resume_url}} target="_blank" class="btn "
-                [ngClass]="{'btn-primary': applicant.status !== 'Not Interested', 'btn-secondary':applicant.status === 'Not Interested' }">View
+              <a href={{applicant.resume_url}} target="_blank" class="btn btn-primary"
+                *ngIf="applicant.status !== 'Not Interested'">View
                 CV</a>
             </div>
           </div>

@@ -18,6 +18,7 @@ import { AddNewComponent } from './cordinator/add-new/add-new.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PromptDialogComponent } from './modals/prompt-dialog/prompt-dialog.component';
 
@@ -42,6 +43,7 @@ import { PromptDialogComponent } from './modals/prompt-dialog/prompt-dialog.comp
     AngularFireStorageModule,
     FormsModule,
     OverlayModule,
+    BrowserAnimationsModule,
     NgbModule,
   ],
   providers: [],

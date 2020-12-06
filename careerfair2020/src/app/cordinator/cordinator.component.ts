@@ -13,6 +13,7 @@ interface tableRow extends Applicant {
   statusB?: boolean;
   available?: boolean;
   name: string;
+  interviewed_by_panel_id?: string;
 }
 @Component({
   selector: 'app-cordinator',
@@ -67,6 +68,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
           panel.available = res.available;
           panel.support = res.support;
           panel.start = res.start;
+          panel.next = res.next;
           if (res.support === 'Requested') {
             alert(`${panel.name} needs help`);
           }
@@ -94,6 +96,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
               .valueChanges()
               .subscribe((res2: any) => {
                 const k = id as tableRow;
+                k.interviewed_by_panel_id = id.panel_id;
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
                 }
@@ -106,6 +109,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
                   this.applicants[selected] = k;
                 } else {
                   this.applicants.push(k);
+                  this.applicants.sort((a, b) => a.order - b.order);
                 }
               })
           );
@@ -152,11 +156,12 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   ChangePanel(applicant, panel): void {
     // console.log(applicant, panel);
     const selected = this.panels.find((el) => el.name === panel);
-    console.log(selected)
+    console.log(selected);
     if (selected && selected.available) {
       const selected = this.applicants.findIndex(
         (el) => el.applicant_id === applicant
       );
+      console.log(this.applicants[selected]);
       if (selected !== -1 && !this.applicants[selected].available) {
         const confirmSend = confirm(
           `This applicant is in another interview. Are you sure you want to send this information to the panel`
@@ -176,12 +181,10 @@ export class CordinatorComponent implements OnInit, OnDestroy {
       );
       this.panelService.updateCurrentApplicant(panel, applicant);
       this.applicantService.changeApplicantAvailability(applicant, false);
-    } else if(!selected){
-      alert(
-        `Please assing a panel before send`
-      );
-    } 
-    else {
+      console.log(this.applicants[selected]);
+    } else if (!selected) {
+      alert(`Please assign a Panel`);
+    } else {
       alert(
         `Panel ${panel} is not free \nPlease ask ${panel} to end the previous interview`
       );

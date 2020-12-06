@@ -3,12 +3,38 @@ import { PanelStatusService } from '../services/panel-status.service';
 import { Subscription } from 'rxjs';
 import { ApplicantsService } from '../services/applicants.service';
 import { AuthService } from '../services/auth.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.css', '../app.component.css'],
+  animations: [
+    trigger(
+      'slideInOutRight', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ transform: 'translateX(1000px)', opacity: 0 }),
+            animate('1s 1s ease-out', 
+                    style({ transform: 'translateX(0px)', opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ transform: 'translateX(0px)', opacity: 1 }),
+            animate('1s ease-in', 
+                    style({ transform: 'translateX(1000px)', opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
+
+
 export class PanelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   panelName = '';

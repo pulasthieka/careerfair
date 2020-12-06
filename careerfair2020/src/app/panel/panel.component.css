@@ -1,65 +1,85 @@
+.fit-full-page{
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
 .panelPage{
     background-image: url('../../assets/logImages/pannelbk.png');
     background-size: cover;
-    
+    margin-top: 4.5rem;
+    height: 100%;
+    padding-top: 0.5rem;
     
 }
+
 .panelTop{
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    flex-wrap: nowrap;
+    width:100%;
+    height: auto;
+    align-items: stretch;
     justify-content: space-between;
     padding: 0;
-    margin:0;
+    position: fixed;
+    top: 0;
+    background-color: #20639b;
+    overflow: hidden;
+    z-index: 2;
+    text-align: center;
+}
+
+.panelProfile{
+  /* position: fixed; */
+  top: 0;
+  text-align: justify;
+}
+
+.panelColumn{
+  text-align: right;
+}
+
+.remove-padding{
+  padding: 0;
+  margin: 0;
+}
+
+.app-panel-table{
+  padding: 0;
+  margin: 0;
+  justify-content: center;
 }
 
 .companyname{
     padding: 0;
-    font-size: 2rem;
-    color: rgb(56, 45, 45);
-    margin: 2rem;
-    margin-bottom: 0;
-  
-}
-
-.entcHeader{
-    display: flex;
-    align-items: center;
-}
-.entcHeader h3{
-    font-size:1rem;
-    margin: 1rem;
-}
-.comName{
-    background-color: #20639b;
-    padding: 0.5rem 3rem;
-    margin-bottom: 1rem;
-    border-radius: 0 2rem 2rem 0;
-
-}
-.comName h1{
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: calc(1rem + 1vw);
     color: white;
-    padding: 0;
-    margin: 0;
-    font-size: 1.5rem;
-
+    align-items: center;
+    align-content: center;
+    
 }
-
 
 .twoButTop{
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    height: auto;
 }
 
 .candidateIn{
     display:flex;
     flex-direction: row;
     align-items: center;
+    
     }
 
 .candidateInText{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    color: white;
 }
 /*===================blink item css========================================*/
 
@@ -98,7 +118,7 @@
 
 /*===================blink item css========================================*/
 
-@media(max-width:800px){
+/* @media(max-width:800px){
     .panelTop{
         flex-direction: column;
 
@@ -128,7 +148,7 @@
         margin:0;
     }
     
-}
+} */
 
 .btn-primary, .btn-secondary{
   border: 1px solid #20639b;
@@ -140,17 +160,22 @@
   transition: 0.4s;
 }
 
+.btn-primary:disabled, .btn-secondary:disabled{
+  background-color: gray;
+  border-color: gray;
+}
+
 .btn-secondary{
   border: 1px solid #ed553b;
   background-color: #ed553b;
 }
 
-.btn-primary:hover {
+.btn-primary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #20639b;
 }
 
-.btn-secondary:hover {
+.btn-secondary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #ed553b;
 }
@@ -169,26 +194,54 @@
   transition: 0.1s;
 }
 
-.btn-secondary:active{
+.btn-secondary:not(:disabled):not(.disabled):active{
   border: 1px solid #ed553b;
   background-color: #ed553b;
+}
+
+.fill-right{
+  height: 100%;
+  font-size: 1em;
+  margin: 0rem;
+  border-radius: 0;
+  border: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.nextInterviewButton{
+  font-size: 1em;
+  margin: 0.5rem;
+  z-index: 1;
+  position: absolute;
+  right: 1rem;
+  top: 0;
+}
+
+.askSupport{
+  background-color: #173f5f;
 }
 
 /*Animations*/
 
 .slide-in-right {
-	-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-in-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-out-right {
+	-webkit-animation: slide-out-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-out-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .slide-in-left {
-	-webkit-animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-in-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation: slide-in-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .slide-slow {
-	-webkit-animation-duration: 2s;
-    animation-duration: 2s;
+	-webkit-animation-duration: 3s;
+    animation-duration: 3s;
 }
 
 @-webkit-keyframes slide-in-right {
@@ -216,10 +269,36 @@
   }
 }
 
-@-webkit-keyframes slide-in-left {
+@-webkit-keyframes slide-out-right {
   0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
     -webkit-transform: translateX(1000px);
             transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+0% {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  opacity: 1;
+}
+100% {
+  -webkit-transform: translateX(1000px);
+          transform: translateX(1000px);
+  opacity: 0;
+}
+}
+
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
     opacity: 0;
   }
   100% {
