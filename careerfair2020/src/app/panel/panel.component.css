@@ -1,33 +1,49 @@
-.fit-full-page {
-  padding: 0;
-  margin: 0;
-  position: relative;
-  overflow: hidden;
+a {
+  color: inherit;
 }
-
 .panelPage {
   background-image: url("../../assets/logImages/pannelbk.png");
   background-size: cover;
-  /* margin-top: 4.5rem; */
   height: 100%;
-  /* padding-top: 0.5rem; */
 }
 
 .panelTop {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
-  height: auto;
-  align-items: stretch;
-  justify-content: space-between;
-  padding: 0 0 0 1em;
-  /* position: fixed; */
-  /* top: 0; */
   background-color: #20639b;
-  overflow: hidden;
-  /* z-index: 2; */
+  color: #ffffff;
   text-align: center;
+}
+.nav-element {
+  padding: 0;
+  min-height: 45px;
+}
+.nav-element button {
+  width: 100% !important;
+  height: 100%;
+}
+.askSupport {
+  background-color: #173f5f;
+}
+.candidateIn {
+  position: absolute;
+  font-size: 0.75em;
+  color: #ffffff;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding-left: 0.5em;
+}
+
+.panelName {
+  font-size: 0.75em;
+  color: white;
+  align-items: center;
+  align-content: center;
+  padding-bottom: 0.5em;
+}
+.companyname {
+  padding-top: 1em;
+  padding-bottom: 0.5rem;
+  font-size: 1.2em;
+  color: white;
 }
 
 .panelProfile {
@@ -37,154 +53,34 @@
 }
 
 .panelColumn {
-  text-align: right;
-  min-height: 4.5em;
-}
-
-.remove-padding {
-  padding: 0;
-  margin: 0;
-}
-
-.app-panel-table {
-  padding: 0;
-  padding-right: 15px;
-  margin: 0;
-  overflow-y: scroll;
-  /* overflow-x: hidden; */
-  height: calc(100vh - 4.5rem);
-  justify-content: center;
+  /* min-height: calc(100vh - 2em); */
   display: flex;
+  flex-direction: column;
 }
 
 .logo-bar {
-  bottom: 0;
-  right: 0;
+  background-color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
   /* max-width: 800px; */
 }
 
-.LogoBarImages{
-  height: 4rem;
+.LogoBarImages {
+  height: 4em;
   width: auto;
+  max-width: 50%;
   margin: 0 0.5rem;
 }
 
-.logo-bar img{
-  height:inherit;
+.logo-bar img {
+  height: inherit;
   width: inherit;
 }
-
-.companyname {
-  padding: 0;
-  margin: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: calc(1rem + 1vw);
-  color: white;
-  align-items: center;
-  align-content: center;
+.more {
+  display: none;
 }
-
-.panelName {
-  padding: 0;
-  margin: 1rem;
-  margin-top: 0;
-  font-size: calc(0.5rem + 1vw);
-  color: white;
-  align-items: center;
-  align-content: center;
-}
-
-
-.twoButTop {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: auto;
-}
-
-.candidateIn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.candidateInText {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  color: white;
-}
-/*===================blink item css========================================*/
-
-.blink-1 {
-  background-color: #ed553b;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  -webkit-animation: blink-1 2s infinite both;
-  animation: blink-1 2s infinite both;
-}
-
-@-webkit-keyframes blink-1 {
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
-@keyframes blink-1 {
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
-
-/*===================blink item css========================================*/
-
-/* @media(max-width:800px){
-    .panelTop{
-        flex-direction: column;
-
-    }
-    .twoButTop{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-         }
-    .entcHeader{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        
-    }
-    .comName{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .btnTitle{
-        font-size: 0.7rem;
-        margin:0;
-    }
-    
-} */
+/*===================Buttons========================================*/
 
 .btn-primary,
 .btn-secondary,
@@ -194,7 +90,6 @@
   color: #ffffff;
   height: 3em;
   font-size: 0.75em;
-  margin-right: 0.5rem;
   transition: 0.4s;
 }
 
@@ -256,16 +151,6 @@
   background-color: #ed553b;
 }
 
-.fill-right {
-  height: 100%;
-  font-size: 1em;
-  margin: 0rem;
-  border-radius: 0;
-  border: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 .nextInterviewButton {
   font-size: 1em;
   margin: 0.5rem;
@@ -275,11 +160,81 @@
   top: 0;
 }
 
-.askSupport {
-  background-color: #173f5f;
+/* media queries */
+@media screen and (min-width: 480px) {
+  .panel-details {
+    text-align: left;
+    padding-left: 3em;
+  }
+  .panelName {
+    font-size: 0.8em;
+  }
+  .companyname {
+    padding-top: 0.5em;
+    padding-bottom: 0;
+    font-size: 1.2em;
+  }
+}
+@media screen and (min-width: 960px) {
+  .panelColumn {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .desktop-hide {
+    display: none;
+  }
+  .app-panel-table {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: calc(100vh - 70px);
+    justify-content: center;
+  }
+  .more {
+    display: block;
+    background-color: #173f5f;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0px;
+    left: 1em;
+    width: 33vw;
+  }
 }
 
 /*Animations*/
+.blink-1 {
+  background-color: #ed553b;
+  margin-right: 0.2rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  -webkit-animation: blink-1 2s infinite both;
+  animation: blink-1 2s infinite both;
+}
+
+@-webkit-keyframes blink-1 {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes blink-1 {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
 
 .slide-in-right {
   -webkit-animation: slide-in-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -374,5 +329,29 @@
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+.more::before {
+  animation: bounce 1s ease 2;
+  bottom: 1rem;
+  color: #fff;
+  border-radius: 50%;
+  background: #000;
+  content: "╲╱";
+  font-size: 1rem;
+  height: 3rem;
+  width: 3rem;
+  left: 50%;
+  letter-spacing: -1px;
+  line-height: 3rem;
+  opacity: 0.25;
+  position: absolute;
+  text-align: center;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-50%);
   }
 }

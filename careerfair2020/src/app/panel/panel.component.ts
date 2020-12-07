@@ -42,6 +42,7 @@ export class PanelComponent implements OnInit, OnDestroy {
   currentApplicant = '';
   comments = '';
   name = '';
+  next = false;
   available = false;
   support = false;
   constructor(
@@ -61,6 +62,7 @@ export class PanelComponent implements OnInit, OnDestroy {
       this.panelStatus.getPanelStatus(this.panelName).subscribe((res) => {
         this.available = !res.start;
         this.meetingLink = res.meetingLink;
+        this.next = res.next;
         this.name = res.companyName;
         this.currentApplicant = res.currentApplicant;
         if (res.support === 'Requested') {
