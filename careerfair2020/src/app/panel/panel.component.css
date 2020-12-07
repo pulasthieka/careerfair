@@ -71,6 +71,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-bottom: 1em;
   /* max-width: 800px; */
 }
 

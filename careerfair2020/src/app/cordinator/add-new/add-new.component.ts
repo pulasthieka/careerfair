@@ -47,6 +47,7 @@ export class AddNewComponent implements OnInit {
                 .collection('applicants')
                 .doc(index)
                 .set(applicant);
+              this.error = 'Added';
             } else {
               this.error = 'Index does not exist';
             }

@@ -71,7 +71,7 @@
 }
 
 .withdrawn {
-  border-left: solid 10px #e74c3c;
+  border-left: solid 10px #e74c3c !important;
 }
 .interviewed {
   border-left: solid 10px #3caea3;
