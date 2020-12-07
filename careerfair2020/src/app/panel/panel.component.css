@@ -185,7 +185,7 @@ a {
 }
 @media screen and (min-width: 960px) {
   .panelColumn {
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
