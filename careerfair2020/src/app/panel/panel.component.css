@@ -20,6 +20,13 @@ a {
   width: 100% !important;
   height: 100%;
 }
+
+.nav-element a {
+  width: 100% !important;
+  height: 100%;
+  border-radius: 0;
+}
+
 .askSupport {
   background-color: #173f5f;
 }
@@ -82,6 +89,10 @@ a {
   margin: 0 0.5rem;
 }
 
+.SponsorImages {
+  height: 5em;
+}
+
 .logo-bar img {
   height: inherit;
   width: inherit;
@@ -117,10 +128,11 @@ a {
 .btn-link {
   border: 1px solid #173f5f;
   background-color: #173f5f;
-  font: inherit;
+  vertical-align: middle;
+  /* font: inherit;
   height: 2em;
   text-align: center;
-  vertical-align: inherit;
+  vertical-align: inherit; */
 }
 
 .btn-primary:not(:disabled):not(.disabled):hover {
@@ -139,7 +151,8 @@ a {
 }
 
 .btn-primary:not(:disabled):not(.disabled):focus,
-.btn-secondary:not(:disabled):not(.disabled):focus {
+.btn-secondary:not(:disabled):not(.disabled):focus,
+.btn-link:not(:disabled):not(.disabled):focus {
   outline: none;
   box-shadow: none;
 }

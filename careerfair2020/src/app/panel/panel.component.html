@@ -1,31 +1,32 @@
 <div class="container-fluid">
   <header>
     <div class="row panelTop">
-      <div class="col-5 col-sm-3 btn order-sm-2 col-md-2 nav-element ">
+      <div class="col-5 col-sm-2 btn order-sm-2 col-md-2 nav-element ">
         <div *ngIf="!available" class="d-flex candidateIn">
           <div class="blink-1"> </div>
           <div>Candidate in Interview</div>
         </div>
       </div>
 
-      <div class="col-4 col-sm-2 col-md-1 order-sm-3 nav-element">
+      <div class="col-3 col-sm-1 order-sm-3 col-md-1 nav-element">
+        <button class='btn-link'><a href={{meetingLink}} target="_blank" role="button">Link to Zoom Meeting</a></button>
+      </div>
+      <div class="col-2 col-sm-1 col-md-1 order-sm-4 nav-element">
         <button class='btn-secondary' *ngIf="support else askSupport" (click)="cancelSupport()">Cancel
           Request</button>
         <ng-template #askSupport><button class='btn-primary nav-element askSupport' (click)="requestSupport()">Request
             Support</button>
         </ng-template>
       </div>
-      <div class="col-3 col-sm-1 order-sm-4 col-md-1 nav-element"><button class='btn-secondary'
+      <div class="col-2 col-sm-1 order-sm-5 col-md-1 nav-element"><button class='btn-secondary'
           (click)="onClickLogout()">Logout</button>
       </div>
 
 
-      <div class="col-sm-6 nav-element col-md-8 order-sm-1">
+      <div class="col-sm-7 nav-element col-md-7 order-sm-1">
         <div class="row panel-details">
-          <h1 class="col-12 companyname">Welcome, {{name}} !</h1>
-          <div class="col-6 col-lg-3 panelName"> Panel: {{panelName}} </div>
-          <span class="col-6 col-lg-3 panelName"> <a href={{meetingLink}} target="_blank">Link to Zoom Meeting</a>
-          </span>
+          <h1 class="col-12 companyname">Welcome, {{name}}!</h1>
+          <div class="col-12 col-lg-3 panelName"> Panel: {{panelName}} </div>
         </div>
       </div>
     </div>
@@ -47,10 +48,10 @@
       </div>
 
       <div class=" logo-bar">
-        <div class="LogoBarImages">
+        <div class="LogoBarImages SponsorImages">
           <img src="../../assets/logos/gold.png" alt="Gold Sponsor ADL" class="img-fluid">
         </div>
-        <div class="LogoBarImages">
+        <div class="LogoBarImages SponsorImages">
           <img src="../../assets/logos/silver.png" alt="Silver Sponsors" class="img-fluid">
         </div>
         <div class="LogoBarImages">
