@@ -1,71 +1,72 @@
-<!-- panel name -->
-<section>
-  <!-- <div class="entcHeader">
-      <h3>ENTC Career fair 2020</h3>
-      <img src="../../assets/logImages/entclogo2.jpg" alt="login image" class="login-img" style="width: 5rem;">
-    </div> -->
-  <div class="navbar panelTop">
-    <div class="text-left">
-      <h1 class="companyname">Welcome, {{name}} !</h1>
-      <p class = "panelName"> Panel: {{panelName}} | 
-        <a href={{meetingLink}} target="_blank" class="btn btn-link">Meeting Link
-      </a></p>
-    </div>
-    <!-- <div>
-      Meeting Link:
-      <a href={{meetingLink}} target="_blank">
-        <img class = "img-fluid LogoBarImages" src="../../assets/logos/zoom_logo.png" alt="Click to join meeting">
-      </a>
-    </div> -->
-    <div class="twoButTop">
-      <div *ngIf="!available" class="candidateIn">
-        <div class="blink-1"> </div>
-        <div class="candidateInText">Candidate in Interview </div>
+<div class="container-fluid">
+  <header>
+    <div class="row panelTop">
+      <div class="col-5 col-sm-3 btn order-sm-2 col-md-2 nav-element ">
+        <div *ngIf="!available" class="d-flex candidateIn">
+          <div class="blink-1"> </div>
+          <div>Candidate in Interview</div>
+        </div>
       </div>
 
-      <button class='btn btn-secondary fill-right' *ngIf="support else askSupport" (click)="cancelSupport()">Cancel
-        Request</button>
-      <ng-template #askSupport><button class='btn btn-primary fill-right askSupport' (click)="requestSupport()">Request
-          Support</button>
-      </ng-template>
-      <button class='btn btn-secondary fill-right ' (click)="onClickLogout()">Logout</button>
+      <div class="col-4 col-sm-2 col-md-1 order-sm-3 nav-element">
+        <button class='btn-secondary' *ngIf="support else askSupport" (click)="cancelSupport()">Cancel
+          Request</button>
+        <ng-template #askSupport><button class='btn-primary nav-element askSupport' (click)="requestSupport()">Request
+            Support</button>
+        </ng-template>
+      </div>
+      <div class="col-3 col-sm-1 order-sm-4 col-md-1 nav-element"><button class='btn-secondary'
+          (click)="onClickLogout()">Logout</button>
+      </div>
+
+
+      <div class="col-sm-6 nav-element col-md-8 order-sm-1">
+        <div class="row panel-details">
+          <h1 class="col-12 companyname">Welcome, {{name}} !</h1>
+          <div class="col-6 col-lg-3 panelName"> Panel: {{panelName}} </div>
+          <span class="col-6 col-lg-3 panelName"> <a href={{meetingLink}} target="_blank">Link to Zoom Meeting</a>
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-<div class="panelPage fit-full-page">
-  <!-- candidate profile -->
-  <div class="row flex-row-reverse">
-    <div class="col-lg-8 panelColumn vertical-align">
-      <section class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
+  </header>
+  <section class=" row panelPage">
+
+    <div class="col-lg-8 order-lg-2 panelColumn">
+      <div class="panelProfile" *ngIf='currentApplicant.length!==0' [@slideInOutRight]>
         <app-candidate-profile [id]='currentApplicant' [panelName]="panelName" [company]="company">
         </app-candidate-profile>
-      </section>
-      <!-- Add meeting link later -->
-      <!-- <p> Meeting Link:<a href={{meetingLink}} target="_blank"> Join</a> </p> -->
-      <button class='btn btn-primary nextInterviewButton' *ngIf="currentApplicant.length==0" [@slideInOutRight]
-        (click)="next_candidate()">Request Next
-        Interview</button>
-      
-    </div>
-    <div class="col-lg-4 ">
-      <section class="app-panel-table">
-        <app-panel-table></app-panel-table>
-      </section>
-    </div>
-    <div class="col-lg-8 logo-bar">
-      <div class = "LogoBarImages">
-        <img src="../../assets/logos/gold.png" alt="Gold Sponsor ADL" class="img-fluid">
       </div>
-      <div class = "LogoBarImages">
-        <img src="../../assets/logos/silver.png" alt="Silver Sponsors" class="img-fluid">
+      <div class="placeholder" *ngIf="currentApplicant.length==0 && !next" [@slideInOutRight]>
+        <button class='btn btn-primary' (click)="next_candidate()">Request Next
+          Interview</button> </div>
+      <div class="text-center mt-5" *ngIf="currentApplicant.length==0 && next" [@slideInOutRight]
+        (click)="next_candidate()">
+        <h2>Please wait for next applicant</h2>
+        <img class='img-fluid-wait' src="../../assets/waiting.gif">
       </div>
-      <div class = "LogoBarImages">
-        <img src="../../assets/logos/entc_logo.png" alt="ENTC Logo" class="img-fluid">
-      </div>
-      <div class = "LogoBarImages">
-        <img src="../../assets/logos/e_club_logo.png" alt="E-Club Logo" class="img-fluid">
+
+      <div class=" logo-bar">
+        <div class="LogoBarImages">
+          <img src="../../assets/logos/gold.png" alt="Gold Sponsor ADL" class="img-fluid">
+        </div>
+        <div class="LogoBarImages">
+          <img src="../../assets/logos/silver.png" alt="Silver Sponsors" class="img-fluid">
+        </div>
+        <div class="LogoBarImages">
+          <img src="../../assets/logos/entc_logo.png" alt="ENTC Logo" class="img-fluid">
+        </div>
+        <div class="LogoBarImages">
+          <img src="../../assets/logos/e_club_logo.png" alt="E-Club Logo" class="img-fluid">
+        </div>
       </div>
     </div>
-  </div>
-  
+    <h2 class="col-12 desktop-hide mt-5"> List of Applicants</h2>
+    <div class="col-lg-4 order-lg-1 app-panel-table">
+      <app-panel-table></app-panel-table>
+      <div class="more"></div>
+    </div>
+
+
+  </section>
 </div>

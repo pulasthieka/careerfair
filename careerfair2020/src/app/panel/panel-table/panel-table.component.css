@@ -1,6 +1,11 @@
-.candidatePanel {
+/* .candidatePanel {
   height: auto;
   justify-content: center;
+} */
+.applicant-table {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .col-2image {
@@ -42,39 +47,57 @@
   max-height: 2em;
 }
 
-.table-panel-interested,
-.table-panel-withdrawn {
+.table-panel {
   background-color: rgb(255, 255, 255);
   padding: 0.5rem;
+  width: calc(100% - 1rem);
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: auto;
-  margin: 0.5rem;
+  justify-content: space-between;
+  margin: 0.5rem 0.5rem;
   font-size: 0.8rem;
   border-radius: 10px;
   border-left: solid 10px #f1c40f;
   -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.32);
 }
-
-.table-panel-withdrawn {
-  border-left: solid 10px #e74c3c;
+.table-panel a {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
 }
-.table-panel-interviewed {
+.table-panel .text {
+  padding-top: 1em;
+}
+
+.withdrawn {
+  border-left: solid 10px #e74c3c !important;
+}
+.interviewed {
   border-left: solid 10px #3caea3;
 }
-.table-panel-interviewed .btn-primary {
+.interviewed .btn-primary {
   border: 1px solid #3caea3;
   background-color: #3caea3;
   height: auto;
 }
-.table-panel-interviewed .btn-primary:not(:disabled):not(.disabled):hover {
+.interviewed .btn-primary:not(:disabled):not(.disabled):hover {
   background-color: #ffffff;
   color: #3caea3;
 }
-.table-panel-interested h3,
-.table-panel-withdrawn h3 {
-  font-size: 1em;
+.interested h3,
+.withdrawn h3 {
+  font-size: 1.2em;
   margin: 0;
+}
+
+@media screen and (min-width: 489px) {
+  .table-panel {
+    width: calc(50% - 1rem);
+  }
+}
+@media screen and (min-width: 960px) {
+  .table-panel {
+    width: calc(100% - 1rem);
+  }
 }

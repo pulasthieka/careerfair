@@ -1,21 +1,22 @@
-<div class="candidate-panel">
-   <div class="candidate-profile-img">
-      <img src={{profileImage}} alt="" />
+<div class="row candidate-panel">
+   <div class="col-sm-3 image-container">
+      <div class="candidate-profile-img">
+         <img src={{profileImage}} alt="" />
+      </div>
+
    </div>
 
-   <div class="candidate-profile">
-      <div class="candidateDetails">
+   <div class="col-sm-9">
+      <div class=" candidate-profile">
          <h3>{{profile.name}}</h3>
-         <!-- <div class="row"> -->
-         <!-- <div class="col-lg"> -->
          <p>{{profile.profile}}</p>
-         <a href={{profile.default_resume}} target="_blank" role="button" class="btn btn-primary">View CV</a>
+         <button class="btn btn-primary"><a href={{profile.default_resume}} target="_blank" role="button">View
+               CV</a></button>
          <button class="btn btn-primary " *ngIf="!started" (click)="startInterview()">Start
             Interview</button>
          <button class="btn btn-primary " *ngIf="started" disabled>Start
             Interview</button>
-         <!-- </div> -->
-         <!-- <div class="col-md"> -->
+
          <form>
             <div class="form-group">
                <label for="PostInterviewInstructions">Post-Interview Instructions</label>
@@ -24,10 +25,6 @@
                   [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
             </div>
          </form>
-         <!-- <button class="btn btn-primary" (click)="updateComments()"> Submit</button> -->
-         <!-- </div> -->
-         <!-- </div> -->
-
          <button class="btn btn-primary " *ngIf="!started" disabled>Submit & End Interview</button>
          <button class="btn btn-primary " *ngIf="started" (click)="endInterview()"> Submit & End Interview</button>
       </div>
