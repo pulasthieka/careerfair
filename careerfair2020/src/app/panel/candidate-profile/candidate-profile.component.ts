@@ -28,12 +28,13 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   @Input() company;
   @Input() id;
   profileImage: any;
+  resumeUrl: any;
   constructor(
     private profileService: GetProfileService,
     private storage: AngularFireStorage,
     private panelStatus: PanelStatusService,
     private applicantService: ApplicantsService,
-    private modalService: ModalService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +68,10 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
           .getComments(this.company, this.id)
           .subscribe((res) => {
             this.comments = res.comment;
+            const refcv = this.storage.ref(res.resume_url);
+            refcv.getDownloadURL().subscribe((res3) => {
+              this.resumeUrl = res3;
+            });
           })
       );
       this.subscriptions.push(
@@ -74,10 +79,10 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
           this.profileImage =
             '../assets/default-profile-picture/default-profile-picture.jpg';
           this.profile = res as Student;
-          const refcv = this.storage.ref(this.profile.default_resume);
-          refcv.getDownloadURL().subscribe((res3) => {
-            this.profile.default_resume = res3;
-          });
+          // const refcv = this.storage.ref(this.profile.default_resume);
+          // refcv.getDownloadURL().subscribe((res3) => {
+          //   this.profile.default_resume = res3;
+          // });
           const ref = this.storage.ref(this.profile.photo);
           this.subscriptions.push(
             ref.getDownloadURL().subscribe((res2) => {
@@ -98,21 +103,23 @@ export class CandidateProfileComponent implements OnInit, OnDestroy, OnChanges {
   }
   endInterview(): void {
     this.modalService
-    .propmtModal("Are you sure you would like to end this interview?","CONFIRMATION")
-    .pipe(
-      take(1) // take() manages unsubscription for us
-    )
-    .subscribe((confirm) => {
-      console.log(confirm);
-      if(confirm){
+      .propmtModal(
+        'Are you sure you would like to end this interview?',
+        'CONFIRMATION'
+      )
+      .pipe(
+        take(1) // take() manages unsubscription for us
+      )
+      .subscribe((confirm) => {
+        console.log(confirm);
+        if (confirm) {
           this.panelStatus.updateCurrentApplicant(this.panelName, '');
           this.panelStatus.updatePanelStatus(this.panelName, true);
           this.panelStatus.updateStart(this.panelName, false);
           this.applicantService.changeApplicantAvailability(this.id, true);
           this.updateComments();
-      }
-    });
-
+        }
+      });
   }
   updateComments(): void {
     this.applicantService.updateComments(this.company, this.id, this.comments);
