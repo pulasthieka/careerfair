@@ -2,7 +2,8 @@ import csv
 import json
 import random
 companyFilePath = 'data/CompanyData.csv'
-jsonFilePath = "data/companies.json"
+
+jsonFilePath = "data/companiesTest.json"
 
 
 def getApplicants(studentFilePath):
@@ -12,17 +13,18 @@ def getApplicants(studentFilePath):
         i = 0
         for row in csvReader:
             applicant = {}
-            applicant['uid'] = row['index']
-            applicant['applicant_id'] = row['index']
-            applicant['comment'] = ""
-            applicant['panel_id'] = ""
-            applicant['order'] = 115-i  # row['order']
-            applicant['resume_url'] = row['path_to_cv']
-            applicant['status'] = 'Interested'
-            applicantsList.append(applicant)
-            i += 1
-    randInt = random.randrange(0, 115, 1)
-    return applicantsList[randInt:randInt+10]
+            if row['applicant_id'] != "":
+                applicant['uid'] = row['applicant_id']
+                applicant['applicant_id'] = row['applicant_id']
+                applicant['comment'] = " "
+                applicant['panel_id'] = ""
+                applicant['order'] = row['order']
+                applicant['resume_url'] = row['resume_url']
+                applicant['status'] = 'Interested'
+                applicantsList.append(applicant)
+            # i += 1
+    # randInt = random.randrange(0, 115, 1)
+    return applicantsList
 
 
 outputJSON = []
@@ -34,7 +36,9 @@ with open(companyFilePath) as csvFile:
         company['email'] = row['email']
         company['name'] = row['name']
         company['panels'] = row['panels'].split(",")
-        company['applicants'] = getApplicants('data/'+row['applicants'])
+        company['applicants'] = getApplicants(
+            'E:/Projects/University/Career Fair 2020/career fair interviews/applicants details/'+row['applicants'])
+        # company['applicants'] = getApplicants('data/ProfileData.csv')
         outputJSON.append(company)
 
 with open(jsonFilePath, "w") as jsonFile:
