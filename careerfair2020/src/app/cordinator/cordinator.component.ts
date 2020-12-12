@@ -91,6 +91,8 @@ export class CordinatorComponent implements OnInit, OnDestroy {
         // console.log(res);
         this.applicants = [];
         res.forEach((id) => {
+          const k = id as tableRow;
+          k.interviewed_by_panel_id = id.panel_id;
           // map response to row
           this.subscriptions.push(
             this.firestore
@@ -98,8 +100,6 @@ export class CordinatorComponent implements OnInit, OnDestroy {
               .doc(id.applicant_id)
               .valueChanges()
               .subscribe((res2: any) => {
-                const k = id as tableRow;
-                k.interviewed_by_panel_id = id.panel_id;
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
                 }
