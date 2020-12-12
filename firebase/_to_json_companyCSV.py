@@ -16,13 +16,13 @@ def getApplicants(studentFilePath):
             applicant['applicant_id'] = row['index']
             applicant['comment'] = ""
             applicant['panel_id'] = ""
-            applicant['order'] = 115-i  # row['order']
+            applicant['order'] = row['order']
             applicant['resume_url'] = row['path_to_cv']
             applicant['status'] = 'Interested'
             applicantsList.append(applicant)
-            i += 1
-    randInt = random.randrange(0, 115, 1)
-    return applicantsList[randInt:randInt+10]
+            # i += 1
+    # randInt = random.randrange(0, 115, 1)
+    return applicantsList
 
 
 outputJSON = []
@@ -34,7 +34,7 @@ with open(companyFilePath) as csvFile:
         company['email'] = row['email']
         company['name'] = row['name']
         company['panels'] = row['panels'].split(",")
-        company['applicants'] = getApplicants('data/'+row['applicants'])
+        company['applicants'] = getApplicants('data/company_data/'+row['applicants'])
         outputJSON.append(company)
 
 with open(jsonFilePath, "w") as jsonFile:

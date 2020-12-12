@@ -11,7 +11,7 @@ const fire = admin.firestore();
 // running functions
 // crud.deleteAllUsers();
 // crud.listUsers();
-// addData("students.json", "Students");
+addData("students.json", "Students");
 // addData("panels.json", "Panels");
 // addUsers("panels.json", "Panels");
 // addUsers("coordinator.json", "Coordinators");
