@@ -1,6 +1,6 @@
 import csv
 import json
-studentFilePath = 'data/PanelData.csv'
+studentFilePath = 'data/Panels.csv'
 jsonFilePath = "data/panels.json"
 
 
@@ -21,7 +21,7 @@ with open(studentFilePath) as csvFile:
         panel['start'] = False
         panel['support'] = 'Solved'
         panel['username'] = row['username']
-        panel['password'] = row['password']
+        # panel['password'] = row['password']
 
         outputJSON.append(panel)
 
