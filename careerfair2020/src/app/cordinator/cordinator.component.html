@@ -126,7 +126,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let applicant of applicants; index as i">
-          <ng-template [ngIf]="applicant.interviewed_by_panel_id!==''">
+          <ng-template [ngIf]="applicant.interviewed_by_panel_id!=='' && !applicant.statusB">
             <th class="idCol" scope="row">{{ i + 1 }}</th>
             <td class="text-left">{{ applicant.applicant_id }} | {{ applicant.name }}</td>
             <td>{{ applicant.comment }}</td>
