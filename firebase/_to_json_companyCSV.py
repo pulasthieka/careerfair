@@ -1,29 +1,31 @@
 import csv
 import json
 import random
-companyFilePath = 'data/CompanyData.csv'
+companyFilePath = 'data/Companies.csv'
 
-jsonFilePath = "data/companiesTest.json"
+jsonFilePath = "data/companies.json"
 
 
 def getApplicants(studentFilePath):
     applicantsList = []
-    with open(studentFilePath) as csvFile:
-        csvReader = csv.DictReader(csvFile)
-        i = 0
-        for row in csvReader:
-            applicant = {}
-            if row['applicant_id'] != "":
-                applicant['uid'] = row['applicant_id']
-                applicant['applicant_id'] = row['applicant_id']
-                applicant['comment'] = " "
-                applicant['panel_id'] = ""
-                applicant['order'] = row['order']
-                applicant['resume_url'] = row['resume_url']
-                applicant['status'] = 'Interested'
-                applicantsList.append(applicant)
-            # i += 1
-    # randInt = random.randrange(0, 115, 1)
+    try:
+        with open(studentFilePath) as csvFile:
+            csvReader = csv.DictReader(csvFile)
+            i = 0
+            for row in csvReader:
+                applicant = {}
+                if row['applicant_id'] != "":
+                    applicant['uid'] = row['applicant_id']
+                    applicant['applicant_id'] = row['applicant_id']
+                    applicant['comment'] = " "
+                    applicant['panel_id'] = ""
+                    applicant['order'] = row['order']
+                    applicant['resume_url'] = row['resume_url']
+                    applicant['status'] = 'Interested'
+                    applicantsList.append(applicant)
+    except:
+        print ("Not found:", studentFilePath, ", Skipping")
+        pass
     return applicantsList
 
 

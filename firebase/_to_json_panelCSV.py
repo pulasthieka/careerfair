@@ -1,6 +1,6 @@
 import csv
 import json
-studentFilePath = 'data/PanelData.csv'
+studentFilePath = 'data/Panels.csv'
 jsonFilePath = "data/panels.json"
 
 

@@ -13,21 +13,12 @@ const fire = admin.firestore();
 // crud.deleteAllUsers();
 // crud.listUsers();
 
-//Reset all testing Data on firebase
-// addData("students.json", "Students");
-addData("panels.json", "Panels");
-addData("coordinator.json", "Coordinators");
-addCompanies("companies.json", "Companies");
-
-//Reset all final Data on firebase
-// addData("students.json", "StudentsFinal");
-// addData("coordinator.json", "CoordinatorsFinal");
-// addData("panels.json", "PanelsFinal");
-// addCompanies("companies.json", "CompaniesFinal");
+addUsers("new/new_panels.json", "PanelsFinal");
+addData("new/new_coordinator.json", "CoordinatorsFinal");
+addCompanies("new/new_companies.json", "CompaniesFinal");
 
 //Add new users to firebase
-// addUsers("panels.json");
-// addUsers("coordinator.json");
+// addUsers("coordinator.json", "Coordinators");
 
 // all functions
 
@@ -50,30 +41,26 @@ function addData(file, collectionName) {
       console.log("Write failed with: ", err);
     });
 }
-
-
-function addUsers(file) {
+function addUsers(file, collectionName) {
   let fileData = fs.readFileSync(`data/${file}`);
-  // let colRef = fire.collection(collectionName);
+  let colRef = fire.collection(collectionName);
   todB = {};
   const fileJSONData = JSON.parse(fileData);
   console.log(fileData);
-  // var batch = fire.batch();
+  var batch = fire.batch();
   fileJSONData.forEach((el) => {
     crud.createUser(el.username, el.password);
+    batch.set(colRef.doc(el.uid), el);
   });
-  //   batch.set(colRef.doc(el.uid), el);
-  // batch
-  //   .commit()
-  //   .then((result) => {
-  //     console.log("Successfully added ", result);
-  //   })
-  //   .catch((err) => {
-  //     console.log("Write failed with: ", err);
-  //   });
+  batch
+    .commit()
+    .then((result) => {
+      console.log("Successfully added ", result);
+    })
+    .catch((err) => {
+      console.log("Write failed with: ", err);
+    });
 }
-
-
 function addCompanies(file, collectionName) {
   let fileData = fs.readFileSync(`data/${file}`);
   let colRef = fire.collection(collectionName);
@@ -91,26 +78,26 @@ function addCompanies(file, collectionName) {
     colRef
       .doc(el.uid)
       .set(company)
-      .then((result) => {
-        // console.log(result);
-        var appRef = colRef.doc(el.uid).collection("applicants");
-        // console.log(appRef, result);
-        let batch = fire.batch();
-        applicants.forEach((applicant) => {
-          // console.log(applicant.uid);
-          // appRef.doc(applicant.uid).set(applicant);
-          batch.set(appRef.doc(applicant.uid), applicant);
-        });
-        batch
-          .commit()
-          .then((result) => {
-            console.log("Successfully added ", result);
-          })
-          .catch((err) => {
-            console.log("Write to subCollection failed with: ", err);
-          });
-        console.log("Successfully added ", el.uid);
-      })
+      // .then((result) => {
+      //   // console.log(result);
+      //   var appRef = colRef.doc(el.uid).collection("applicants");
+      //   // console.log(appRef, result);
+      //   let batch = fire.batch();
+      //   applicants.forEach((applicant) => {
+      //     // console.log(applicant.uid);
+      //     // appRef.doc(applicant.uid).set(applicant);
+      //     batch.set(appRef.doc(applicant.uid), applicant);
+      //   });
+      //   batch
+      //     .commit()
+      //     .then((result) => {
+      //       console.log("Successfully added ", result);
+      //     })
+      //     .catch((err) => {
+      //       console.log("Write to subCollection failed with: ", err);
+      //     });
+      //   console.log("Successfully added ", el.uid);
+      // })
       .catch((err) => {
         console.log("Write failed with: " + el.uid);
       });
