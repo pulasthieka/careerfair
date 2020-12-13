@@ -23,9 +23,8 @@ def getApplicants(studentFilePath):
                     applicant['resume_url'] = row['resume_url']
                     applicant['status'] = 'Interested'
                     applicantsList.append(applicant)
-                # i += 1
-        # randInt = random.randrange(0, 115, 1)
     except:
+        print ("Not found:", studentFilePath, ", Skipping")
         pass
     return applicantsList
 

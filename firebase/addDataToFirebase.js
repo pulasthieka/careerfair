@@ -15,10 +15,9 @@ const fire = admin.firestore();
 
 //Reset all testing Data on firebase
 // addData("students.json", "Students");
-// addData("panels.json", "Panels");
-// addData("coordinator.json", "Coordinators");
-// addCompanies("companies.json", "Companies");
-//
+addData("panels.json", "Panels");
+addData("coordinator.json", "Coordinators");
+addCompanies("companies.json", "Companies");
 
 //Reset all final Data on firebase
 // addData("students.json", "StudentsFinal");
@@ -27,8 +26,8 @@ const fire = admin.firestore();
 // addCompanies("companies.json", "CompaniesFinal");
 
 //Add new users to firebase
-// addUsers("panels.json", "PanelsFinal");
-// addUsers("coordinator.json", "CoordinatorsFinal");
+// addUsers("panels.json");
+// addUsers("coordinator.json");
 
 // all functions
 
@@ -51,26 +50,30 @@ function addData(file, collectionName) {
       console.log("Write failed with: ", err);
     });
 }
-function addUsers(file, collectionName) {
+
+
+function addUsers(file) {
   let fileData = fs.readFileSync(`data/${file}`);
-  let colRef = fire.collection(collectionName);
+  // let colRef = fire.collection(collectionName);
   todB = {};
   const fileJSONData = JSON.parse(fileData);
   console.log(fileData);
-  var batch = fire.batch();
+  // var batch = fire.batch();
   fileJSONData.forEach((el) => {
     crud.createUser(el.username, el.password);
-    batch.set(colRef.doc(el.uid), el);
   });
-  batch
-    .commit()
-    .then((result) => {
-      console.log("Successfully added ", result);
-    })
-    .catch((err) => {
-      console.log("Write failed with: ", err);
-    });
+  //   batch.set(colRef.doc(el.uid), el);
+  // batch
+  //   .commit()
+  //   .then((result) => {
+  //     console.log("Successfully added ", result);
+  //   })
+  //   .catch((err) => {
+  //     console.log("Write failed with: ", err);
+  //   });
 }
+
+
 function addCompanies(file, collectionName) {
   let fileData = fs.readFileSync(`data/${file}`);
   let colRef = fire.collection(collectionName);

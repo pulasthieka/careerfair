@@ -69,10 +69,10 @@ module.exports = {
       })
       .then((userRecord) => {
         // See the UserRecord reference doc for the contents of userRecord.
-        console.log("Successfully created new user:", userRecord.uid);
+        console.log("Successfully created new user:", email, userRecord.uid);
       })
       .catch((error) => {
-        console.log("Error creating new user:", error);
+        console.log("Error creating new user:", email);
       });
   },
   deleteAllUsers: function deleteAllUsers() {

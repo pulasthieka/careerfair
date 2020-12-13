@@ -1,6 +1,6 @@
 import csv
 import json
-studentFilePath = 'data/CoordinatorList.csv'
+studentFilePath = 'data/Coordinators.csv'
 jsonFilePath = "data/coordinator.json"
 
 
@@ -16,7 +16,7 @@ with open(studentFilePath) as csvFile:
         coord['name'] = row['name']
         coord['panels'] = row['panels'].split(",")
         coord['username'] = row['username']
-        # coord['password'] = row['password']
+        coord['password'] = row['password']
 
         outputJSON.append(coord)
 
