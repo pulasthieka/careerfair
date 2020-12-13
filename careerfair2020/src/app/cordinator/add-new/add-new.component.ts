@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { environment } from 'src/environments/environment';
 import { AngularFireFunctions } from '@angular/fire/functions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-new',
@@ -12,6 +13,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 export class AddNewComponent implements OnInit {
   newIndex = '';
   error = '';
+  subscriptions: Subscription[] = [];
   @Input() applicants;
   @Input() company;
   constructor(
@@ -29,33 +31,38 @@ export class AddNewComponent implements OnInit {
     );
     if (index.match(/1[0-9]{5}[A-Z]/g)) {
       if (selected === -1) {
-        this.applicantService.getProfile(index).subscribe(
-          (res) => {
-            if (res) {
-              const applicant = {
-                applicant_id: index,
-                comment: '',
-                panel_id: '',
-                order: this.applicants.length + 1,
-                resume_url: res.default_resume || '',
-                status: 'Interested',
-                uid: index,
-              };
+        this.subscriptions.push(
+          this.applicantService.getProfile(index).subscribe(
+            (res) => {
+              if (res) {
+                const applicant = {
+                  applicant_id: index,
+                  comment: '',
+                  panel_id: '',
+                  order: (this.applicants.length + 1).toString(),
+                  resume_url: res.default_resume || '',
+                  status: 'Interested',
+                  uid: index,
+                };
 
-              this.firestore
-                .collection(environment.CompanyCollection)
-                .doc(this.company)
-                .collection('applicants')
-                .doc(index)
-                .set(applicant);
-              this.error = 'Added';
-            } else {
-              this.error = 'Index does not exist';
+                this.firestore
+                  .collection(environment.CompanyCollection)
+                  .doc(this.company)
+                  .collection('applicants')
+                  .doc(index)
+                  .set(applicant);
+                this.error = 'Added';
+                for (const subscription of this.subscriptions) {
+                  subscription.unsubscribe();
+                }
+              } else {
+                this.error = 'Index does not exist';
+              }
+            },
+            (err) => {
+              alert('Something went wrong');
             }
-          },
-          (err) => {
-            alert('Something went wrong');
-          }
+          )
         );
       } else {
         this.error = 'Already in List';

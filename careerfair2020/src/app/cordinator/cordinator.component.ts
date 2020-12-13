@@ -87,12 +87,15 @@ export class CordinatorComponent implements OnInit, OnDestroy {
   getApplicants(): void {
     this.subscriptions.push(
       this.applicantService.getApplicants(this.company).subscribe((res) => {
-        const applicantIDs: tableRow[] = res.applicants;
+        // const applicantIDs: tableRow[] = res.applicants;
         // console.log(res);
         this.applicants = [];
         res.forEach((id) => {
+          // console.log(id.uid, id.panel_id);
           const k = id as tableRow;
+          // console.log(id.panel_id);
           k.interviewed_by_panel_id = id.panel_id;
+          // console.log(k.interviewed_by_panel_id, id.panel_id, k.panel_id);
           // map response to row
           this.subscriptions.push(
             this.firestore
@@ -103,6 +106,7 @@ export class CordinatorComponent implements OnInit, OnDestroy {
                 if (k.status === 'Not Interested') {
                   k.statusB = true;
                 }
+                // console.log('applicantDB', res2.name);
                 k.name = res2.name;
                 k.available = res2.available;
                 const selected = this.applicants.findIndex(
