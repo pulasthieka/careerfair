@@ -39,6 +39,7 @@ export class AddNewComponent implements OnInit {
                 order: this.applicants.length + 1,
                 resume_url: res.default_resume || '',
                 status: 'Interested',
+                uid: index,
               };
 
               this.firestore
